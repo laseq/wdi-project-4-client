@@ -1,13 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="stagApp">
   <head>
     <meta charset="utf-8">
-    <title>Angular Stack Setup</title>
+    <title>Events App</title>
+    <base href="/">
     <!-- inject:js -->
     <!-- endinject -->
     <!-- inject:css -->
     <!-- endinject -->
   </head>
-  <body>
+  <body ng-controller="MainCtrl as main">
+
+    <header>
+
+      <nav class="navbar navbar-default" role="navigation">
+      	<div class="navbar-header">
+      		<button type="button" class="navbar-toggle" ng-click="main.isNavCollapsed = !main.isNavCollapsed">
+      			<span class="sr-only">Toggle navigation</span>
+      			<span class="icon-bar"></span>
+      			<span class="icon-bar"></span>
+      			<span class="icon-bar"></span>
+      		</button>
+          <!-- <div class="navbar-header"> -->
+            <a class="navbar-brand" ui-sref="home">EventsApp</a>
+          <!-- </div> -->
+      	</div>
+      	<div class="collapse navbar-collapse" uib-collapse="main.isNavCollapsed">
+          <ul class="nav navbar-nav navbar-right">
+            <li ng-show="main.user">
+              <p class="navbar-text">Welcome, {{ main.user.username }}</p>
+            </li>
+            <li ng-hide="main.user">
+              <a ui-sref="register">Register</a>
+            </li>
+            <li ng-hide="main.user">
+              <a ui-sref="login">Login</a>
+            </li>
+            <li ng-show="main.user">
+              <a ui-sref="groupsIndex">My Groups</a>
+            </li>
+            <li ng-show="main.user">
+              <a ng-click="main.logout()">Logout</a>
+            </li>
+          </ul>
+      	</div>
+      </nav>
+
+    </header>
+
+    <main ui-view class="container"></main>
   </body>
 </html>
