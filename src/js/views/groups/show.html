@@ -1,1 +1,11 @@
 <h1>Groups Show</h1>
+
+<p>Name: {{ vm.group.name }}</p>
+<p>Description: {{ vm.group.description }}</p>
+<p>Creator: {{ vm.group.creator.first_name }} {{ vm.group.creator.last_name }}</p>
+<ul>
+  <p>Members:</p>
+  <li ng-repeat="member in vm.group.members">
+    <p>Name: {{ member.first_name }} {{ member.last_name }}</p>
+  </li>
+</ul>
