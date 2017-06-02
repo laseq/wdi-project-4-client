@@ -5,6 +5,7 @@ angular
 MainCtrl.$inject = ['$http', 'CurrentUserService', 'TokenService', '$rootScope', '$state'];
 function MainCtrl($http, CurrentUserService, TokenService, $rootScope, $state) {
   const vm = this;
+  CurrentUserService.getUser();
 
   vm.isNavCollapsed = true;
 

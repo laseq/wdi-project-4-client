@@ -1,1 +1,6 @@
 <h1>Groups Index</h1>
+
+<div ng-repeat="group in vm.groups track by $index">
+  <!-- <p>Group Name: {{ group.name }} <span ng-show="vm.groupCreator(group.creator_id)">Group creator</span></p> -->
+  <p>Group Name: {{ group.name }} <span ng-if="group.creator_id == vm.currentUser.id">Group creator</span></p>
+</div>
