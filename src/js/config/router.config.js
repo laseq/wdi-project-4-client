@@ -22,6 +22,11 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: '/js/views/login.html',
       controller: 'LoginCtrl as login'
     })
+    .state('dashboard', {
+      url: '/dashboard',
+      templateUrl: '/js/views/dashboard.html',
+      controller: 'DashboardCtrl as vm'
+    })
     .state('groupsIndex', {
       url: '/groups',
       templateUrl: '/js/views/groups/index.html',
