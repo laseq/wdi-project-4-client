@@ -6,7 +6,7 @@
   background: #fff;
   box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
   transition: all 0.5s ease;
-  max-width: 300px;
+  // max-width: 300px;
   margin: auto;
   text-align: center;
   margin-bottom: 2%;
@@ -31,8 +31,12 @@
 
   }
 
+  .glyphicons-at-top.admin-icon {
+
+  }
+
+
   .profile-img {
-    // background-image: url("https://images-na.ssl-images-amazon.com/images/M/MV5BMjA1MjE2MTQ2MV5BMl5BanBnXkFtZTcwMjE5MDY0Nw@@._V1_UX214_CR0,0,214,317_AL_.jpg");
     height: 250px;
     width: 100%;
     background-size: cover;
@@ -41,6 +45,12 @@
 
   .title {
       font-size: 18px;
+  }
+}
+
+.dashboard-groups {
+  .section-title {
+    margin: 3% auto;
   }
 }
 
