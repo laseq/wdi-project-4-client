@@ -1,11 +1,7 @@
-<h1>Groups Show</h1>
+<h1 class="text-center">{{ vm.group.name }}</h1>
 
 <div class="row button-row">
   <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
-    <div class="col-md-2 col-sm-3 pull-right">
-      <button class="btn btn-danger" href="javascript:void(0)"
-      ng-click="vm.delete()">Delete Group</button>
-    </div>
     <div class="col-md-2 col-sm-3 pull-right">
       <button class="btn btn-primary" href="javascript:void(0)"
       ui-sref="groupsEdit({ id: vm.group.id })">Edit Group</button>
@@ -13,7 +9,6 @@
   </div>
 </div>
 
-<p>Name: {{ vm.group.name }}</p>
 <p>Description: {{ vm.group.description }}</p>
 <p>Creator: {{ vm.group.creator.first_name }} {{ vm.group.creator.last_name }}</p>
 <ul>

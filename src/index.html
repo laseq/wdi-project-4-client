@@ -22,7 +22,8 @@
       			<span class="icon-bar"></span>
       		</button>
           <!-- <div class="navbar-header"> -->
-            <a class="navbar-brand" ui-sref="home">EventsApp</a>
+            <a ng-hide="main.user" class="navbar-brand" ui-sref="home">EventsApp</a>
+            <a ng-show="main.user" class="navbar-brand" ui-sref="dashboard">EventsApp</a>
           <!-- </div> -->
       	</div>
       	<div class="collapse navbar-collapse" uib-collapse="main.isNavCollapsed">
@@ -35,6 +36,9 @@
             </li>
             <li ng-hide="main.user">
               <a ui-sref="login">Login</a>
+            </li>
+            <li ng-show="main.user">
+              <a ui-sref="dashboard">Home</a>
             </li>
             <li ng-show="main.user">
               <a ui-sref="groupsIndex">My Groups</a>
