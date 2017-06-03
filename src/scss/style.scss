@@ -1,5 +1,20 @@
 // Import all of your scss files here
 
+.flex-row {
+  display: flex;
+}
+
+// To make scrollbars visible on Mac OS
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
 /* Dashboard */
 
 .card-container {
@@ -48,6 +63,11 @@
   }
 }
 
+.notifications-accordion {
+  overflow-y: scroll;
+  height: 400px;
+}
+
 .dashboard-groups {
   .section-title {
     margin: 3% auto;
@@ -55,9 +75,4 @@
   .button-row {
     margin: 0 auto 3%;
   }
-}
-
-
-.flex-row {
-  display: flex;
 }
