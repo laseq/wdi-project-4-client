@@ -33,8 +33,7 @@ function GroupsShowCtrl($stateParams, Group, $state){
       .delete({ id: vm.group.id })
       .$promise
       .then(() => {
-
-        $state.go('groupsIndex');
+        $state.go('dashboard');
       });
   }
 }

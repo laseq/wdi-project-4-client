@@ -6,16 +6,16 @@
 
     <div class="card-container">
 
-      <div ui-sref="usersEdit({ id: vm.currentUser.id })" class="glyphicons-at-top">
+      <div ui-sref="usersEdit({ id: vm.user.id })" class="glyphicons-at-top">
         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
       </div>
 
-      <div class="profile-img" style="background-image:url({{ vm.currentUser.image || '../images/user-default.jpg' }})"></div>
+      <div class="profile-img" style="background-image:url({{ vm.user.image || '../images/user-default.jpg' }})"></div>
 
-      <h1>{{ vm.currentUser.first_name }} {{ vm.currentUser.last_name }}</h1>
-      <h2 class="title"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ vm.currentUser.phone || "N/A" }}</h2>
-      <h2 class="title"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ vm.currentUser.email || "N/A"  }}</h2>
-      <h2 class="title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> {{ vm.currentUser.location || "N/A" }}</h2>
+      <h1>{{ vm.user.first_name }} {{ vm.user.last_name }}</h1>
+      <h2 class="title"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ vm.user.phone || "N/A" }}</h2>
+      <h2 class="title"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ vm.user.email || "N/A"  }}</h2>
+      <h2 class="title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> {{ vm.user.location || "N/A" }}</h2>
 
     </div>
 
@@ -33,13 +33,17 @@
 </div>
 
 <div class="dashboard-groups">
+  <h2 class="section-title text-center">Your Groups</h2>
+  <div class="row">
+    <button ui-sref="groupsNew" class="btn btn-primary button-row pull-right" type="button" name="button">
+      Create a group
+    </button>
+  </div>
   <div class="row text-center">
-    <h2 class="section-title">Your Groups</h2>
-    <button class="btn btn-primary" type="button" name="button">Create a group</button>
     <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="group in vm.groups track by $index">
       <div class="card-container">
 
-        <div class="glyphicons-at-top" ng-if="group.creator_id == vm.currentUser.id">
+        <div class="glyphicons-at-top" ng-if="group.creator_id == vm.user.id">
           <span class="glyphicon glyphicon-star admin-icon" aria-hidden="true"></span>
         </div>
 

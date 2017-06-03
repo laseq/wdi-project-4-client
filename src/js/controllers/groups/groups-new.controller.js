@@ -12,7 +12,7 @@ function GroupsNewCtrl($state, Group){
       .save(vm.group)
       .$promise
       .then(()=>{
-        $state.go('groupsIndex');
+        $state.go('dashboard');
       });
   }
 }

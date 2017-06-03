@@ -6,7 +6,6 @@ GroupsEditCtrl.$inject = ['$stateParams', '$state', 'Group'];
 function GroupsEditCtrl($stateParams, $state, Group){
   const vm = this;
   vm.group = Group.get($stateParams);
-  console.log(vm.group);
   vm.update = groupUpdate;
 
   function groupUpdate(){
@@ -14,7 +13,7 @@ function GroupsEditCtrl($stateParams, $state, Group){
     .update({ id: $stateParams.id }, vm.group)
     .$promise
     .then(()=>{
-      $state.go('groupsIndex');
+      $state.go('groupsShow', { id: vm.group.id });
     });
   }
 }

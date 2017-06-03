@@ -2,22 +2,23 @@ angular
   .module('stagApp')
   .controller('DashboardCtrl', DashboardCtrl);
 
-DashboardCtrl.$inject = ['Group', 'CurrentUserService'];
-function DashboardCtrl(Group, CurrentUserService) {
+DashboardCtrl.$inject = ['Group', 'User', 'CurrentUserService', 'TokenService'];
+function DashboardCtrl(Group, User, CurrentUserService, TokenService) {
   const vm = this;
-  CurrentUserService.getUser();
-  vm.currentUser = CurrentUserService.currentUser;
 
-  displayUserGroups();
+  vm.user = User.get({ id: TokenService.decodeToken().id });
+  vm.groups = Group.userGroups();
 
-  function displayUserGroups() {
-    Group
-      .userGroups()
-      .$promise
-      .then(groups => {
-        console.log('user\'s groups:', groups);
-        vm.groups = groups;
-      });
-  }
+  // displayUserGroups();
+  //
+  // function displayUserGroups() {
+  //   Group
+  //     .userGroups()
+  //     .$promise
+  //     .then(groups => {
+  //       console.log('user\'s groups:', groups);
+  //       vm.groups = groups;
+  //     });
+  // }
 
 }
