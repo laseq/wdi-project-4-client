@@ -1,92 +1,48 @@
 // Import all of your scss files here
 
-/* Testing profile card */
+/* Dashboard */
 
-.card {
+.card-container {
   background: #fff;
-  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
   transition: all 0.5s ease;
   max-width: 300px;
   margin: auto;
   text-align: center;
   margin-bottom: 2%;
-}
+  padding-bottom: 2%;
+  position: relative;
 
-.card-container {
-    padding: 0 16px;
-}
+  .glyphicons-at-top {
+    position: absolute;
+    right: 1%;
+    top: 1%;
+    font-size: 20px;
+    padding: 2%;
+    background-color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    box-shadow: 0px 0px 2px #888;
 
-.profile-img {
-  background-image: url("https://images-na.ssl-images-amazon.com/images/M/MV5BMjA1MjE2MTQ2MV5BMl5BanBnXkFtZTcwMjE5MDY0Nw@@._V1_UX214_CR0,0,214,317_AL_.jpg");
-  height: 250px;
-  width: 100%;
-  background-size: cover;
-  background-position: center center;
-}
-
-.title {
-    color: grey;
-    font-size: 18px;
-}
-
-/* Dashboard */
-.contact-card {
-	background: #fff;
-	position: relative;
-  margin-bottom: 2%;
-
-	-webkit-box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
-	-moz-box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
-	box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
-
-	-webkit-transition: all 0.5s ease;
-	-moz-transition: all 0.5s ease;
-	-ms-transition: all 0.5s ease;
-	-o-transition: all 0.5s ease;
-	transition: all 0.5s ease;
-
-  .contact-card-photo-background {
-    background-color: #4286f4;
-    margin-left: 2.5%;
-    align-items: stretch;
-  }
-
-  .contact-card-photo-holder {
-    position: relative;
-
-    .round-img {
-      background-image: url("https://images-na.ssl-images-amazon.com/images/M/MV5BMjA1MjE2MTQ2MV5BMl5BanBnXkFtZTcwMjE5MDY0Nw@@._V1_UX214_CR0,0,214,317_AL_.jpg");
-      // background-color: blue;
-      position: absolute;
-      left: -75px;
-      top: 30px;
-      border-radius: 50%;
-      width: 150px;
-      height: 150px;
-      background-clip: padding-box;
-      // margin: 7px 0 0 5px;
-      // float: left;
-      background-size: cover;
-      background-position: center center;
+    &:hover {
+      cursor: pointer;
     }
-  }
-
-  .contact-card-row {
-    padding: 2% 0;
-  }
-
-  .contact-card-headers {
-    margin: 0;
-    font-weight: bold;
-  }
-
-  .contact-card-values {
 
   }
 
+  .profile-img {
+    background-image: url("https://images-na.ssl-images-amazon.com/images/M/MV5BMjA1MjE2MTQ2MV5BMl5BanBnXkFtZTcwMjE5MDY0Nw@@._V1_UX214_CR0,0,214,317_AL_.jpg");
+    height: 250px;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .title {
+      font-size: 18px;
+  }
 }
-
 
 
 .flex-row {
