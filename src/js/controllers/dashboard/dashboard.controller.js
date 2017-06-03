@@ -5,6 +5,7 @@ angular
 DashboardCtrl.$inject = ['Group', 'CurrentUserService'];
 function DashboardCtrl(Group, CurrentUserService) {
   const vm = this;
+  CurrentUserService.getUser();
   vm.currentUser = CurrentUserService.currentUser;
 
   displayUserGroups();
@@ -14,7 +15,7 @@ function DashboardCtrl(Group, CurrentUserService) {
       .userGroups()
       .$promise
       .then(groups => {
-        console.log('user\'s groups:', groups);
+        // console.log('user\'s groups:', groups);
         vm.groups = groups;
       });
   }

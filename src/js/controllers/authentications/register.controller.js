@@ -12,7 +12,7 @@ function RegisterCtrl(User, CurrentUserService, $state){
       .$promise
       .then(() => {
         CurrentUserService.getUser();
-        $state.go('groupsIndex');
+        $state.go('dashboard');
       }, err => {
         console.log(err);
       });
