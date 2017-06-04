@@ -20,13 +20,84 @@
 </div>
 
 
+<div class="row">
 
+  <div class="col-xs-12 col-md-9">
+    <h3>Agenda</h3>
+  </div>
+
+  <div class="col-xs-12 col-md-3">
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="">
+          <button class="btn btn-primary col-xs-12 margin-bottom-2">Send Invites</button>
+        </div>
+        <div class="">
+          <button class="btn btn-primary col-xs-12 margin-bottom-2">View Invites</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="member-card-container container-fluid">
+      <h3 class="text-center">Members</h3>
+      <div class="list-group">
+
+        <!-- The row for the group creator -->
+        <div class="container-fluid">
+          <div class="row creator-div member-div">
+            <div class="col-xs-3 member-div-img-col">
+              <div class="member-img" style="background-image:url({{ vm.group.creator.image || '../images/user-default.jpg' }})"></div>
+            </div>
+            <div class="col-xs-9 member-div-member-col text-left">
+              <div class="member-details">
+                <p class="member-name"><span>{{ vm.group.creator.first_name }} {{ vm.group.creator.last_name }}</span></p>
+                <p class="member-phone"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ vm.group.creator.phone || "N/A" }}</p>
+                <p class="member-email"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ vm.group.creator.email || "N/A" }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The rows for the rest of the group members -->
+        <div class="container-fluid">
+          <div class="row member-div" ng-repeat="member in vm.group.accepted_members">
+            <div class="col-xs-3 member-div-img-col">
+              <div class="member-img" style="background-image:url({{ member.image || '../images/user-default.jpg' }})"></div>
+            </div>
+            <div class="col-xs-9 member-div-member-col text-left">
+              <div class="member-details text-left">
+                <p class="member-name"><span>{{ member.first_name }} {{ member.last_name }}</span></p>
+                <p class="member-phone"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ member.phone || "N/A" }}</p>
+                <p class="member-email"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ member.email || "N/A" }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="">
+          <button class="btn btn-danger col-xs-12">Delete Members</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<div class="profile-img" style="background-image:url({{ vm.group.creator.image || '../images/user-default.jpg' }})"></div>
 <p>Creator: {{ vm.group.creator.first_name }} {{ vm.group.creator.last_name }}</p>
-
 
 <ul>
   <p>Members:</p>
-  <li ng-repeat="member in vm.group.members">
+  <li ng-repeat="member in vm.group.accepted_members">
     <p>Name: {{ member.first_name }} {{ member.last_name }}</p>
   </li>
 </ul>

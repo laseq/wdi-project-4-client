@@ -5,13 +5,21 @@ angular
 GroupsShowCtrl.$inject = ['$stateParams', 'Group', '$state'];
 function GroupsShowCtrl($stateParams, Group, $state){
   const vm = this;
+
+  // vm.group = Group.get($stateParams);
   // vm.addComment = commentsCreate;
   vm.delete = groupsDelete;
 
   groupsShow();
 
   function groupsShow() {
-    vm.group = Group.get($stateParams);
+    Group
+      .get($stateParams)
+      .$promise
+      .then(group => {
+        vm.group = group;
+        console.log('group:', group);
+      });
   }
 
   // function commentsCreate() {
