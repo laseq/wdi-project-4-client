@@ -1,16 +1,29 @@
 <h1 class="text-center">{{ vm.group.name }}</h1>
 
-<div class="row button-row">
-  <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
-    <div class="col-md-2 col-sm-3 pull-right">
-      <button class="btn btn-primary" href="javascript:void(0)"
-      ui-sref="groupsEdit({ id: vm.group.id })">Edit Group</button>
+<div class="button-row pull-right">
+  <button class="btn btn-primary" href="javascript:void(0)"
+  ui-sref="groupsEdit({ id: vm.group.id })">Send Invites</button>
+  <button class="btn btn-primary" href="javascript:void(0)"
+  ui-sref="groupsEdit({ id: vm.group.id })">Edit Group</button>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="card-container">
+      <div class="profile-img" style="background-image:url({{ vm.group.image || '../images/user-default.jpg' }})"></div>
+      <div class="group-description">
+        <strong class="description-heading">Description</strong>
+        <p class="description">{{ vm.group.description }}</p>
+      </div>
     </div>
   </div>
 </div>
 
-<p>Description: {{ vm.group.description }}</p>
+
+
 <p>Creator: {{ vm.group.creator.first_name }} {{ vm.group.creator.last_name }}</p>
+
+
 <ul>
   <p>Members:</p>
   <li ng-repeat="member in vm.group.members">
