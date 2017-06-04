@@ -8,6 +8,7 @@ function DashboardCtrl(Group, User, Request, TokenService) {
 
   // vm.user = User.get({ id: TokenService.decodeToken().id });
   vm.groups = Group.userGroups();
+  vm.declineRequest = declineGroupRequest;
 
   getUser();
   getPendingRequests();
@@ -42,6 +43,15 @@ function DashboardCtrl(Group, User, Request, TokenService) {
       .then(requests => {
         vm.pending_requests = requests;
         console.log('pending requests:', requests);
+      });
+  }
+
+  function declineGroupRequest(requestId) {
+    Request
+      .remove({ id: requestId })
+      .$promise
+      .then(() => {
+        getPendingRequests();
       });
   }
 

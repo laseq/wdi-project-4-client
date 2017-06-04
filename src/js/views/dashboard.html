@@ -34,43 +34,20 @@
   <div class="col-xs-12 col-md-4 card-container">
     <h2>Notifications</h2>
     <div class="notifications-accordion">
-      <uib-accordion close-others="oneAtATime">
-        <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded">
-          This content is straight in the template.
-        </div>
-        <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded">
-          This content is straight in the template.
-        </div>
-        <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded">
-          This content is straight in the template.
-        </div>
-        <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded">
-          This content is straight in the template.
-        </div>
-        <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded">
-          This content is straight in the template.
-        </div>
-        <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded">
-          This content is straight in the template.
-        </div>
-        <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded">
-          This content is straight in the template.
-        </div>
-        <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded">
-          This content is straight in the template.
-        </div>
-        <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded">
-          This content is straight in the template.
-        </div>
-        <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded">
-          This content is straight in the template.
-        </div>
-        <div uib-accordion-group class="panel-default" heading="Static Header, initially expanded">
-          This content is straight in the template.
+      <uib-accordion close-others="oneAtATime" class="text-left">
+        <div ng-repeat="request in vm.pending_requests">
+          <div uib-accordion-group class="panel-default" heading="Group Invitation">
+            You have received an invitation from {{ request.sender.first_name }} {{ request.sender.last_name }} to join {{ request.group.name }}.
+            <div class="accordion-buttons">
+              <button ng-click="" class="btn btn-primary" type="button" name="button">Join</button>
+              <button ng-click="vm.declineRequest(request.id)" class="btn btn-primary" type="button" name="button">Decline</button>
+            </div>
+          </div>
         </div>
       </uib-accordion>
     </div>
   </div>
+
 
 </div>
 

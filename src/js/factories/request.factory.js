@@ -6,11 +6,11 @@ angular
 
 Request.$inject = ['$resource', 'API'];
 function Request($resource, API) {
-  return $resource(`${API}/group_invite/:id`,
+  return $resource(`${API}/group_invites/:id`,
     { id: '@_id' },
     {
       'update': { method: 'PUT' },
-      'getPendingRequests': { method: 'GET', url: `${API}/group_invite/pending`, isArray: true }
+      'getPendingRequests': { method: 'GET', url: `${API}/group_invites/pending`, isArray: true }
     }
   );
 }
