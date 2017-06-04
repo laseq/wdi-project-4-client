@@ -39,7 +39,7 @@
           <div uib-accordion-group class="panel-default" heading="Group Invitation">
             You have received an invitation from {{ request.sender.first_name }} {{ request.sender.last_name }} to join {{ request.group.name }}.
             <div class="accordion-buttons">
-              <button ng-click="" class="btn btn-primary" type="button" name="button">Join</button>
+              <button ng-click="vm.acceptRequest(request.id)" class="btn btn-primary" type="button" name="button">Join</button>
               <button ng-click="vm.declineRequest(request.id)" class="btn btn-primary" type="button" name="button">Decline</button>
             </div>
           </div>

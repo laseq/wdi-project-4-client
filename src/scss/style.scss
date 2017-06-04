@@ -1,5 +1,9 @@
 // Import all of your scss files here
-
+.nav {
+  a:hover {
+    cursor: pointer;
+  }
+}
 .flex-row {
   display: flex;
 }
