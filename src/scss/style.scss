@@ -20,14 +20,8 @@
 /* Dashboard */
 
 .card-container {
-  background: #fff;
-  box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
-  transition: all 0.5s ease;
-  margin: auto;
-  text-align: center;
-  margin-bottom: 2%;
-  padding-bottom: 2%;
-  position: relative;
+
+  @include medium-card-container;
 
   .glyphicons-at-top {
     position: absolute;
@@ -158,8 +152,19 @@
 
   }
 
+} // End of groups-show-modal
+
+/* Agenda on show page */
+.agenda-main {
+  @include medium-card-container;
+
+  .event-card {
+    @include small-card-container;
+    text-align: left;
+  }
 }
 
+// Not sure if this code below actually works for the group pending request and leave modals
 .vcenter {
   display: inline-block;
   vertical-align: middle;
