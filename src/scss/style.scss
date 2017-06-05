@@ -1,5 +1,6 @@
 // Import all of your scss files here
 @import 'mixins';
+@import 'custom-css';
 
 .nav {
   a:hover {
@@ -8,6 +9,11 @@
 }
 .flex-row {
   display: flex;
+}
+
+.row-align-bottom {
+  display: flex;
+  align-items: flex-end;
 }
 
 .margin-bottom-2 {
@@ -161,6 +167,15 @@
   .event-card {
     @include small-card-container;
     text-align: left;
+
+    .timings {
+      text-align: right;
+    }
+
+    .event-sub-headings {
+      margin: 0;
+    }
+
   }
 }
 
