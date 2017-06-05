@@ -44,7 +44,7 @@ function GroupsRequestCtrl(group, User, Request, $uibModalInstance, $state) {
       .findByEmailWithGroup(userObj)
       .$promise
       .then(user => {
-        if (user.id) {
+        if (user.id && !checkIfInListAlready(user.id)) {
           vm.usersToInvite.push(user);
           console.log('vm.usersToInvite:', vm.usersToInvite);
           vm.currentEmail = '';
@@ -79,7 +79,14 @@ function GroupsRequestCtrl(group, User, Request, $uibModalInstance, $state) {
         console.log('Something went wrong with the mass request');
         console.log('Error:', err);
       });
+  }
 
+  function checkIfInListAlready(userId) {
+    if (vm.usersToInvite.find(user => user.id === userId)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   function removeUserFromList($index) {
