@@ -1,10 +1,12 @@
 <h1 class="text-center">{{ vm.group.name }}</h1>
 
 <div class="button-row pull-right">
-  <button class="btn btn-primary" href="javascript:void(0)"
-  ui-sref="groupsEdit({ id: vm.group.id })">Send Invites</button>
-  <button class="btn btn-primary" href="javascript:void(0)"
-  ui-sref="groupsEdit({ id: vm.group.id })">Edit Group</button>
+  <button class="btn btn-primary" href="javascript:void(0)" ng-click="vm.openInvites()">
+    Send Invites
+  </button>
+  <button class="btn btn-primary" href="javascript:void(0)" ui-sref="groupsEdit({ id: vm.group.id })">
+    Edit Group
+  </button>
 </div>
 
 <div class="row">
@@ -31,7 +33,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="">
-          <button class="btn btn-primary col-xs-12 margin-bottom-2">Send Invites</button>
+          <button ng-click="vm.openInvites()" class="btn btn-primary col-xs-12 margin-bottom-2">Send Invites</button>
         </div>
         <div class="">
           <button class="btn btn-primary col-xs-12 margin-bottom-2">View Invites</button>
@@ -89,15 +91,3 @@
   </div>
 
 </div>
-
-
-
-<div class="profile-img" style="background-image:url({{ vm.group.creator.image || '../images/user-default.jpg' }})"></div>
-<p>Creator: {{ vm.group.creator.first_name }} {{ vm.group.creator.last_name }}</p>
-
-<ul>
-  <p>Members:</p>
-  <li ng-repeat="member in vm.group.accepted_members">
-    <p>Name: {{ member.first_name }} {{ member.last_name }}</p>
-  </li>
-</ul>

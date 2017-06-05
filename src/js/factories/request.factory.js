@@ -10,7 +10,8 @@ function Request($resource, API) {
     { id: '@_id' },
     {
       'update': { method: 'PUT' },
-      'getPendingRequests': { method: 'GET', url: `${API}/group_invites/pending`, isArray: true }
+      'getPendingRequests': { method: 'GET', url: `${API}/group_invites/pending`, isArray: true },
+      'sendMassRequest': { method: 'POST', url: `${API}/group_invites/mass`, isArray: true }
     }
   );
 }

@@ -1,4 +1,6 @@
 // Import all of your scss files here
+@import 'mixins';
+
 .nav {
   a:hover {
     cursor: pointer;
@@ -13,15 +15,7 @@
 }
 
 // To make scrollbars visible on Mac OS
-::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-}
-::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0,0,0,.5);
-    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-}
+@include mac-os-scrollbars;
 
 /* Dashboard */
 
@@ -108,14 +102,7 @@
 }
 
 .member-card-container {
-  background: #fff;
-  box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
-  transition: all 0.5s ease;
-  margin: auto;
-  text-align: center;
-  margin: 1% 0 3%;
-  padding: 0 auto 0;
-  position: relative;
+  @include small-card-container;
 
   .creator-div {
     border-top: 1px solid #bdbfc1;
@@ -125,33 +112,34 @@
     padding: 2px 0;
     border-bottom: 1px solid #bdbfc1;
 
-    .member-div-img-col {
-      padding: 0;
+    @include small-user-card;
 
-      .member-img {
-        height: 75px;
-        width: 100%;
-        background-size: cover;
-        background-position: center center;
-      }
-    }
-
-    .member-div-member-col {
-      padding: 0 5% 0;
-
-      .member-details {
-        display: inline-block;
-
-        p {
-          margin: 0;
-        }
-
-        .member-name {
-          font-weight: bold;
-          margin-top: 5px;
-          margin-bottom: 2px;
-        }
-      }
-    }
   }
+}
+
+.groups-show-modal {
+
+  .modal-body {
+    min-height: 20em;
+
+    .invite-search {
+      display: inline-block;
+    }
+
+    @include small-user-card;
+
+    .member-name {
+      font-weight: bold;
+      margin-top: 5px;
+      margin-bottom: 0 !important;
+    }
+
+  }
+
+}
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
 }
