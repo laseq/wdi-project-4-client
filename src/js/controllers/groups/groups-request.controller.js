@@ -14,19 +14,43 @@ function GroupsRequestCtrl(group, User, Request, $uibModalInstance, $state) {
   vm.usersToInvite = [];
   let massRequest = [];
 
+  // function searchForUserByEmail() {
+  //   console.log('vm.currentEmail:', vm.currentEmail);
+  //   // const userObj = {
+  //   //   email: vm.currentEmail
+  //   // };
+  //   // console.log('userObj:', userObj);
+  //   User
+  //     .findByEmail({ email: vm.currentEmail })
+  //     .$promise
+  //     .then(user => {
+  //       vm.usersToInvite.push(user);
+  //       console.log('vm.usersToInvite:', vm.usersToInvite);
+  //       vm.currentEmail = '';
+  //     })
+  //     .catch(err => {
+  //       console.log('User wasn\'t found');
+  //       console.log('error:', err);
+  //     });
+  // }
   function searchForUserByEmail() {
     console.log('vm.currentEmail:', vm.currentEmail);
-    // const userObj = {
-    //   email: vm.currentEmail
-    // };
-    // console.log('userObj:', userObj);
+    const userObj = {
+      email: vm.currentEmail,
+      group_id: vm.group.id
+    };
+    console.log('userObj:', userObj);
     User
-      .findByEmail({ email: vm.currentEmail })
+      .findByEmailWithGroup(userObj)
       .$promise
       .then(user => {
-        vm.usersToInvite.push(user);
-        console.log('vm.usersToInvite:', vm.usersToInvite);
-        vm.currentEmail = '';
+        if (user.id) {
+          vm.usersToInvite.push(user);
+          console.log('vm.usersToInvite:', vm.usersToInvite);
+          vm.currentEmail = '';
+        } else {
+          console.log('user:', user);
+        }
       })
       .catch(err => {
         console.log('User wasn\'t found');

@@ -13,6 +13,7 @@ function userFactory(API, $resource){
       params: {
         email: '@email'
       }
-    }
+    },
+    'findByEmailWithGroup': { method: 'POST', url: `${API}/users/search_by_email` }
   });
 }
