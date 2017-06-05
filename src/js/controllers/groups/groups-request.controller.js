@@ -10,6 +10,7 @@ function GroupsRequestCtrl(group, User, Request, $uibModalInstance, $state) {
   vm.group = group;
   vm.searchForUser = searchForUserByEmail;
   vm.sendRequests = sendGroupJoinRequests;
+  vm.remove = removeUserFromList;
   vm.usersToInvite = [];
   let massRequest = [];
 
@@ -48,12 +49,17 @@ function GroupsRequestCtrl(group, User, Request, $uibModalInstance, $state) {
       .$promise
       .then(data => {
         console.log('data:', data);
+        $uibModalInstance.close('Requests sent');
       })
       .catch(err => {
         console.log('Something went wrong with the mass request');
         console.log('Error:', err);
       });
 
+  }
+
+  function removeUserFromList($index) {
+    vm.usersToInvite.splice($index, 1);
   }
 
 

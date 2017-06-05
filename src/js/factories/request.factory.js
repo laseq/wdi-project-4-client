@@ -11,7 +11,8 @@ function Request($resource, API) {
     {
       'update': { method: 'PUT' },
       'getPendingRequests': { method: 'GET', url: `${API}/group_invites/pending`, isArray: true },
-      'sendMassRequest': { method: 'POST', url: `${API}/group_invites/mass`, isArray: true }
+      'sendMassRequest': { method: 'POST', url: `${API}/group_invites/mass`, isArray: true },
+      'removeByGroupAndUserId': { method: 'DELETE', url: `${API}/group_invites/remove_by_group_and_user` }
     }
   );
 }

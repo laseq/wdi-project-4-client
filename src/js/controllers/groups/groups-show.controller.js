@@ -10,6 +10,7 @@ function GroupsShowCtrl($stateParams, Group, $state, $uibModal){
   // vm.addComment = commentsCreate;
   vm.delete = groupsDelete;
   vm.openInvites = openGroupInvitesModal;
+  vm.openPending = openGroupPendingModal;
 
   groupsShow();
 
@@ -62,7 +63,30 @@ function GroupsShowCtrl($stateParams, Group, $state, $uibModal){
       .result
       .then(passedItem => {
         if (passedItem) {
-          vm.group = passedItem;
+          // vm.group = passedItem;
+          groupsShow();
+        }
+      });
+  }
+
+  function openGroupPendingModal() {
+    var groupPendingModalInstance = $uibModal.open({
+      templateUrl: 'js/views/partials/groupViewPendingModal.html',
+      controller: 'GroupsPendingCtrl as groupsPending',
+      size: 'lg',
+      resolve: {
+        group: () => {
+          return vm.group;
+        }
+      }
+    });
+
+    groupPendingModalInstance
+      .result
+      .then(passedItem => {
+        if (passedItem) {
+          // vm.group = passedItem;
+          groupsShow();
         }
       });
   }
