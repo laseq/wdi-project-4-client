@@ -11,6 +11,7 @@ function GroupsShowCtrl($stateParams, Group, $state, $uibModal){
   vm.delete = groupsDelete;
   vm.openInvites = openGroupInvitesModal;
   vm.openPending = openGroupPendingModal;
+  vm.openDeleteMembers = openDeleteMembersModal;
 
   groupsShow();
 
@@ -67,7 +68,7 @@ function GroupsShowCtrl($stateParams, Group, $state, $uibModal){
           groupsShow();
         }
       });
-  }
+  } // End of openGroupInvitesModal
 
   function openGroupPendingModal() {
     var groupPendingModalInstance = $uibModal.open({
@@ -89,5 +90,27 @@ function GroupsShowCtrl($stateParams, Group, $state, $uibModal){
           groupsShow();
         }
       });
-  }
+  } // End of openGroupPendingModal
+
+  function openDeleteMembersModal() {
+    var groupDeleteMembersInstance = $uibModal.open({
+      templateUrl: 'js/views/partials/groupDeleteMembersModal.html',
+      controller: 'GroupsDeleteMembersCtrl as groupsDeleteMembers',
+      size: 'lg',
+      resolve: {
+        group: () => {
+          return vm.group;
+        }
+      }
+    });
+
+    groupDeleteMembersInstance
+    .result
+    .then(passedItem => {
+      if (passedItem) {
+        // vm.group = passedItem;
+        groupsShow();
+      }
+    });
+  } // End of openDeleteMembersModal
 }

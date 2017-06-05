@@ -1,0 +1,38 @@
+<div class="my-modals groups-show-modal">
+  <div class="modal-header">
+    <h3 class="modal-title"><strong>Delete members of {{ groupsDeleteMembers.group.name }}</strong></h3>
+  </div>
+
+  <div class="modal-body">
+
+    <h4><strong>Warning! Clicking the <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> deletes a member without further confirmation.</strong></h4>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="user in groupsDeleteMembers.currentMembers track by $index">
+          <div class="container-fluid member-card-container">
+            <div ng-click="groupsDeleteMembers.deleteMember($event, $index, user.id)" class="small-card-glyphicon">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </div>
+            <div class="row">
+              <div class="col-xs-3 member-div-img-col">
+                <div class="member-img" style="background-image:url({{ user.image || '../images/user-default.jpg' }})"></div>
+              </div><div class="col-xs-9 member-div-member-col text-left vcenter">
+                <div class="member-details text-left">
+                  <p class="member-name"><span>{{ user.first_name }} {{ user.last_name }}</span></p>
+                  <p class="member-email">{{ user.email || "N/A" }}</p>
+                  <p class="member-email">{{ user.location || "N/A" }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-click="groupsDeleteMembers.close()">Close</button>
+  </div>
+</div>
