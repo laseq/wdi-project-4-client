@@ -21,6 +21,7 @@
     "angular-jwt": "^0.1.9",
     "bootstrap-css-only": "^3.3.7",
     "angular-bootstrap": "^2.5.0",
-    "angular-animate": "^1.6.4"
+    "angular-animate": "^1.6.4",
+    "moment": "^2.18.1"
   }
 }

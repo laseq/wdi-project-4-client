@@ -9,7 +9,7 @@
       Back to group
     </button>
   </div>
-  <div class="col-xs-6 text-right">
+  <div class="col-xs-6 text-right" ng-if="vm.group.creator_id == vm.userId">
     <button class="btn btn-primary" href="javascript:void(0)" ui-sref="eventsEdit({ group_id: vm.group.id, id: vm.event.id })">
       Edit Event
     </button>

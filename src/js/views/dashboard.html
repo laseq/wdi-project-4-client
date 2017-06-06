@@ -68,8 +68,12 @@
         style="background-image:url({{ '../images/user-default.jpg' }})"></div>
 
         <a ui-sref="groupsShow({ id: group.id })"><h3 >{{ group.name }}</h3></a>
-        <p ng-show="vm.checkSameDay(group.events, $index)">{{ vm.startDate[$index] }}</p>
-        <p ng-hide="vm.checkSameDay(group.events, $index)">{{ vm.startDate[$index] }} - {{ vm.endDate[$index] }}</p>
+        <p class="dash-groups-date" ng-show="vm.checkSameDay(group.events, $index)">
+          {{ vm.startDate[$index] || "Awaiting Schedule" }}
+        </p>
+        <p class="dash-groups-date" ng-hide="vm.checkSameDay(group.events, $index)">
+          {{ vm.startDate[$index] }} - {{ vm.endDate[$index] }}
+        </p>
 
       </div>
     </div>

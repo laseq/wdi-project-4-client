@@ -71,19 +71,15 @@ function DashboardCtrl(Group, User, Request, TokenService) {
 
   function checkSameDay(events, index) {
     if (events.length) {
-      vm.startDate[index] = new Date(events[0].start_time).toDateString();
-      vm.endDate[index] = new Date(events[events.length-1].start_time).toDateString();
-      console.log('vm.startDate[index]:', vm.startDate[index]);
-      console.log('vm.endDate[index]:', vm.endDate[index]);
+      vm.startDate[index] = moment(events[0].start_time).format('Do MMM YY');
+      vm.endDate[index] = moment(events[events.length-1].start_time).format('Do MMM YY');
       if (vm.startDate[index] === vm.endDate[index]) {
-        console.log('true');
         return true;
       } else {
-        console.log('false');
         return false;
       }
     }
-    return false;
+    return true;
   }
 
 }
