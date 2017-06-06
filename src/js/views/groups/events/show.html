@@ -1,22 +1,20 @@
-<div class="row text-center row-align-bottom event-show-group-header">
-  <div class="col-xs-12 col-sm-3 pull-left">
+<div class="row text-center">
+  <h1>{{ vm.group.name }}</h1>
+</div>
+
+<div class="row">
+  <div class="col-xs-6 text-left">
     <button ui-sref="groupsShow({ id: vm.paramsGroupId })" class="btn btn-primary" type="button" name="button">
       <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
       Back to group
     </button>
   </div>
-  <div class="col-xs-12 col-sm-6">
-    <h1>{{ vm.group.name }}</h1>
+  <div class="col-xs-6 text-right">
+    <button class="btn btn-primary" href="javascript:void(0)" ui-sref="eventsEdit({ group_id: vm.group.id, id: vm.event.id })">
+      Edit Event
+    </button>
   </div>
 </div>
-
-
-<div class="text-right">
-  <button class="btn btn-primary" href="javascript:void(0)" ui-sref="eventsEdit({ group_id: vm.group.id, id: vm.event.id })">
-    Edit Event
-  </button>
-</div>
-
 
 <div class="container-fluid event-show-card">
   <div class="row row-align-bottom">

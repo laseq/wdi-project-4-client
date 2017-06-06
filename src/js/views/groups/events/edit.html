@@ -1,1 +1,50 @@
-<h1>Event edit page</h1>
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6">
+      <button ui-sref="groupsShow({ id: vm.event.id })" class="btn btn-primary" type="button" name="button">
+        <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+        Back to event
+      </button>
+
+      <h1>Edit event {{ vm.event.name }}</h1>
+
+      <form ng-submit="vm.update()">
+
+        <div class="form-group">
+          <label for="name">Title</label>
+          <input class="form-control" type="text" name="name" id="name" ng-model="vm.event.name" placeholder="Title">
+        </div>
+
+        <div class="form-group">
+          <label for="start-time">Start Time</label>
+          <input class="form-control" type="text" name="start_time" id="start-time" ng-model="vm.event.start_time" placeholder="Start Time">
+        </div>
+
+        <div class="form-group">
+          <label for="end-time">End Time</label>
+          <input class="form-control" type="text" name="end_time" id="end-time" ng-model="vm.event.end_time" placeholder="End Time">
+        </div>
+
+        <div class="form-group" >
+          <label for="description">Description</label>
+          <textarea  class="form-control" id="description" name="description" ng-model="vm.event.description"  placeholder="Description the event"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input class="form-control" type="text" name="location" ng-model="vm.event.location" placeholder="Location">
+        </div>
+
+        <div class="form-group">
+          <label for="dress-code">Dress Code</label>
+          <input class="form-control" type="text" name="dress_code" ng-model="vm.event.dress_code" placeholder="Location">
+        </div>
+
+        <div class="form-group">
+          <input class="btn btn-primary" type="submit" value="Edit Event">
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
