@@ -221,15 +221,20 @@
   }
 }
 
-.status-Upcoming {
-  color: blue;
+.time-status {
+  text-transform: capitalize;
+
+  .status-upcoming {
+    color: blue;
+  }
+  .status-now {
+    color: green;
+  }
+  .status-ended {
+    color: crimson;
+  }
 }
-.status-Now {
-  color: green;
-}
-.status-Ended {
-  color: crimson;
-}
+
 
 // Event show page
 .event-show-group-header {

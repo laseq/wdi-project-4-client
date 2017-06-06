@@ -6,7 +6,7 @@ GroupsEditCtrl.$inject = ['$stateParams', '$state', 'Group', '$uibModal', 'group
 function GroupsEditCtrl($stateParams, $state, Group, $uibModal, group){
   const vm = this;
 
-  // group is passed in from the router.config.js file
+  // group is passed in from the router.config.js file because of the security screening through the router file
   vm.group = group;
   vm.update = groupUpdate;
   vm.delete = groupsDelete;

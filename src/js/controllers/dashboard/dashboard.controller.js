@@ -10,6 +10,9 @@ function DashboardCtrl(Group, User, Request, TokenService) {
   vm.groups = Group.userGroups();
   vm.acceptRequest = acceptGroupRequest;
   vm.declineRequest = declineGroupRequest;
+  vm.startDate = [];
+  vm.endDate = [];
+  vm.checkSameDay = checkSameDay;
 
   getUser();
   getPendingRequests();
@@ -64,6 +67,23 @@ function DashboardCtrl(Group, User, Request, TokenService) {
       .then(() => {
         getPendingRequests();
       });
+  }
+
+  function checkSameDay(events, index) {
+    if (events.length) {
+      vm.startDate[index] = new Date(events[0].start_time).toDateString();
+      vm.endDate[index] = new Date(events[events.length-1].start_time).toDateString();
+      console.log('vm.startDate[index]:', vm.startDate[index]);
+      console.log('vm.endDate[index]:', vm.endDate[index]);
+      if (vm.startDate[index] === vm.endDate[index]) {
+        console.log('true');
+        return true;
+      } else {
+        console.log('false');
+        return false;
+      }
+    }
+    return false;
   }
 
 }

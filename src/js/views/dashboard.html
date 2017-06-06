@@ -55,16 +55,21 @@
   </div>
   <div class="row text-center">
     <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="group in vm.groups track by $index">
-      <div class="card-container" ui-sref="groupsShow({ id: group.id })">
+      <div class="card-container" >
+      <!-- <div class="card-container" ui-sref="groupsShow({ id: group.id })"> -->
 
         <div class="glyphicons-at-top" ng-if="group.creator_id == vm.user.id">
           <span class="glyphicon glyphicon-star admin-icon" aria-hidden="true"></span>
         </div>
 
+        <!-- <div class="profile-img"
+        style="background-image:url({{ group.image || '../images/user-default.jpg' }})"></div> -->
         <div class="profile-img"
-        style="background-image:url({{ group.image || '../images/user-default.jpg' }})"></div>
+        style="background-image:url({{ '../images/user-default.jpg' }})"></div>
 
         <a ui-sref="groupsShow({ id: group.id })"><h3 >{{ group.name }}</h3></a>
+        <p ng-show="vm.checkSameDay(group.events, $index)">{{ vm.startDate[$index] }}</p>
+        <p ng-hide="vm.checkSameDay(group.events, $index)">{{ vm.startDate[$index] }} - {{ vm.endDate[$index] }}</p>
 
       </div>
     </div>
