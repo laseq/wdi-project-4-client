@@ -23,6 +23,12 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
       .then(group => {
         vm.group = group;
         console.log('group:', group);
+        const now = new Date();
+        group.events.forEach(event => {
+          if (event.start_time > now) {
+            event.status = 'Upcoming';
+          }
+        });
       });
   }
 

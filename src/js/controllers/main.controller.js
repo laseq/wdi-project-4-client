@@ -18,6 +18,11 @@ function MainCtrl($http, CurrentUserService, TokenService, $rootScope, $state) {
     $state.go('login');
   });
 
+  // $rootScope.$on('$stateChangeError', (event, toState, toParams, fromState, fromParams, error) => {
+  //   event.preventDefault();
+  //   console.log('CAUGHT');
+  // });
+
   vm.logout = () => {
     CurrentUserService.removeUser();
   };

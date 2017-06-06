@@ -221,6 +221,16 @@
   }
 }
 
+.status-Upcoming {
+  color: blue;
+}
+.status-Now {
+  color: green;
+}
+.status-Ended {
+  color: crimson;
+}
+
 // Event show page
 .event-show-group-header {
   h1 {
@@ -253,7 +263,6 @@
   .event-sub-headings {
     margin: 0;
   }
-
 }
 
 // Not sure if this code below actually works for the group pending request and leave modals

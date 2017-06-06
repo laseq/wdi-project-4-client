@@ -55,7 +55,7 @@
             <p># people going</p>
           </div>
           <div class="col-xs-6 text-right">
-            <p>Status: {{ event.status || N/A }}</p>
+            <p ng-class="'status-' + event.status">Status: {{ event.status || N/A }}</p>
           </div>
         </div>
       </div>

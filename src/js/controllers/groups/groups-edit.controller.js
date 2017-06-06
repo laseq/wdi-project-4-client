@@ -2,10 +2,12 @@ angular
 .module('stagApp')
 .controller('GroupsEditCtrl', GroupsEditCtrl);
 
-GroupsEditCtrl.$inject = ['$stateParams', '$state', 'Group', '$uibModal'];
-function GroupsEditCtrl($stateParams, $state, Group, $uibModal){
+GroupsEditCtrl.$inject = ['$stateParams', '$state', 'Group', '$uibModal', 'group'];
+function GroupsEditCtrl($stateParams, $state, Group, $uibModal, group){
   const vm = this;
-  vm.group = Group.get($stateParams);
+
+  // group is passed in from the router.config.js file
+  vm.group = group;
   vm.update = groupUpdate;
   vm.delete = groupsDelete;
   vm.openDelete = openDeleteModal;
