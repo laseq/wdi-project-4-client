@@ -1,6 +1,6 @@
 <h1 class="text-center">{{ vm.group.name }}</h1>
 
-<div class="button-row pull-right">
+<div class="button-row pull-right" ng-if="vm.group.creator_id == vm.user.id">
   <button class="btn btn-primary" href="javascript:void(0)" ng-click="vm.openInvites()">
     Send Invites
   </button>
@@ -28,7 +28,9 @@
 
     <div class="container-fluid agenda-main">
       <div class="agenda-header-row">
-        <button ui-sref="eventsNew({ group_id: vm.group.id })" class="btn btn-success" id="add-event-btn">Add Event</button>
+        <button ui-sref="eventsNew({ group_id: vm.group.id })"
+          ng-if="vm.group.creator_id == vm.user.id"
+          class="btn btn-success" id="add-event-btn">Add Event</button>
         <h3 class="mb3">Agenda</h3>
       </div>
       <!-- <div class="add-event-button">
@@ -64,7 +66,7 @@
   <!-- The member column on the right -->
   <div class="col-xs-12 col-sm-4 col-md-3">
 
-    <div class="container-fluid">
+    <div class="container-fluid" ng-if="vm.group.creator_id == vm.user.id">
       <div class="row">
         <div class="">
           <button ng-click="vm.openInvites()" class="btn btn-primary col-xs-12 margin-bottom-2">Send Invites</button>
@@ -114,7 +116,7 @@
       </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container-fluid" ng-if="vm.group.creator_id == vm.user.id">
       <div class="row">
         <div class="">
           <button ng-click="vm.openDeleteMembers()" class="btn btn-danger col-xs-12">Delete Members</button>

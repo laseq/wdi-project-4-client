@@ -2,9 +2,10 @@ angular
   .module('stagApp')
   .controller('GroupsShowCtrl', GroupsShowCtrl);
 
-GroupsShowCtrl.$inject = ['$stateParams', 'Group', '$state', '$uibModal'];
-function GroupsShowCtrl($stateParams, Group, $state, $uibModal){
+GroupsShowCtrl.$inject = ['$stateParams', 'Group', 'User', '$state', '$uibModal', 'TokenService'];
+function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenService){
   const vm = this;
+  vm.user = User.get({ id: TokenService.decodeToken().id });
 
   // vm.group = Group.get($stateParams);
   // vm.addComment = commentsCreate;

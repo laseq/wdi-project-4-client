@@ -6,10 +6,11 @@ EventsEditCtrl.$inject = ['$stateParams', '$state', 'Event', '$uibModal'];
 function EventsEditCtrl($stateParams, $state, Event, $uibModal){
   const vm = this;
   // vm.group = Group.get($stateParams);
+  vm.groupId = $stateParams.group_id;
   vm.event = Event.get({ group_id: $stateParams.group_id, id: $stateParams.id});
   vm.update = eventUpdate;
-  // vm.delete = eventsDelete;
-  // vm.openDelete = openDeleteModal;
+  vm.delete = eventsDelete;
+  vm.openDelete = openDeleteModal;
 
   function eventUpdate(){
     Event
@@ -20,24 +21,27 @@ function EventsEditCtrl($stateParams, $state, Event, $uibModal){
       });
   }
 
-  // function eventsDelete() {
-  //   Event
-  //     .delete({ id: vm.event.id })
-  //     .$promise
-  //     .then(() => {
-  //       $state.go('groupsShow({ id: $stateParams.group_id })');
-  //     });
-  // }
-  //
-  // function openDeleteModal() {
-  //   $uibModal.open({
-  //     templateUrl: 'js/views/partials/events/eventDeleteModal.html',
-  //     controller: 'EventsDeleteCtrl as eventsDelete',
-  //     resolve: {
-  //       group: () => {
-  //         return vm.event;
-  //       }
-  //     }
-  //   });
-  // }
+  function eventsDelete() {
+    Event
+      .delete({ group_id: $stateParams.group_id, id: vm.event.id })
+      .$promise
+      .then(() => {
+        $state.go('groupsShow', { id: $stateParams.group_id });
+      });
+  }
+
+  function openDeleteModal() {
+    $uibModal.open({
+      templateUrl: 'js/views/partials/events/eventDeleteModal.html',
+      controller: 'EventsDeleteCtrl as eventsDelete',
+      resolve: {
+        event: () => {
+          return vm.event;
+        },
+        groupId: () => {
+          return $stateParams.group_id;
+        }
+      }
+    });
+  }
 }
