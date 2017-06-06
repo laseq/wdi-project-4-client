@@ -1,0 +1,43 @@
+<div class="row text-center row-align-bottom event-show-group-header">
+  <div class="col-xs-12 col-sm-3 pull-left">
+    <button ui-sref="groupsShow({ id: vm.paramsGroupId })" class="btn btn-primary" type="button" name="button">
+      <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+      Back to group
+    </button>
+  </div>
+  <div class="col-xs-12 col-sm-6">
+    <h1>{{ vm.group.name }}</h1>
+  </div>
+</div>
+
+
+<div class="text-right">
+  <button class="btn btn-primary" href="javascript:void(0)" ui-sref="eventsEdit({ group_id: vm.group.id, id: vm.event.id })">
+    Edit Event
+  </button>
+</div>
+
+
+<div class="container-fluid event-show-card">
+  <div class="row row-align-bottom">
+    <div class="col-xs-12 col-sm-7">
+      <h3>{{ vm.event.name }}</h3>
+    </div>
+    <div class="col-xs-12 col-sm-5">
+      <h5 class="timings">{{ vm.event.start_time | date : "EEE d MMM, h.mm a" }} - {{ vm.event.end_time | date : "h.mm a" }}</h5>
+    </div>
+  </div>
+  <p>{{ vm.event.description }}</p>
+  <p class="event-sub-headings"><strong>Location</strong></p>
+  <p>{{ vm.event.location }}</p>
+  <p class="event-sub-headings"><strong>Dress Code</strong></p>
+  <p>{{ vm.event.dress_code }}</p>
+  <div class="row">
+    <div class="col-xs-6">
+      <p># people going</p>
+    </div>
+    <div class="col-xs-6 text-right">
+      <p>Status: {{ vm.event.status || N/A }}</p>
+    </div>
+  </div>
+</div>

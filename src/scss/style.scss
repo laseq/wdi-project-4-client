@@ -25,6 +25,12 @@
 
 /* Dashboard */
 
+.dashboard-groups {
+  .card-container:hover {
+    cursor: pointer;
+  }
+}
+
 .card-container {
 
   @include medium-card-container;
@@ -164,9 +170,45 @@
 .agenda-main {
   @include medium-card-container;
 
+  .agenda-header-row {
+    position: relative;
+    #add-event-btn {
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  .add-event-button {
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    border-radius: 50%;
+    height: 45px;
+    width: 45px;
+    text-align: center;
+    padding: 12px 0;
+
+    .glyphicon {
+      color: #fff;
+      font-size: 18px;
+      padding: 0;
+      margin: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: #2e6da4;
+    }
+  }
+
   .event-card {
     @include small-card-container;
+    box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
     text-align: left;
+    margin-bottom: 1%;
+
+    &:hover {
+      cursor: pointer;
+    }
 
     .timings {
       text-align: right;
@@ -177,6 +219,41 @@
     }
 
   }
+}
+
+// Event show page
+.event-show-group-header {
+  h1 {
+    margin-bottom: 0;
+  }
+}
+.event-show-event-header {
+  margin-top: 4%;
+  h2 {
+    margin-right: 5%;
+    margin-bottom: 0;
+    display: inline-block;
+  }
+}
+
+.event-show-card {
+  @include small-card-container;
+  box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
+  text-align: left;
+  margin-bottom: 1%;
+
+  h3 {
+    margin-top: 10px;
+  }
+
+  .timings {
+    text-align: right;
+  }
+
+  .event-sub-headings {
+    margin: 0;
+  }
+
 }
 
 // Not sure if this code below actually works for the group pending request and leave modals

@@ -21,14 +21,20 @@
   </div>
 </div>
 
-
+<!-- Agenda section -->
 <div class="row">
 
   <div class="col-xs-12 col-sm-8 col-md-9">
 
     <div class="container-fluid agenda-main">
-      <h3 class="mb3">Agenda</h3>
-      <div class="container-fluid event-card" ng-repeat="event in vm.group.events">
+      <div class="agenda-header-row">
+        <button ui-sref="eventsNew({ group_id: vm.group.id })" class="btn btn-success" id="add-event-btn">Add Event</button>
+        <h3 class="mb3">Agenda</h3>
+      </div>
+      <!-- <div class="add-event-button">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </div> -->
+      <div class="container-fluid event-card" ui-sref="eventsShow({ group_id: vm.group.id, id: event.id })" ng-repeat="event in vm.group.events">
         <div class="row row-align-bottom">
           <div class="col-xs-12 col-sm-7">
             <h4>{{ event.name }}</h4>
@@ -55,6 +61,7 @@
 
   </div>
 
+  <!-- The member column on the right -->
   <div class="col-xs-12 col-sm-4 col-md-3">
 
     <div class="container-fluid">

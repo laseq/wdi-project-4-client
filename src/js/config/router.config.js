@@ -51,6 +51,21 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
       url: '/users/:id/edit',
       templateUrl: 'js/views/users/edit.html',
       controller: 'UsersEditCtrl as vm'
+    })
+    .state('eventsShow', {
+      url: '/groups/:group_id/events/:id',
+      templateUrl: 'js/views/groups/events/show.html',
+      controller: 'EventsShowCtrl as vm'
+    })
+    .state('eventsNew', {
+      url: '/groups/:group_id/events/new',
+      templateUrl: '/js/views/groups/events/new.html',
+      controller: 'EventsNewCtrl as vm'
+    })
+    .state('eventsEdit', {
+      url: '/groups/:group_id/events/:id/edit',
+      templateUrl: 'js/views/groups/events/edit.html',
+      controller: 'EventsEditCtrl as vm'
     });
 
   $urlRouterProvider.otherwise('/');
