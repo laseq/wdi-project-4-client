@@ -14,6 +14,7 @@ function EventsEditCtrl($stateParams, $state, Event, Group, $uibModal, TokenServ
   vm.update = eventUpdate;
   vm.delete = eventsDelete;
   vm.openDelete = openDeleteModal;
+  vm.startAfterEnd = false;
 
   getEvent();
 
@@ -23,16 +24,23 @@ function EventsEditCtrl($stateParams, $state, Event, Group, $uibModal, TokenServ
       .$promise
       .then(event => {
         vm.event = event;
-        vm.momentDate = moment(vm.event.start_time);
+        vm.momentStartTime = moment(vm.event.start_time);
+        vm.momentEndTime = moment(vm.event.end_time);
         // We're using angular moment-picker here and setting the minimum and maximum selectable times
-        vm.minDateMoment = moment(vm.event.start_time);
-        vm.maxDateMoment = moment().add(1, 'year');
+        vm.minDateMoment = moment(Math.min(moment(vm.event.start_time), moment().add(0, 'minute')));
+        // vm.minDateMoment = moment().add(0, 'minute');
+        vm.maxDateMoment = moment(vm.event.start_time).add(1, 'year');
         console.log('vm.minDateMoment:', vm.minDateMoment);
         console.log('vm.maxDateMoment:', vm.maxDateMoment);
       });
   }
 
   function eventUpdate(){
+    if (vm.event.end_time < vm.event.start_time) {
+      console.log('Make sure the start time is before the end time');
+      vm.startAfterEnd = true;
+      return;
+    }
     Event
       .update({ group_id: $stateParams.group_id, id: $stateParams.id }, vm.event)
       .$promise

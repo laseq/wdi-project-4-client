@@ -15,7 +15,6 @@ function EventsNewCtrl($stateParams, $state, Event, $scope){
   vm.maxDateMoment = moment().add(1, 'year');
   vm.startAfterEnd = false;
 
-
   function eventCreate(){
     if (vm.event.end_time < vm.event.start_time) {
       console.log('Make sure the start time is before the end time');
