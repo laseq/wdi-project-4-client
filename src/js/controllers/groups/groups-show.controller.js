@@ -14,6 +14,12 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
   vm.openPending = openGroupPendingModal;
   vm.openDeleteMembers = openDeleteMembersModal;
 
+  // The variables below are for the agenda date selector
+  vm.dateStringArray = [];
+  vm.dateStringPosition = 0;
+  vm.decrementDate = decrementDate;
+  vm.incrementDate = incrementDate;
+
   groupsShow();
 
   function groupsShow() {
@@ -24,6 +30,8 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
         vm.group = group;
         console.log('group:', group);
         setEventTimeStatus(group);
+        putDateStringsInArray();
+        getCurrentDateString();
       });
   }
 
@@ -63,6 +71,30 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
       .then(() => {
         $state.go('dashboard');
       });
+  }
+
+  function putDateStringsInArray() {
+    Object.keys(vm.group.events_by_date).forEach(function(key, index) {
+      vm.dateStringArray.push(key);
+    });
+  }
+
+  function getCurrentDateString() {
+    vm.currentDateString = vm.dateStringArray[vm.dateStringPosition];
+  }
+
+  function incrementDate() {
+    if (vm.dateStringPosition < vm.dateStringArray.length-1) {
+      vm.dateStringPosition += 1;
+      getCurrentDateString();
+    }
+  }
+
+  function decrementDate() {
+    if (vm.dateStringPosition > 0) {
+      vm.dateStringPosition -= 1;
+      getCurrentDateString();
+    }
   }
 
   function openGroupInvitesModal() {
@@ -130,4 +162,6 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
       }
     });
   } // End of openDeleteMembersModal
+
+
 }

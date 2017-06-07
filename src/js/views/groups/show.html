@@ -36,29 +36,38 @@
       <!-- <div class="add-event-button">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
       </div> -->
-      <div class="container-fluid event-card" ui-sref="eventsShow({ group_id: vm.group.id, id: event.id })" ng-repeat="event in vm.group.events">
-        <div class="row row-align-bottom">
-          <div class="col-xs-12 col-sm-7">
-            <h4>{{ event.name }}</h4>
+      <button ng-click="vm.decrementDate()" type="button"><</button>
+      <button ng-click="vm.incrementDate()" type="button">></button>
+
+      <div ng-show="date == vm.currentDateString" ng-repeat="(date, dateEvents) in vm.group.events_by_date">
+        {{ date }}
+
+        <div class="container-fluid event-card" ui-sref="eventsShow({ group_id: vm.group.id, id: event.id })" ng-repeat="event in dateEvents">
+          <div class="row row-align-bottom">
+            <div class="col-xs-12 col-sm-7">
+              <h4>{{ event.name }}</h4>
+            </div>
+            <div class="col-xs-12 col-sm-5">
+              <h5 class="timings">{{ event.start_time | date : "EEE d MMM, h.mm a" }} - {{ event.end_time | date : "h.mm a" }}</h5>
+            </div>
           </div>
-          <div class="col-xs-12 col-sm-5">
-            <h5 class="timings">{{ event.start_time | date : "EEE d MMM, h.mm a" }} - {{ event.end_time | date : "h.mm a" }}</h5>
+          <p>{{ event.description }}</p>
+          <p class="event-sub-headings"><strong>Location</strong></p>
+          <p>{{ event.location }}</p>
+          <p class="event-sub-headings"><strong>Dress Code</strong></p>
+          <p>{{ event.dress_code }}</p>
+          <div class="row">
+            <div class="col-xs-6">
+              <p># people going</p>
+            </div>
+            <div class="col-xs-6 text-right time-status">
+              <p ng-class="'status-' + event.status">Status: {{ event.status || N/A }}</p>
+            </div>
           </div>
         </div>
-        <p>{{ event.description }}</p>
-        <p class="event-sub-headings"><strong>Location</strong></p>
-        <p>{{ event.location }}</p>
-        <p class="event-sub-headings"><strong>Dress Code</strong></p>
-        <p>{{ event.dress_code }}</p>
-        <div class="row">
-          <div class="col-xs-6">
-            <p># people going</p>
-          </div>
-          <div class="col-xs-6 text-right time-status">
-            <p ng-class="'status-' + event.status">Status: {{ event.status || N/A }}</p>
-          </div>
-        </div>
+
       </div>
+
     </div>
 
   </div>
