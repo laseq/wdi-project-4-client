@@ -77,11 +77,35 @@
       font-size: 18px;
   }
 }
-
+// Accordion design below here
 .notifications-accordion {
   overflow-y: scroll;
   height: 400px;
 }
+
+.panel-group .panel {
+  border-radius: 0;
+  margin-bottom: 1%;
+
+  background: #fff;
+  box-shadow: 0px 1px 2px 0px rgba(207,207,207,1);
+
+  .panel-heading {
+    background-color: #fff;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .panel-heading+.panel-collapse>.panel-body{
+    border-top: none;
+  }
+}
+
+.accordion-group-custom {
+  border-radius: 0;
+}
+// Accordion design above here
 
 .dashboard-groups {
   .section-title {
