@@ -5,5 +5,6 @@ angular
     'ngResource',
     'angular-jwt',
     'ngAnimate',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'moment-picker'
   ]);

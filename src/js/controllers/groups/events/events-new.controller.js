@@ -1,3 +1,5 @@
+/* globals moment */
+
 angular
 .module('stagApp')
 .controller('EventsNewCtrl', EventsNewCtrl);
@@ -8,6 +10,11 @@ function EventsNewCtrl($stateParams, $state, Event){
   vm.paramsGroupId = $stateParams.group_id;
   vm.create = eventCreate;
 
+  // We're using angular moment-picker here and setting the minimum and maximum selectable times
+  vm.minDateMoment = moment().add(0, 'minute');
+  vm.maxDateMoment = moment().add(1, 'year');
+
+
   function eventCreate(){
     Event
       .save({ group_id: $stateParams.group_id }, vm.event)
@@ -17,4 +24,5 @@ function EventsNewCtrl($stateParams, $state, Event){
         $state.go('groupsShow', { id: vm.paramsGroupId });
       });
   }
+
 }

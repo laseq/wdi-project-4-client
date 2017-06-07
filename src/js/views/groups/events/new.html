@@ -22,6 +22,23 @@
         </div>
 
         <div class="form-group">
+          <label for="inputdate" class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+            <input class="form-control-create"
+            ng-model="vm.event.start_time"
+            ng-model-options="{ updateOn: 'blur' }"
+            placeholder="Select a date and time"
+            format="llll"
+            min-view="month"
+            start-view="day"
+            min-date="vm.minDateMoment"
+            max-date="vm.maxDateMoment"
+            required="true"
+            moment-picker="vm.event.start_time">
+          </div>
+        </div>
+
+        <div class="form-group">
           <label for="end-time">End Time</label>
           <input class="form-control" type="text" name="end_time" id="end-time" ng-model="vm.event.end_time" placeholder="End Time">
         </div>
