@@ -30,7 +30,10 @@
       <div class="agenda-header-row">
         <button ui-sref="eventsNew({ group_id: vm.group.id })"
           ng-if="vm.group.creator_id == vm.user.id"
-          class="btn btn-success" id="add-event-btn">Add Event</button>
+          class="btn btn-success" id="add-event-btn">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Add Event
+        </button>
         <h3 class="mb3">Agenda</h3>
       </div>
       <!-- <div class="add-event-button">
@@ -40,13 +43,17 @@
       <div ng-show="date == vm.currentDateString" ng-repeat="(date, dateEvents) in vm.group.events_by_date">
         <div class="row date-button-row">
           <div class="col-xs-3 text-right">
-            <button class="btn btn-primary agenda-left" ng-click="vm.decrementDate()" type="button"><</button>
+            <button class="btn btn-primary agenda-left" ng-click="vm.decrementDate()" type="button">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            </button>
           </div>
           <div class="col-xs-5 col-md-3 text-center">
             <h4 class="agenda-date-header">{{ date }}</h4>
           </div>
           <div class="col-xs-3 text-left">
-            <button class="btn btn-primary agenda-right" ng-click="vm.incrementDate()" type="button">></button>
+            <button class="btn btn-primary agenda-right" ng-click="vm.incrementDate()" type="button">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            </button>
           </div>
 
         </div>

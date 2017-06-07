@@ -37,18 +37,37 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
 
   function setEventTimeStatus(theGroup) {
     const now = new Date();
-    theGroup.events.forEach(event => {
-      const startTime = new Date(event.start_time);
-      const endTime = new Date(event.end_time);
-      if (startTime > now) {
-        event.status = 'upcoming';
-      } else if (startTime <= now && endTime >= now) {
-        event.status = 'now';
-      } else {
-        event.status = 'ended';
+
+    // The original version when I was iterating over the events property
+    // instead of the events_by_date property
+    // theGroup.events.forEach(event => {
+    //   const startTime = new Date(event.start_time);
+    //   const endTime = new Date(event.end_time);
+    //   if (startTime > now) {
+    //     event.status = 'upcoming';
+    //   } else if (startTime <= now && endTime >= now) {
+    //     event.status = 'now';
+    //   } else {
+    //     event.status = 'ended';
+    //   }
+    // });
+
+    for (var date in theGroup.events_by_date) {
+      if (theGroup.events_by_date.hasOwnProperty(date)) {
+        for (let i=0; i<theGroup.events_by_date[date].length; i++) {
+          const startTime = new Date(theGroup.events_by_date[date][i].start_time);
+          const endTime = new Date(theGroup.events_by_date[date][i].end_time);
+          if (startTime > now) {
+            theGroup.events_by_date[date][i].status = 'upcoming';
+          } else if (startTime <= now && endTime >= now) {
+            theGroup.events_by_date[date][i].status = 'now';
+          } else {
+            theGroup.events_by_date[date][i].status = 'ended';
+          }
+        }
       }
-    });
-  }
+    }
+  } // End of function setEventTimeStatus
 
   // function commentsCreate() {
   //   vm.comment.group_id = vm.group.id;
