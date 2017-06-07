@@ -203,6 +203,25 @@
     }
   }
 
+  .date-button-row {
+    display: flex;
+    justify-content: center;
+  }
+
+  .button-left, .button-right {
+    display: inline-block;
+  }
+
+  .agenda-right, .agenda-left {
+    width: 50px;
+    // padding-left: 3%;
+    // padding-right: 3%;
+  }
+
+  .agenda-date-header {
+    display: inline-block;
+  }
+
   .event-card {
     @include small-card-container;
     box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);

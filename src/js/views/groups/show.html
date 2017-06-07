@@ -36,11 +36,20 @@
       <!-- <div class="add-event-button">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
       </div> -->
-      <button ng-click="vm.decrementDate()" type="button"><</button>
-      <button ng-click="vm.incrementDate()" type="button">></button>
 
       <div ng-show="date == vm.currentDateString" ng-repeat="(date, dateEvents) in vm.group.events_by_date">
-        {{ date }}
+        <div class="row date-button-row">
+          <div class="col-xs-3 text-right">
+            <button class="btn btn-primary agenda-left" ng-click="vm.decrementDate()" type="button"><</button>
+          </div>
+          <div class="col-xs-5 col-md-3 text-center">
+            <h4 class="agenda-date-header">{{ date }}</h4>
+          </div>
+          <div class="col-xs-3 text-left">
+            <button class="btn btn-primary agenda-right" ng-click="vm.incrementDate()" type="button">></button>
+          </div>
+
+        </div>
 
         <div class="container-fluid event-card" ui-sref="eventsShow({ group_id: vm.group.id, id: event.id })" ng-repeat="event in dateEvents">
           <div class="row row-align-bottom">
