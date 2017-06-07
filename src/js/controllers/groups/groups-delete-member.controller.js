@@ -10,6 +10,7 @@ function GroupsDeleteMembersCtrl(group, User, Request, $uibModalInstance, $state
   vm.group = group;
   vm.deleteMember = deleteMember;
   vm.currentMembers = group.accepted_members;
+  vm.deletionTakenPlace = false;
 
   function deleteMember($event, $index, userId) {
 
@@ -24,11 +25,16 @@ function GroupsDeleteMembersCtrl(group, User, Request, $uibModalInstance, $state
       .then(() => {
         console.log('Deleted member?');
         vm.currentMembers.splice($index, 1);
+        vm.deletionTakenPlace = true;
       });
   }
 
   function closeModal() {
-    $uibModalInstance.close(vm.group);
+    if (vm.deletionTakenPlace) {
+      $uibModalInstance.close(vm.group);
+    } else {
+      $uibModalInstance.close();
+    }
   }
 
 }

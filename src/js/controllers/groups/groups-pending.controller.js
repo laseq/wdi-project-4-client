@@ -11,6 +11,7 @@ function GroupsPendingCtrl(group, User, Request, $uibModalInstance, $state) {
   vm.remove = removeUserFromList;
   vm.deleteRequest = deletePendingRequest;
   vm.pendingMembers = group.pending_members;
+  vm.deletionTakenPlace = false;
 
   function removeUserFromList($index) {
     vm.usersToInvite.splice($index, 1);
@@ -29,12 +30,17 @@ function GroupsPendingCtrl(group, User, Request, $uibModalInstance, $state) {
       .then(() => {
         console.log('Deleted pending request?');
         vm.pendingMembers.splice($index, 1);
+        vm.deletionTakenPlace = true;
       });
   }
 
 
   function closeModal() {
-    $uibModalInstance.close(vm.group);
+    if (vm.deletionTakenPlace) {
+      $uibModalInstance.close(vm.group);
+    } else {
+      $uibModalInstance.close();
+    }
   }
 
 }

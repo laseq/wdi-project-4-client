@@ -20,9 +20,9 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
   vm.decrementDate = decrementDate;
   vm.incrementDate = incrementDate;
 
-  groupsShow();
+  initGroupsShow();
 
-  function groupsShow() {
+  function initGroupsShow() {
     Group
       .get($stateParams)
       .$promise
@@ -32,6 +32,15 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
         setEventTimeStatus(group);
         putDateStringsInArray();
         getCurrentDateString();
+      });
+  }
+
+  function groupsShow() {
+    vm.group = Group.get($stateParams)
+      .$promise
+      .then(group => {
+        vm.group = group;
+        console.log('group:', group);
       });
   }
 
