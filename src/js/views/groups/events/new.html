@@ -16,36 +16,51 @@
           <input class="form-control" type="text" name="name" id="name" ng-model="vm.event.name" placeholder="Title">
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="start-time">Start Time</label>
           <input class="form-control" type="text" name="start_time" id="start-time" ng-model="vm.event.start_time" placeholder="Start Time">
-        </div>
+        </div> -->
 
         <div class="form-group">
-          <label for="inputdate" class="col-sm-2 control-label"></label>
-          <div class="col-sm-10">
-            <input class="form-control-create"
+          <label for="inputdate" class="control-label">Start Time</label>
+            <input class="form-control form-control-create"
             ng-model="vm.event.start_time"
             ng-model-options="{ updateOn: 'blur' }"
-            placeholder="Select a date and time"
+            placeholder="Start date and time"
             format="llll"
-            min-view="month"
-            start-view="day"
+            min-view="year"
+            start-view="month"
             min-date="vm.minDateMoment"
             max-date="vm.maxDateMoment"
             required="true"
             moment-picker="vm.event.start_time">
-          </div>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="end-time">End Time</label>
           <input class="form-control" type="text" name="end_time" id="end-time" ng-model="vm.event.end_time" placeholder="End Time">
+        </div> -->
+
+        <div class="form-group">
+          <label for="inputdate" class="control-label">End Time</label>
+            <input class="form-control form-control-create"
+            ng-model="vm.event.end_time"
+            ng-model-options="{ updateOn: 'blur' }"
+            placeholder="End date and time"
+            format="llll"
+            min-view="year"
+            start-view="day"
+            min-date="vm.event.start_time"
+            max-date="vm.maxEndTime"
+            required="true"
+            moment-picker="vm.event.end_time">
         </div>
+
+        <p ng-if="vm.startAfterEnd">Make sure that the start time is before the end time</p>
 
         <div class="form-group" >
           <label for="description">Description</label>
-          <textarea  class="form-control" id="description" name="description" ng-model="vm.event.description"  placeholder="Description the event"></textarea>
+          <textarea  class="form-control" id="description" name="description" ng-model="vm.event.description"  placeholder="Description of the event"></textarea>
         </div>
 
         <div class="form-group">
