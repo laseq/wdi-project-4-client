@@ -28,9 +28,9 @@
       	</div>
       	<div class="collapse navbar-collapse" uib-collapse="main.isNavCollapsed">
           <ul class="nav navbar-nav navbar-right">
-            <li ng-show="main.user">
+            <!-- <li ng-show="main.user">
               <p class="navbar-text">Welcome, {{ main.user.username }}</p>
-            </li>
+            </li> -->
             <li ng-hide="main.user">
               <a ui-sref="register">Register</a>
             </li>
@@ -38,11 +38,11 @@
               <a ui-sref="login">Login</a>
             </li>
             <li ng-show="main.user">
-              <a ui-sref="dashboard">Home</a>
+              <a ui-sref="dashboard">Dashboard</a>
             </li>
-            <li ng-show="main.user">
+            <!-- <li ng-show="main.user">
               <a ui-sref="groupsIndex">My Groups</a>
-            </li>
+            </li> -->
             <li ng-show="main.user">
               <a ng-click="main.logout()">Logout</a>
             </li>
