@@ -82,9 +82,29 @@
   }
 }
 // Accordion design below here
-.notifications-accordion {
+.dashboard-accordion {
   overflow-y: scroll;
   height: 400px;
+
+  .agenda-time-div {
+    margin-top: 5px;
+    margin-bottom: 3px;
+
+    .agenda-time-title {
+      display: inline-block;
+      margin-bottom: 0px;
+    }
+  }
+
+  .event-mini-details {
+    &:hover {
+      cursor: pointer;
+    }
+    .event-sub-headings {
+      margin: 0;
+    }
+  }
+
 }
 
 .panel-group .panel {

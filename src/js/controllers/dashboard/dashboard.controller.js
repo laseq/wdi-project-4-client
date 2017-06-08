@@ -14,6 +14,10 @@ function DashboardCtrl(Group, User, Request, TokenService) {
   vm.endDate = [];
   vm.checkSameDay = checkSameDay;
 
+  vm.eventStartDate = [];
+  vm.eventStartTime = [];
+  vm.eventEndTime = [];
+
   getUser();
   getPendingRequests();
 
@@ -24,7 +28,9 @@ function DashboardCtrl(Group, User, Request, TokenService) {
       .$promise
       .then(user => {
         vm.user = user;
-        console.log('user:', user);
+        filterUpcomingEvents(vm.user.upcoming_events);
+        console.log('user:', vm.user);
+        formatDateTimeForUpcomingEvents();
       });
   }
 
@@ -39,6 +45,36 @@ function DashboardCtrl(Group, User, Request, TokenService) {
   //       vm.groups = groups;
   //     });
   // }
+
+  function filterUpcomingEvents (events) {
+    const now = new Date();
+    vm.user.upcoming_events = [];
+    events.forEach(event => {
+      if (new Date(event.end_time) > now) {
+        vm.user.upcoming_events.push(event);
+      }
+    });
+  }
+
+  function formatDateTimeForUpcomingEvents() {
+    // if (event.length) {
+    //   vm.startDate[index] = moment(events[0].start_time).format('Do MMM YY');
+    //   vm.endDate[index] = moment(events[events.length-1].start_time).format('Do MMM YY');
+    //   if (vm.startDate[index] === vm.endDate[index]) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
+    // return true;
+
+    for (let i=0; i<vm.user.upcoming_events.length; i++) {
+      vm.eventStartDate[i] = moment(vm.user.upcoming_events[i].start_time).format('ddd Do MMM');
+      vm.eventStartTime[i] = moment(vm.user.upcoming_events[i].start_time).format('HH.mm');
+      vm.eventEndTime[i] = moment(vm.user.upcoming_events[i].end_time).format('HH.mm');
+    }
+
+  }
 
   function getPendingRequests() {
     Request.
