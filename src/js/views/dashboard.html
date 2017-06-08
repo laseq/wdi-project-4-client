@@ -23,27 +23,54 @@
 
 
   <div class="col-xs-12 col-md-5">
-    <h2>Upcoming Events</h2>
-  </div>
+    <div class="card-container container-fluid">
+      <h2>Upcoming Events</h2>
 
-  <div class="col-xs-12 col-md-4 card-container">
-    <h2>Notifications</h2>
-    <div class="notifications-accordion">
-      <uib-accordion close-others="oneAtATime" class="text-left">
-        <div ng-repeat="request in vm.pending_requests">
-          <div uib-accordion-group ng-click="status.open=!status.open"
-          class="panel-default accordion-group-custom" is-open="status.open">
-            <uib-accordion-heading>
-              Group Invitation <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-            </uib-accordion-heading>
-            <p>You have received an invitation from {{ request.sender.first_name }} {{ request.sender.last_name }} to join {{ request.group.name }}.</p>
-            <div class="accordion-buttons">
-              <button ng-click="vm.acceptRequest(request.id)" class="btn btn-primary" type="button" name="button">Join</button>
-              <button ng-click="vm.declineRequest(request.id)" class="btn btn-primary" type="button" name="button">Decline</button>
+      <div class="notifications-accordion">
+        <uib-accordion close-others="oneAtATime" class="text-left">
+          <div ng-repeat="request in vm.pending_requests">
+            <div uib-accordion-group
+            class="panel-default accordion-group-custom" is-open="status.open">
+              <uib-accordion-heading ng-click="status.open=!status.open">
+                <div>
+                  Group Invitation <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                </div>
+              </uib-accordion-heading>
+              <p>You have received an invitation from {{ request.sender.first_name }} {{ request.sender.last_name }} to join {{ request.group.name }}.</p>
+              <div class="accordion-buttons">
+                <button ng-click="vm.acceptRequest(request.id)" class="btn btn-primary" type="button" name="button">Join</button>
+                <button ng-click="vm.declineRequest(request.id)" class="btn btn-primary" type="button" name="button">Decline</button>
+              </div>
             </div>
           </div>
-        </div>
-      </uib-accordion>
+        </uib-accordion>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-4">
+    <div class="card-container container-fluid">
+      <h2>Notifications</h2>
+      <div class="notifications-accordion">
+        <uib-accordion close-others="oneAtATime" class="text-left">
+          <div ng-repeat="request in vm.pending_requests">
+            <div uib-accordion-group
+            class="panel-default accordion-group-custom" is-open="status.open">
+              <uib-accordion-heading ng-click="status.open=!status.open">
+                <div>
+                  Group Invitation <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                </div>
+              </uib-accordion-heading>
+              <p>You have received an invitation from {{ request.sender.first_name }} {{ request.sender.last_name }} to join {{ request.group.name }}.</p>
+              <div class="accordion-buttons">
+                <button ng-click="vm.acceptRequest(request.id)" class="btn btn-primary" type="button" name="button">Join</button>
+                <button ng-click="vm.declineRequest(request.id)" class="btn btn-primary" type="button" name="button">Decline</button>
+              </div>
+            </div>
+          </div>
+        </uib-accordion>
+      </div>
     </div>
   </div>
 

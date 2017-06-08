@@ -13,6 +13,7 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
   vm.openInvites = openGroupInvitesModal;
   vm.openPending = openGroupPendingModal;
   vm.openDeleteMembers = openDeleteMembersModal;
+  vm.openMemberCardModal = openMemberCardModal;
 
   // The variables below are for the agenda date selector
   vm.dateStringArray = [];
@@ -190,6 +191,19 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
       }
     });
   } // End of openDeleteMembersModal
+
+  function openMemberCardModal(theMember) {
+    $uibModal.open({
+      templateUrl: 'js/views/partials/group-members/memberCardModal.html',
+      controller: 'MemberCardCtrl as memberCard',
+      size: 'sm',
+      resolve: {
+        member: () => {
+          return theMember;
+        }
+      }
+    });
+  }
 
 
 }

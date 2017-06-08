@@ -108,7 +108,7 @@
 
         <!-- The row for the group creator -->
         <div class="container-fluid">
-          <div class="row creator-div member-div">
+          <div class="row creator-div member-div" ng-click="vm.openMemberCardModal(vm.group.creator)">
             <div class="col-xs-3 member-div-img-col">
               <div class="member-img" style="background-image:url({{ vm.group.creator.image || '../images/user-default.jpg' }})"></div>
             </div>
@@ -124,7 +124,7 @@
 
         <!-- The rows for the rest of the group members -->
         <div class="container-fluid">
-          <div class="row member-div" ng-repeat="member in vm.group.accepted_members">
+          <div class="row member-div" ng-click="vm.openMemberCardModal(member)" ng-repeat="member in vm.group.accepted_members">
             <div class="col-xs-3 member-div-img-col">
               <div class="member-img" style="background-image:url({{ member.image || '../images/user-default.jpg' }})"></div>
             </div>
