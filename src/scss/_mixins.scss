@@ -51,6 +51,45 @@
   }
 }
 
+@mixin attendance-user-card {
+
+  .member-card-container {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .member-div-img-col {
+    padding: 0;
+
+    .member-img {
+      height: 60px;
+      width: 100%;
+      background-size: cover;
+      background-position: center center;
+    }
+  }
+
+  .member-div-member-col {
+    padding: 0 5% 0;
+
+    .member-details {
+      display: inline-block;
+      margin-top: 0;
+      margin-bottom: 0;
+
+      p {
+        margin: 0;
+      }
+
+      .member-first-name, .member-last-name {
+        font-weight: bold;
+      }
+
+    }
+  }
+}
+
 @mixin mac-os-scrollbars {
   ::-webkit-scrollbar {
       -webkit-appearance: none;

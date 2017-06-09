@@ -93,6 +93,7 @@ function DashboardCtrl(Group, User, Request, TokenService) {
       .then(() => {
         getPendingRequests();
         vm.groups = Group.userGroups();
+        getUser();
       });
   }
 

@@ -32,10 +32,62 @@
   <p>{{ vm.event.dress_code }}</p>
   <div class="row">
     <div class="col-xs-6">
-      <p># people going</p>
+      <p>{{ vm.event.members_attending.length }} people going</p>
     </div>
     <div class="col-xs-6 text-right">
       <p>Status: {{ vm.event.status || N/A }}</p>
     </div>
   </div>
+</div>
+
+<button ng-click="vm.attendance('attending')" class="btn btn-primary" type="button">Attending</button>
+<button ng-click="vm.attendance('not attending')" class="btn btn-primary" type="button">Not Attending</button>
+
+
+<h4>Members Attending</h4>
+
+<div class="container-fluid">
+  <div class="row attendance-row">
+    <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2" ng-repeat="member in vm.event.members_attending track by $index">
+      <div class="container-fluid member-card-container" ng-click="vm.openMemberCardModal(member)">
+        <div class="row flex-row">
+          <div class="col-xs-5 member-div-img-col">
+            <div class="member-img" style="background-image:url({{ member.image || '../images/user-default.jpg' }})"></div>
+          </div>
+          <div class="col-xs-7 member-div-member-col text-left vcenter">
+            <div class="member-details text-left">
+              <p class="member-first-name"><span>{{ member.first_name }}</span></p>
+              <p class="member-last-name"><span>{{ member.last_name }}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4>Members Not Attending</h4>
+<div class="container-fluid">
+  <div class="row attendance-row">
+    <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2" ng-repeat="member in vm.event.members_not_attending track by $index">
+      <div class="container-fluid member-card-container" ng-click="vm.openMemberCardModal(member)">
+        <div class="row flex-row">
+          <div class="col-xs-5 member-div-img-col">
+            <div class="member-img" style="background-image:url({{ member.image || '../images/user-default.jpg' }})"></div>
+          </div>
+          <div class="col-xs-7 member-div-member-col text-left vcenter">
+            <div class="member-details text-left">
+              <p class="member-first-name"><span>{{ member.first_name }}</span></p>
+              <p class="member-last-name"><span>{{ member.last_name }}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4>Members Pending</h4>
+<div ng-repeat="member in vm.event.members_pending">
+  {{ member.first_name }}
 </div>

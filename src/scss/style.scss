@@ -342,9 +342,23 @@
   }
 }
 
-// Not sure if this code below actually works for the group pending request and leave modals
-.vcenter {
-  display: inline-block;
-  vertical-align: middle;
-  float: none;
+.attendance-row {
+
+  min-height: 70px;
+
+  .flex-row {
+    align-items: center;
+  }
+
+  @include attendance-user-card;
+
 }
+
+
+
+// Not sure if this code below actually works for the group pending request and leave modals
+// .vcenter {
+//   display: inline-block;
+//   vertical-align: middle;
+//   float: none;
+// }
