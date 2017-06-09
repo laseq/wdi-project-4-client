@@ -114,18 +114,21 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
   }
 
   function eventAttendance(theIndex, theDate, theEvent, status) {
-    console.log('status:', status);
+    // console.log('status:', status);
     const statusObj = {
       'attendance_status': status
     };
-    console.log('theEvent:', theEvent);
+    // console.log('theEvent:', theEvent);
 
     Event
       .attendance({ group_id: $stateParams.id, id: theEvent.id}, statusObj)
       .$promise
       .then(attendanceStatus => {
         console.log('attendanceStatus:', attendanceStatus);
-        updateMemberAttendingCount(theIndex, theDate, theEvent);
+        // updateMemberAttendingCount(theIndex, theDate, theEvent);
+        vm.group.events_by_date[theDate][theIndex].members_attending = attendanceStatus.event.members_attending;
+        vm.group.events_by_date[theDate][theIndex].members_not_attending = attendanceStatus.event.members_not_attending;
+        vm.group.events_by_date[theDate][theIndex].members_pending = attendanceStatus.event.members_pending;
       });
   }
 

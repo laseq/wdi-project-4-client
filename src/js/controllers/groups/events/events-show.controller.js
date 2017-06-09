@@ -47,7 +47,10 @@ function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibMo
       .$promise
       .then(attendanceStatus => {
         console.log('attendanceStatus:', attendanceStatus);
-        getEvent();
+        // getEvent();
+        vm.event.members_attending = attendanceStatus.event.members_attending;
+        vm.event.members_not_attending = attendanceStatus.event.members_not_attending;
+        vm.event.members_pending = attendanceStatus.event.members_pending;
       });
   }
 
