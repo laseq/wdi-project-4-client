@@ -2,8 +2,8 @@ angular
   .module('stagApp')
   .controller('DashboardCtrl', DashboardCtrl);
 
-DashboardCtrl.$inject = ['Group', 'User', 'Request', 'TokenService'];
-function DashboardCtrl(Group, User, Request, TokenService) {
+DashboardCtrl.$inject = ['Group', 'User', 'Request', 'Event', 'TokenService'];
+function DashboardCtrl(Group, User, Request, Event, TokenService) {
   const vm = this;
 
   // vm.user = User.get({ id: TokenService.decodeToken().id });
@@ -13,6 +13,8 @@ function DashboardCtrl(Group, User, Request, TokenService) {
   vm.startDate = [];
   vm.endDate = [];
   vm.checkSameDay = checkSameDay;
+  vm.attendance = eventAttendance;
+
 
   vm.eventStartDate = [];
   vm.eventStartTime = [];
@@ -82,7 +84,7 @@ function DashboardCtrl(Group, User, Request, TokenService) {
       .$promise
       .then(requests => {
         vm.pending_requests = requests;
-        console.log('pending requests:', requests);
+        // console.log('pending requests:', requests);
       });
   }
 
@@ -117,6 +119,36 @@ function DashboardCtrl(Group, User, Request, TokenService) {
       }
     }
     return true;
+  }
+
+  function eventAttendance(theIndex, theEvent, status) {
+    // console.log('status:', status);
+    const statusObj = {
+      'attendance_status': status
+    };
+    // console.log('theEvent:', theEvent);
+
+    Event
+      .attendance({ group_id: theEvent.group.id, id: theEvent.id}, statusObj)
+      .$promise
+      .then(attendanceStatus => {
+        // console.log('attendanceStatus:', attendanceStatus);
+        updateMemberAttendingCount(theIndex, theEvent);
+      });
+  }
+
+  function updateMemberAttendingCount(theIndex, theEvent) {
+    User.get({ id: vm.user.id })
+      .$promise
+      .then(user => {
+        console.log('user.upcoming_events:', user.upcoming_events);
+        var index = user.upcoming_events.map(function(element) {
+          return element.id;
+        }).indexOf(theEvent.id);
+        vm.user.upcoming_events[theIndex].members_attending = user.upcoming_events[index].members_attending;
+        vm.user.upcoming_events[theIndex].members_not_attending = user.upcoming_events[index].members_not_attending;
+        vm.user.upcoming_events[theIndex].members_pending = user.upcoming_events[index].members_pending;
+      });
   }
 
 }

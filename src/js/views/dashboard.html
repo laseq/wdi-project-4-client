@@ -55,13 +55,22 @@
 
 
               <div class="event-mini-details" ui-sref="eventsShow({ group_id: event.group.id, id: event.id })">
-                <p>{{ event.description }}</p>
+                <p>{{ event.description | limitTo:150 }}{{event.description.length > 150 ? '...' : ''}}</p>
                 <p class="event-sub-headings"><strong>Location</strong></p>
                 <p>{{ event.location }}</p>
                 <p class="event-sub-headings"><strong>Dress Code</strong></p>
                 <p>{{ event.dress_code }}</p>
+                <p class="event-sub-headings"><strong>{{ event.members_attending.length }} people going</strong></p>
               </div>
 
+              <div class="row button-row">
+                <div class="col-xs-6 text-right">
+                  <button ng-click="vm.attendance($index, event, 'attending')" class="btn btn-primary" type="button">Attending</button>
+                </div>
+                <div class="col-xs-6 text-left">
+                  <button ng-click="vm.attendance($index, event, 'not attending')" class="btn btn-primary" type="button">Not Attending</button>
+                </div>
+              </div>
 
             </div>
           </div>
