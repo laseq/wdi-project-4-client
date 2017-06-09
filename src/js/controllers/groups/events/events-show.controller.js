@@ -22,6 +22,7 @@ function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibMo
       .then(event => {
         console.log('event:', event);
         vm.event = event;
+        setEventTimeStatus();
       });
   }
 
@@ -49,6 +50,19 @@ function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibMo
         getEvent();
       });
   }
+
+  function setEventTimeStatus() {
+    const now = new Date();
+    const startTime = new Date(vm.event.start_time);
+    const endTime = new Date(vm.event.end_time);
+    if (startTime > now) {
+      vm.event.status = 'upcoming';
+    } else if (startTime <= now && endTime >= now) {
+      vm.event.status = 'now';
+    } else {
+      vm.event.status = 'ended';
+    }
+  } // End of function setEventTimeStatus
 
   function openMemberCardModal(theMember) {
     $uibModal.open({

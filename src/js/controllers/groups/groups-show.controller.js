@@ -2,8 +2,8 @@ angular
   .module('stagApp')
   .controller('GroupsShowCtrl', GroupsShowCtrl);
 
-GroupsShowCtrl.$inject = ['$stateParams', 'Group', 'User', '$state', '$uibModal', 'TokenService'];
-function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenService){
+GroupsShowCtrl.$inject = ['$stateParams', 'Group', 'User', 'Event', '$state', '$uibModal', 'TokenService'];
+function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, TokenService){
   const vm = this;
   vm.user = User.get({ id: TokenService.decodeToken().id });
 
@@ -20,6 +20,7 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
   vm.dateStringPosition = 0;
   vm.decrementDate = decrementDate;
   vm.incrementDate = incrementDate;
+  vm.attendance = eventAttendance;
 
   initGroupsShow();
 
@@ -37,11 +38,21 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
   }
 
   function groupsShow() {
-    vm.group = Group.get($stateParams)
+    Group.get($stateParams)
       .$promise
       .then(group => {
         vm.group = group;
         console.log('group:', group);
+      });
+  }
+
+  function updateMemberAttendingCount(theIndex, theDate, theEvent) {
+    Group.get($stateParams)
+      .$promise
+      .then(group => {
+        vm.group.events_by_date[theDate][theIndex].members_attending = group.events_by_date[theDate][theIndex].members_attending;
+        vm.group.events_by_date[theDate][theIndex].members_not_attending = group.events_by_date[theDate][theIndex].members_not_attending;
+        vm.group.events_by_date[theDate][theIndex].members_pending = group.events_by_date[theDate][theIndex].members_pending;
       });
   }
 
@@ -99,6 +110,22 @@ function GroupsShowCtrl($stateParams, Group, User, $state, $uibModal, TokenServi
       .$promise
       .then(() => {
         $state.go('dashboard');
+      });
+  }
+
+  function eventAttendance(theIndex, theDate, theEvent, status) {
+    console.log('status:', status);
+    const statusObj = {
+      'attendance_status': status
+    };
+    console.log('theEvent:', theEvent);
+
+    Event
+      .attendance({ group_id: $stateParams.id, id: theEvent.id}, statusObj)
+      .$promise
+      .then(attendanceStatus => {
+        console.log('attendanceStatus:', attendanceStatus);
+        updateMemberAttendingCount(theIndex, theDate, theEvent);
       });
   }
 
