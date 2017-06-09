@@ -132,26 +132,10 @@ function DashboardCtrl(Group, User, Request, Event, TokenService) {
       .attendance({ group_id: theEvent.group.id, id: theEvent.id}, statusObj)
       .$promise
       .then(attendanceStatus => {
-        console.log('attendanceStatus:', attendanceStatus);
-        // updateMemberAttendingCount(theIndex, theEvent);
         vm.user.upcoming_events[theIndex].members_attending = attendanceStatus.event.members_attending;
         vm.user.upcoming_events[theIndex].members_not_attending = attendanceStatus.event.members_not_attending;
         vm.user.upcoming_events[theIndex].members_pending = attendanceStatus.event.members_pending;
       });
   }
-
-  // function updateMemberAttendingCount(theIndex, theEvent) {
-  //   User.get({ id: vm.user.id })
-  //     .$promise
-  //     .then(user => {
-  //       console.log('user.upcoming_events:', user.upcoming_events);
-  //       var index = user.upcoming_events.map(function(element) {
-  //         return element.id;
-  //       }).indexOf(theEvent.id);
-  //       vm.user.upcoming_events[theIndex].members_attending = user.upcoming_events[index].members_attending;
-  //       vm.user.upcoming_events[theIndex].members_not_attending = user.upcoming_events[index].members_not_attending;
-  //       vm.user.upcoming_events[theIndex].members_pending = user.upcoming_events[index].members_pending;
-  //     });
-  // }
 
 }
