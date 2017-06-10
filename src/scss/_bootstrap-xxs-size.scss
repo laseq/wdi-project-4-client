@@ -66,7 +66,7 @@
 .col-xxs-12 { width: 100%; }
 }
 
-@media screen and (min-width:321) and (max-width: 480){
+@media screen and (min-width:200px) and (max-width: 480px){
 
 .col-xxxs-pull-12 { right:100%; }
 .col-xxxs-pull-11 { right:91.66666667%; }
@@ -109,7 +109,7 @@
 .col-xxxs-offset-1 { margin-left:8.33333333%; }
 .col-xxxs-offset-0{ margin-left:0; }
 
-.col-xxxs-0 { width:8.33333333%; }
+.col-xxxs-0 { width:0; }
 .col-xxxs-1 { width:8.33333333%; }
 .col-xxxs-2 { width:16.66666667%; }
 .col-xxxs-3 { width:25%; }

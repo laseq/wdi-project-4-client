@@ -1,24 +1,16 @@
-<h1 class="text-center">Dashboard</h1>
-
 <div class="row">
 
-  <div class="col-xs-12 col-md-3 text-center">
-
+  <div class="col-xxxs-12 col-xxxs-offset-0 col-xxs-8 col-xxs-offset-2 col-xs-6 col-xs-offset-3 col-md-3 col-md-offset-0 text-center">
     <div class="card-container">
-
       <div ui-sref="usersEdit({ id: vm.user.id })" class="glyphicons-at-top">
         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
       </div>
-
-      <div class="profile-img" style="background-image:url({{ vm.user.image || '../images/user-default.jpg' }})"></div>
-
+      <div class="profile-img" style="background-image:url({{ vm.user.image || '../images/user-default.png' }})"></div>
       <h1>{{ vm.user.first_name }} {{ vm.user.last_name }}</h1>
       <h2 class="title"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ vm.user.phone || "N/A" }}</h2>
       <h2 class="title"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ vm.user.email || "N/A"  }}</h2>
       <h2 class="title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> {{ vm.user.location || "N/A" }}</h2>
-
     </div>
-
   </div>
 
 
@@ -105,44 +97,22 @@
     </div>
   </div>
 
-
 </div>
 
 <div class="dashboard-groups">
   <div class="container-fluid">
-    <!-- <div class="row flex-row row-align-bottom">
-      <div class="dib justify-self-middle">
-        <h2 class="section-title">Your Groups</h2>
-      </div>
-      <div class="dib justify-self-end">
-        <button ui-sref="groupsNew" class="btn btn-primary button-row pull-right" type="button" name="button">
-          Create a group
-        </button>
-      </div>
-    </div> -->
     <div class="row flex-row row-align-bottom your-groups-header">
       <div class="col-xs-6 col-xs-offset-3 text-center title-with-button">
         <h2 class="section-title">Your Groups</h2>
       </div>
       <div class="col-xs-3 text-right button-with-title">
-        <button ui-sref="groupsNew" class="theme-button-2 button-row" type="button" name="button">
+        <button ui-sref="groupsNew" class="btn theme-button-2 button-row" type="button" name="button">
           Create a group
         </button>
       </div>
     </div>
-    <!-- <div class="row flex-row row-align-bottom">
-      <div class="dib justify-self-middle">
-        <h2 class="section-title">Your Groups</h2>
-      </div>
-      <div class="dib justify-self-end">
-        <button ui-sref="groupsNew" class="btn btn-primary button-row pull-right" type="button" name="button">
-          Create a group
-        </button>
-      </div>
-    </div> -->
     <div class="row text-center">
       <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="group in vm.groups track by $index">
-        <!-- <div class="card-container" > -->
         <div class="groups-card-container" ui-sref="groupsShow({ id: group.id })">
 
           <div class="glyphicons-at-top" ng-if="group.creator_id == vm.user.id">
@@ -150,10 +120,7 @@
           </div>
 
           <div class="group-thumbnail"
-          style="background-image:url({{ group.image || '../images/user-default.jpg' }})"></div>
-          <!-- <div class="profile-img"
-          style="background-image:url({{ '../images/user-default.jpg' }})"></div> -->
-
+          style="background-image:url({{ group.image || '../images/group-default.jpg' }})"></div>
           <a ui-sref="groupsShow({ id: group.id })"><h3 class="dash-groups-name">{{ group.name }}</h3></a>
           <p class="dash-groups-date" ng-show="vm.checkSameDay(group.events, $index)">
             {{ vm.startDate[$index] || "Awaiting Schedule" }}

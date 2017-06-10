@@ -1,98 +1,90 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-6">
-      <button ui-sref="eventsShow({ group_id: vm.groupId, id: vm.event.id })" class="btn btn-primary" type="button" name="button">
-        <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-        Back to event
-      </button>
+    <div class="col-md-8 col-md-offset-2 col-xs-12">
 
-      <h1>Edit event {{ ::vm.event.name }}</h1>
-
-      <form ng-submit="vm.update()">
-
-        <div class="form-group">
-          <label for="name">Title</label>
-          <input class="form-control" type="text" name="name" id="name" ng-model="vm.event.name" placeholder="Title">
+      <div class="row">
+        <div class="col-xs-6 text-left">
+          <button ui-sref="eventsShow({ group_id: vm.groupId, id: vm.event.id })" class="btn theme-button-1" type="button" name="button">
+            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+            Back to event
+          </button>
         </div>
-
-        <!-- <div class="form-group">
-          <label for="start-time">Start Time</label>
-          <input class="form-control" type="text" name="start_time" id="start-time" ng-model="vm.event.start_time" placeholder="Start Time">
-        </div> -->
-
-        <div class="form-group">
-          <label for="inputdate" class="control-label">Start Time</label>
-            <input class="form-control form-control-create"
-            ng-model="vm.event.start_time"
-            ng-model-options="{ updateOn: 'blur' }"
-            placeholder="Start date and time"
-            format="llll"
-            min-view="year"
-            start-view="month"
-            min-date="vm.minDateMoment"
-            max-date="vm.maxDateMoment"
-            required="true"
-            moment-picker="vm.momentStartTime">
+        <div class="col-xs-6 text-right">
+          <button class="btn theme-button-danger" href="javascript:void(0)" ng-click="vm.openDelete()">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            Delete Event
+          </button>
         </div>
+      </div>
 
-        <!-- <div class="form-group">
-          <label for="end-time">End Time</label>
-          <input class="form-control" type="text" name="end_time" id="end-time" ng-model="vm.event.end_time" placeholder="End Time">
-        </div> -->
+      <div class="form-card">
+        <h1>Edit event</h1>
 
-        <div class="form-group">
-          <label for="inputdate" class="control-label">End Time</label>
-            <input class="form-control form-control-create"
-            ng-model="vm.event.end_time"
-            ng-model-options="{ updateOn: 'blur' }"
-            placeholder="End date and time"
-            format="llll"
-            min-view="year"
-            start-view="day"
-            min-date="vm.event.start_time"
-            max-date="vm.maxDateMoment"
-            required="true"
-            moment-picker="vm.momentEndTime">
-        </div>
+        <form ng-submit="vm.update()">
 
-        <div ng-if="vm.startAfterEnd" class="alert alert-danger" role="alert">
-          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-          <span class="sr-only">Error:</span>
-          Make sure that the start time is before the end time
-        </div>
-
-        <div class="form-group" >
-          <label for="description">Description</label>
-          <textarea  class="form-control" id="description" name="description" ng-model="vm.event.description"  placeholder="Description the event"></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="location">Location</label>
-          <input class="form-control" type="text" name="location" ng-model="vm.event.location" placeholder="Location">
-        </div>
-
-        <div class="form-group">
-          <label for="dress-code">Dress Code</label>
-          <input class="form-control" type="text" name="dress_code" ng-model="vm.event.dress_code" placeholder="Dress code">
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-
-            <div class="col-xs-6">
-              <input class="btn btn-primary pull-left" type="submit" value="Edit Event">
-            </div>
-            <div class="col-xs-6">
-              <button type="button" class="btn btn-danger pull-right" href="javascript:void(0)"
-              ng-click="vm.openDelete()">Delete Event</button>
-            </div>
-
+          <div class="form-group text-left">
+            <label for="name">Title</label>
+            <input class="form-control" type="text" name="name" id="name" ng-model="vm.event.name" placeholder="Title">
           </div>
 
+          <div class="form-group text-left">
+            <label for="inputdate" class="control-label">Start Time</label>
+              <input class="form-control form-control-create"
+              ng-model="vm.event.start_time"
+              ng-model-options="{ updateOn: 'blur' }"
+              placeholder="Start date and time"
+              format="llll"
+              min-view="year"
+              start-view="month"
+              min-date="vm.minDateMoment"
+              max-date="vm.maxDateMoment"
+              required="true"
+              moment-picker="vm.momentStartTime">
+          </div>
 
-        </div>
-      </form>
+          <div class="form-group text-left">
+            <label for="inputdate" class="control-label">End Time</label>
+              <input class="form-control form-control-create"
+              ng-model="vm.event.end_time"
+              ng-model-options="{ updateOn: 'blur' }"
+              placeholder="End date and time"
+              format="llll"
+              min-view="year"
+              start-view="day"
+              min-date="vm.event.start_time"
+              max-date="vm.maxDateMoment"
+              required="true"
+              moment-picker="vm.momentEndTime">
+          </div>
+
+          <div ng-if="vm.startAfterEnd" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            Make sure that the start time is before the end time
+          </div>
+
+          <div class="form-group text-left" >
+            <label for="description">Description</label>
+            <textarea  class="form-control" id="description" name="description" ng-model="vm.event.description"  placeholder="Description the event"></textarea>
+          </div>
+
+          <div class="form-group text-left">
+            <label for="location">Location</label>
+            <input class="form-control" type="text" name="location" ng-model="vm.event.location" placeholder="Location">
+          </div>
+
+          <div class="form-group text-left">
+            <label for="dress-code">Dress Code</label>
+            <input class="form-control" type="text" name="dress_code" ng-model="vm.event.dress_code" placeholder="Dress code">
+          </div>
+
+          <div class="form-group text-left">
+            <input class="btn theme-button-2" type="submit" value="Edit Event">
+          </div>
+        </form>
+      </div>
+
       </div>
     </div>
   </div>

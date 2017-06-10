@@ -66,6 +66,16 @@
       }
     }
   }
+
+  .small-card-glyphicon {
+    .glyphicon-remove {
+      transition: all 0.5s ease;
+
+      &:hover {
+        transform: scale(1.6);
+      }
+    }
+  }
 }
 
 @mixin attendance-user-card {

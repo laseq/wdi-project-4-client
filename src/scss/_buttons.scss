@@ -1,6 +1,10 @@
 // @import 'fonts';
 @mixin theme-button-general {
-  padding: 0.8rem 2rem;
+  // padding: 0.8rem 2rem;
+  font-family: $bodyFont;
+  transition: all 0.5s ease;
+}
+@mixin theme-button-alt {
   font-family: $bodyFont;
   transition: all 0.5s ease;
 }
@@ -27,8 +31,9 @@
   background-color: $themeColour1;
 
   &:hover {
-    background-color: $themeColour2;
+    border: 1px solid $themeColour2;
     color: $themeColour4;
+    background-color: $themeColour2;
     // box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px $themeColour1Faded;
   }
 
@@ -45,5 +50,31 @@
     background-color: $themeDanger;
     color: $themeColour4;
     // box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px $themeColour1Faded;
+  }
+}
+
+.theme-button-1-min-changes {
+  @include theme-button-alt
+
+  border: 1px solid $themeColour1;
+  color: $themeColour1;
+  background-color: $themeColour4;
+
+  &:hover {
+    background-color: $themeColour1;
+    color: $themeColour4;
+  }
+}
+.theme-button-2-min-changes {
+  @include theme-button-alt
+
+  border: 1px solid $themeColour1;
+  color: $themeColour4;
+  background-color: $themeColour1;
+
+  &:hover {
+    border: 1px solid $themeColour2;
+    color: $themeColour4;
+    background-color: $themeColour2;
   }
 }
