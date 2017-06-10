@@ -109,35 +109,62 @@
 </div>
 
 <div class="dashboard-groups">
-  <h2 class="section-title text-center">Your Groups</h2>
-  <div class="row">
-    <button ui-sref="groupsNew" class="btn btn-primary button-row pull-right" type="button" name="button">
-      Create a group
-    </button>
-  </div>
-  <div class="row text-center">
-    <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="group in vm.groups track by $index">
-      <!-- <div class="card-container" > -->
-      <div class="card-container" ui-sref="groupsShow({ id: group.id })">
+  <div class="container-fluid">
+    <!-- <div class="row flex-row row-align-bottom">
+      <div class="dib justify-self-middle">
+        <h2 class="section-title">Your Groups</h2>
+      </div>
+      <div class="dib justify-self-end">
+        <button ui-sref="groupsNew" class="btn btn-primary button-row pull-right" type="button" name="button">
+          Create a group
+        </button>
+      </div>
+    </div> -->
+    <div class="row flex-row row-align-bottom your-groups-header">
+      <div class="col-xs-6 col-xs-offset-3 text-center title-with-button">
+        <h2 class="section-title">Your Groups</h2>
+      </div>
+      <div class="col-xs-3 text-right button-with-title">
+        <button ui-sref="groupsNew" class="theme-button-2 button-row" type="button" name="button">
+          Create a group
+        </button>
+      </div>
+    </div>
+    <!-- <div class="row flex-row row-align-bottom">
+      <div class="dib justify-self-middle">
+        <h2 class="section-title">Your Groups</h2>
+      </div>
+      <div class="dib justify-self-end">
+        <button ui-sref="groupsNew" class="btn btn-primary button-row pull-right" type="button" name="button">
+          Create a group
+        </button>
+      </div>
+    </div> -->
+    <div class="row text-center">
+      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="group in vm.groups track by $index">
+        <!-- <div class="card-container" > -->
+        <div class="card-container" ui-sref="groupsShow({ id: group.id })">
 
-        <div class="glyphicons-at-top" ng-if="group.creator_id == vm.user.id">
-          <span class="glyphicon glyphicon-star admin-icon" aria-hidden="true"></span>
+          <div class="glyphicons-at-top" ng-if="group.creator_id == vm.user.id">
+            <span class="glyphicon glyphicon-star admin-icon" aria-hidden="true"></span>
+          </div>
+
+          <div class="profile-img"
+          style="background-image:url({{ group.image || '../images/user-default.jpg' }})"></div>
+          <!-- <div class="profile-img"
+          style="background-image:url({{ '../images/user-default.jpg' }})"></div> -->
+
+          <a ui-sref="groupsShow({ id: group.id })"><h3 >{{ group.name }}</h3></a>
+          <p class="dash-groups-date" ng-show="vm.checkSameDay(group.events, $index)">
+            {{ vm.startDate[$index] || "Awaiting Schedule" }}
+          </p>
+          <p class="dash-groups-date" ng-hide="vm.checkSameDay(group.events, $index)">
+            {{ vm.startDate[$index] }} - {{ vm.endDate[$index] }}
+          </p>
+
         </div>
-
-        <div class="profile-img"
-        style="background-image:url({{ group.image || '../images/user-default.jpg' }})"></div>
-        <!-- <div class="profile-img"
-        style="background-image:url({{ '../images/user-default.jpg' }})"></div> -->
-
-        <a ui-sref="groupsShow({ id: group.id })"><h3 >{{ group.name }}</h3></a>
-        <p class="dash-groups-date" ng-show="vm.checkSameDay(group.events, $index)">
-          {{ vm.startDate[$index] || "Awaiting Schedule" }}
-        </p>
-        <p class="dash-groups-date" ng-hide="vm.checkSameDay(group.events, $index)">
-          {{ vm.startDate[$index] }} - {{ vm.endDate[$index] }}
-        </p>
-
       </div>
     </div>
   </div>
+
 </div>

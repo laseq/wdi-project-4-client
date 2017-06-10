@@ -1,3 +1,28 @@
+.flex-row {
+  display: flex;
+}
+
+.row-align-bottom {
+  display: flex;
+  align-items: flex-end;
+}
+
+.row-align-space-between-hrz {
+  display: flex;
+  justify-content: space-between;
+}
+
+.justify-self-start {
+  margin-right: auto;
+}
+.justify-self-middle {
+  margin-right: auto;
+  margin-left: auto;
+}
+.justify-self-end {
+  margin-left: auto;
+}
+
 .mt1 {
   margin-top: 1%;
 }
@@ -27,4 +52,7 @@
 }
 .mb5 {
   margin-bottom: 5%;
+}
+.dib {
+  display: inline-block;
 }

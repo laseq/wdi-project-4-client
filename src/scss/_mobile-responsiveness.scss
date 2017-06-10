@@ -1,0 +1,19 @@
+@media only screen and (max-width: 640px) {
+  .dashboard-groups {
+    .flex-row {
+      display: block;
+
+      .title-with-button {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .button-with-title {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+
+}

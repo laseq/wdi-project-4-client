@@ -5,6 +5,8 @@
 @import 'custom-css';
 @import 'bootstrap-navbar';
 @import 'buttons';
+@import 'mobile-responsiveness';
+@import 'bootstrap-xxs-size';
 
 body {
   background: url(/images/backgrounds/satinweave.png) repeat 0 0;
@@ -20,15 +22,6 @@ body {
   }
 }
 
-.flex-row {
-  display: flex;
-}
-
-.row-align-bottom {
-  display: flex;
-  align-items: flex-end;
-}
-
 .margin-bottom-2 {
   margin-bottom: 2%;
 }
@@ -39,6 +32,19 @@ body {
 /* Dashboard */
 
 .dashboard-groups {
+  @include medium-card-container;
+
+  .your-groups-header {
+    margin-bottom: 1em;
+
+    // .section-title {
+    //   margin: 3% auto;
+    // }
+    .button-row {
+      margin: 0 auto 0.8em;
+    }
+  }
+
   .card-container:hover {
     cursor: pointer;
   }
@@ -153,14 +159,7 @@ body {
 }
 // Accordion design above here
 
-.dashboard-groups {
-  .section-title {
-    margin: 3% auto;
-  }
-  .button-row {
-    margin: 0 auto 3%;
-  }
-}
+
 
 /* Forms */
 .form-card {
