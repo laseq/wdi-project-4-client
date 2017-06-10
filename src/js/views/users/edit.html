@@ -1,43 +1,46 @@
 <div class="container">
 <div class="row">
-  <div class="col-md-6">
-    <button ui-sref="dashboard" class="btn btn-primary" type="button" name="button">
+  <div class="col-md-8 col-md-offset-2 col-xs-12">
+    <button ui-sref="dashboard" class="theme-button-1" type="button" name="button">
       <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
       Back to dashboard
     </button>
-    <h1>Edit Your Contact Details</h1>
+    <div class="form-card">
+      <h1>Edit Your Contact Details</h1>
       <form ng-submit="vm.update()">
 
-        <div class="form-group">
-          <label for="first_name">Name</label>
+        <div class="form-group text-left">
+          <label for="first_name">First Name</label>
           <input class="form-control" type="text" first_name="first_name" id="first_name" ng-model="vm.user.first_name" placeholder="First Name" >
         </div>
-        <div class="form-group">
-          <label for="last_name">Name</label>
+        <div class="form-group text-left">
+          <label for="last_name">Last Name</label>
           <input class="form-control" type="text" last_name="last_name" id="last_name" ng-model="vm.user.last_name" placeholder="Last Name" >
         </div>
-        <div class="form-group">
+        <div class="form-group text-left">
           <label for="phone">Phone</label>
           <input class="form-control" type="text" phone="phone" id="phone" ng-model="vm.user.phone" placeholder="Phone" >
         </div>
-        <div class="form-group">
+        <div class="form-group text-left">
           <label for="email">Email</label>
           <input class="form-control" type="text" email="email" id="email" ng-model="vm.user.email" placeholder="Email" >
         </div>
-        <div class="form-group">
+        <div class="form-group text-left">
           <label for="location">Location</label>
           <input class="form-control" type="text" location="location" id="location" ng-model="vm.user.location" placeholder="Location" >
         </div>
 
-        <div class="from-group">
+        <div class="form-group text-left">
           <label for="Image">Image</label>
           <input class="form-control" type="text" name="image" ng-model="vm.user.image" placeholder="Image URL">
         </div>
 
         <div>
-          <input class="btn btn-primary" type="submit" value="Edit Details">
+          <input class="theme-button-2" type="submit" value="Edit Details">
         </div>
       </form>
+    </div>
+
   </div>
 
 </div>

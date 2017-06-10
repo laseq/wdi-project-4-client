@@ -1,35 +1,38 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-6">
-      <button ui-sref="dashboard" class="btn btn-primary" type="button" name="button">
+    <div class="col-md-8 col-md-offset-2 col-xs-12">
+      <button ui-sref="dashboard" class="theme-button-1" type="button" name="button">
         <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
         Back to dashboard
       </button>
 
-      <h1>Create a new stag/hen do</h1>
+      <div class="form-card">
+        <h1>Create a new stag or hen do group</h1>
 
-      <form ng-submit="vm.create()">
+        <form ng-submit="vm.create()">
 
-        <div class="form-group">
-          <label  for="name">Title</label>
-          <input class="form-control" type="text" name="name" id="name" ng-model="vm.group.name" placeholder="Title" >
-        </div>
+          <div class="form-group text-left">
+            <label for="name">Title</label>
+            <input class="form-control" type="text" name="name" id="name" ng-model="vm.group.name" placeholder="Title" autofocus="" required>
+          </div>
 
-        <div class="form-group" >
-          <label  for="description">Description</label>
-          <textarea  class="form-control" id="description" name="description" ng-model="vm.group.description"  placeholder="Description of your stag/hen do"></textarea>
-        </div>
+          <div class="form-group text-left">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" ng-model="vm.group.description"  placeholder="Description of your stag/hen do" required></textarea>
+          </div>
 
-        <div class="form-group">
-          <label for="Image">Image</label>
-          <input class="form-control" type="text" name="image" ng-model="vm.group.image" placeholder="Image URL">
-        </div>
+          <div class="form-group text-left">
+            <label for="Image">Image</label>
+            <input class="form-control" type="text" name="image" ng-model="vm.group.image" placeholder="Image URL">
+          </div>
 
-        <div class="form-group">
-          <input class="btn btn-primary" type="submit" value="Add Group">
-        </div>
-      </form>
+          <div class="form-group">
+            <input class="theme-button-2" type="submit" value="Add Group">
+          </div>
+        </form>
+      </div>
+
       </div>
     </div>
   </div>

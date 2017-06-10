@@ -1,12 +1,25 @@
 // Import all of your scss files here
+
+@import 'fonts';
 @import 'mixins';
 @import 'custom-css';
+@import 'bootstrap-navbar';
+@import 'buttons';
+
+body {
+  background: url(/images/backgrounds/satinweave.png) repeat 0 0;
+  position: relative;
+}
 
 .nav {
-  a:hover {
-    cursor: pointer;
+  a {
+    font-family: $headingFont;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
+
 .flex-row {
   display: flex;
 }
@@ -81,6 +94,11 @@
       font-size: 18px;
   }
 }
+
+.big-cards {
+  // background-color: $bgDefault;
+  // opacity: 0.5;
+}
 // Accordion design below here
 .dashboard-accordion {
   overflow-y: scroll;
@@ -141,6 +159,43 @@
   }
   .button-row {
     margin: 0 auto 3%;
+  }
+}
+
+/* Forms */
+.form-card {
+  @include medium-card-container;
+
+  margin-top: 2%;
+  padding: 2% 2% 1%;
+  border: 1px solid $themeColour1;
+  background-color: $themeColour4;
+
+  h1 {
+    margin-top: 1%;
+    // padding-top: 0;
+  }
+
+  .form-control {
+    border: 1px solid $themeColour1;
+    color: $themeColour1;
+    border-radius: 0;
+    background-color: $themeColour4;
+    transition: all 0.5s ease;
+
+    &:focus {
+      border: 1px solid $themeColour1;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px $themeColour1Faded;
+    }
+  }
+
+  textarea {
+    height: 15rem;
+  }
+
+  .theme-button-2 {
+    margin-top: 1%;
+    width: 100%;
   }
 }
 
@@ -366,7 +421,19 @@
 
 }
 
+footer{
+  position:absolute;
+  color: $colDefault;
+  height:40px;
+  background-color: #1c1d20;
+  bottom:-100px;
+  left:0;
+  width:100%;
 
+  .footer-text {
+    text-align: center;
+  }
+}
 
 // Not sure if this code below actually works for the group pending request and leave modals
 // .vcenter {
