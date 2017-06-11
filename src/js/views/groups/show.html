@@ -1,5 +1,7 @@
 <h1 class="text-center">{{ vm.group.name }}</h1>
 
+{{ vm.timeSpanMessage }}
+
 <div class="button-row pull-right" ng-if="vm.group.creator_id == vm.user.id">
   <button class="btn theme-button-2" href="javascript:void(0)" ng-click="vm.openInvites()">
     Send Invites
@@ -61,7 +63,7 @@
         <div class="container-fluid event-card" ng-repeat="event in dateEvents track by $index">
           <div class="row row-align-bottom" ui-sref="eventsShow({ group_id: vm.group.id, id: event.id })">
             <div class="col-xs-12 col-sm-7">
-              <h4>{{ event.name }}</h4>
+              <h3>{{ event.name }}</h3>
             </div>
             <div class="col-xs-12 col-sm-5">
               <h5 class="timings">{{ event.start_time | date : "EEE d MMM, h.mm a" }} - {{ event.end_time | date : "h.mm a" }}</h5>
@@ -82,14 +84,21 @@
               </div>
             </div>
           </div>
-          <div class="row button-row">
+          <!-- <div class="row button-row">
             <div class="col-xs-6 text-right">
               <button ng-click="vm.attendance($index, date, event, 'attending')" class="btn theme-button-1" type="button">Attending</button>
             </div>
             <div class="col-xs-6 text-left">
               <button ng-click="vm.attendance($index, date, event, 'not attending')" class="btn theme-button-1" type="button">Not Attending</button>
             </div>
+          </div> -->
+          <div class="row button-row">
+            <button ng-click="vm.attendance($index, date, event, 'attending')"
+              class="btn theme-button-1 col-xs-5 col-xs-offset-1 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3 left-btn" type="button">Attending</button>
+            <button ng-click="vm.attendance($index, date, event, 'not attending')"
+              class="btn theme-button-1 col-xs-5 col-sm-4 col-md-3 right-btn" type="button">Not Attending</button>
           </div>
+
         </div>
 
       </div>

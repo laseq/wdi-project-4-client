@@ -8,7 +8,6 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
   vm.user = User.get({ id: TokenService.decodeToken().id });
 
   // vm.group = Group.get($stateParams);
-  // vm.addComment = commentsCreate;
   vm.delete = groupsDelete;
   vm.openInvites = openGroupInvitesModal;
   vm.openPending = openGroupPendingModal;
@@ -33,6 +32,7 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
         console.log('group:', group);
         setEventTimeStatus(group);
         putDateStringsInArray();
+        displayStartAndEndDates();
         getCurrentDateString();
       });
   }
@@ -80,20 +80,6 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
     }
   } // End of function setEventTimeStatus
 
-  // function commentsCreate() {
-  //   vm.comment.group_id = vm.group.id;
-  //   vm.comment.user_id = 1;
-  //   Comment
-  //     .save(vm.comment)
-  //     .$promise
-  //     .then(data => {
-  //       groupsShow();
-  //       console.log(vm.comment);
-  //       vm.comment = {};
-  //       console.log('data:', data);
-  //     });
-  // }
-
   function groupsDelete() {
     Group
       .delete({ id: vm.group.id })
@@ -122,6 +108,25 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
     Object.keys(vm.group.events_by_date).forEach(function(key, index) {
       vm.dateStringArray.push(key);
     });
+  }
+
+  function displayStartAndEndDates() {
+    // vm.startDate = vm.dateStringArray[0];
+    // vm.endDate = vm.dateStringArray[vm.dateStringArray.length-1];
+    vm.startDate = moment(vm.dateStringArray[0], 'ddd DD MMM YYYY').format('ddd Do MMM YYYY');
+    vm.endDate = moment(vm.dateStringArray[vm.dateStringArray.length-1], 'ddd DD MMM YYYY').format('ddd Do MMM YYYY');
+    // vm.startDate = moment(vm.dateStringArray[0]).format('ddd Do MMM YYYY');
+    // vm.endDate = moment(vm.dateStringArray[vm.dateStringArray.length-1]).format('ddd Do MMM YYYY');
+
+    if (!vm.group.events.length) {
+      vm.timeSpanMessage = 'Awaiting event schedule';
+    } else if (vm.startDate === vm.endDate) {
+      console.log('entered true, dates are the same');
+      vm.timeSpanMessage = `Event date: ${vm.startDate}`;
+    } else {
+      console.log('entered false, dates aren\'t the same');
+      vm.timeSpanMessage = `Event dates: ${vm.startDate} - ${vm.endDate}`;
+    }
   }
 
   function getCurrentDateString() {

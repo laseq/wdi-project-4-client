@@ -273,6 +273,13 @@ body {
 // This is for the user contact card modal to have better styling at the bottom
 .modal-content {
   border: none;
+
+  .member-card {
+
+    .modal-body {
+      padding: 0;
+    }
+  }
 }
 
 .groups-show-modal {
@@ -412,7 +419,7 @@ body {
     }
 
     .button-row {
-      margin-bottom: 1%;
+      margin-bottom: 1em;
       position: relative;
       z-index: 5;
     }
@@ -454,7 +461,7 @@ body {
   @include small-card-container;
   box-shadow: 0px 1px 10px 0px rgba(207,207,207,1);
   text-align: left;
-  margin-bottom: 1%;
+  margin-bottom: 1em;
 
   h3 {
     margin-top: 10px;
@@ -469,17 +476,45 @@ body {
   }
 }
 
-.attendance-row {
+.left-btn, .right-btn {
+  // margin-top: 0.5em;
+}
 
-  min-height: 70px;
+.left-btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 0;
+}
+.right-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
 
-  .flex-row {
-    align-items: center;
+.attendance-card-container {
+  @include medium-card-container;
+  margin-top: 1em;
+
+  h3 {
+    text-align: left;
+    padding-bottom: 0.2em;
   }
 
-  @include attendance-user-card;
+  .attendance-row {
+    min-height: 70px;
+
+    .flex-row {
+      align-items: center;
+    }
+
+    @include attendance-user-card;
+    .member-card-container {
+      box-shadow: 0px 0px 10px 0px rgba(100,100,100,1);
+    }
+  }
 
 }
+
+
 
 footer{
   position:absolute;

@@ -15,7 +15,6 @@ function DashboardCtrl(Group, User, Request, Event, TokenService) {
   vm.checkSameDay = checkSameDay;
   vm.attendance = eventAttendance;
 
-
   vm.eventStartDate = [];
   vm.eventStartTime = [];
   vm.eventEndTime = [];
