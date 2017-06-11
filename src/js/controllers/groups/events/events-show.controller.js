@@ -2,8 +2,8 @@ angular
 .module('stagApp')
 .controller('EventsShowCtrl', EventsShowCtrl);
 
-EventsShowCtrl.$inject = ['$stateParams', '$state', 'Group', 'Event', 'TokenService', '$uibModal'];
-function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibModal){
+EventsShowCtrl.$inject = ['$stateParams', '$state', 'Group', 'Event', 'TokenService', '$uibModal', 'User'];
+function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibModal, User){
   const vm = this;
   vm.userId = TokenService.decodeToken().id;
   vm.paramsGroupId = $stateParams.group_id;
@@ -23,6 +23,7 @@ function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibMo
         console.log('event:', event);
         vm.event = event;
         setEventTimeStatus();
+        checkCurrentMemberAttendingEvent();
       });
   }
 
@@ -51,6 +52,7 @@ function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibMo
         vm.event.members_attending = attendanceStatus.event.members_attending;
         vm.event.members_not_attending = attendanceStatus.event.members_not_attending;
         vm.event.members_pending = attendanceStatus.event.members_pending;
+        checkCurrentMemberAttendingEvent();
       });
   }
 
@@ -66,6 +68,16 @@ function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibMo
       vm.event.status = 'ended';
     }
   } // End of function setEventTimeStatus
+
+  function checkCurrentMemberAttendingEvent() {
+    console.log('entered checkCurrentMemberAttendingEvent');
+    vm.currentUserAttending = vm.event.members_attending.some(function (value) {
+      return (value.id === vm.userId) ? true:false;
+    });
+    vm.currentUserNotAttending = vm.event.members_not_attending.some(function (value) {
+      return (value.id === vm.userId) ? true:false;
+    });
+  }
 
   function openMemberCardModal(theMember) {
     $uibModal.open({

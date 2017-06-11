@@ -32,8 +32,11 @@
   <p class="event-sub-headings"><strong>Dress Code</strong></p>
   <p>{{ vm.event.dress_code }}</p>
   <div class="row">
-    <div class="col-xs-6">
-      <p>{{ vm.event.members_attending.length }} people going</p>
+    <div class="col-xs-6 people-going">
+      <p>{{ vm.event.members_attending.length }} people going
+        <span ng-show="vm.currentUserAttending" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+        <span ng-show="vm.currentUserNotAttending" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+      </p>
     </div>
     <div class="col-xs-6 text-right time-status">
       <p ng-class="'status-' + vm.event.status">Status: {{ vm.event.status || N/A }}</p>

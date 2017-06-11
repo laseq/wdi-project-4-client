@@ -468,6 +468,18 @@ body {
     margin-top: 10px;
   }
 
+  .people-going {
+    .glyphicon {
+      margin-left: 1em;
+    }
+    .glyphicon-thumbs-up {
+      color: green;
+    }
+    .glyphicon-thumbs-down {
+      color: red;
+    }
+  }
+
   .timings {
     text-align: right;
   }
