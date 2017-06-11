@@ -6,5 +6,6 @@ angular
     'angular-jwt',
     'ngAnimate',
     'ui.bootstrap',
-    'moment-picker'
+    'moment-picker',
+    'mwl.calendar'
   ]);

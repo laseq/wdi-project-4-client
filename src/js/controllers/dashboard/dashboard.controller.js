@@ -2,8 +2,8 @@ angular
   .module('stagApp')
   .controller('DashboardCtrl', DashboardCtrl);
 
-DashboardCtrl.$inject = ['Group', 'User', 'Request', 'Event', 'TokenService'];
-function DashboardCtrl(Group, User, Request, Event, TokenService) {
+DashboardCtrl.$inject = ['Group', 'User', 'Request', 'Event', 'TokenService', '$uibModal'];
+function DashboardCtrl(Group, User, Request, Event, TokenService, $uibModal) {
   const vm = this;
 
   // vm.user = User.get({ id: TokenService.decodeToken().id });
@@ -18,6 +18,7 @@ function DashboardCtrl(Group, User, Request, Event, TokenService) {
   vm.eventStartDate = [];
   vm.eventStartTime = [];
   vm.eventEndTime = [];
+  vm.openCalendar = openCalendarModal;
 
   getUser();
   getPendingRequests();
@@ -32,11 +33,12 @@ function DashboardCtrl(Group, User, Request, Event, TokenService) {
         filterUpcomingEvents(vm.user.upcoming_events);
         console.log('user:', vm.user);
         formatDateTimeForUpcomingEvents();
+        // setAngularCalendarEvents();
       });
   }
 
   function checkUserImage() {
-    if (vm.user.image === '') vm.user.image = '../images/user-default.png';
+    if (!vm.user.image) vm.user.image = '../images/user-default.png';
   }
 
   // displayUserGroups();
@@ -157,6 +159,19 @@ function DashboardCtrl(Group, User, Request, Event, TokenService) {
     });
     vm.userNotAttending[theIndex] = vm.user.upcoming_events[theIndex].members_not_attending.some(function (value) {
       return (value.id === vm.user.id) ? true:false;
+    });
+  }
+
+  function openCalendarModal() {
+    $uibModal.open({
+      templateUrl: 'js/views/partials/dashboardCalendarModal.html',
+      controller: 'CalendarCtrl as calendarCtrl',
+      size: 'lg',
+      resolve: {
+        upcomingEvents: () => {
+          return vm.user.upcoming_events;
+        }
+      }
     });
   }
 

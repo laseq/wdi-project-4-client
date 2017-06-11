@@ -1,3 +1,5 @@
+/*globals moment*/
+
 angular
   .module('stagApp')
   .controller('GroupsShowCtrl', GroupsShowCtrl);
@@ -41,7 +43,8 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
   }
 
   function checkGroupBanner() {
-    if (vm.group.banner === '') vm.group.banner = '../images/groups-banner-default-2.jpg';
+    console.log('vm.group.banner:', vm.group.banner);
+    if (!vm.group.banner) vm.group.banner = '../images/groups-banner-default-2.jpg';
   }
 
   function groupsShow() {
@@ -125,7 +128,7 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
   }
 
   function putDateStringsInArray() {
-    Object.keys(vm.group.events_by_date).forEach(function(key, index) {
+    Object.keys(vm.group.events_by_date).forEach(function(key) {
       vm.dateStringArray.push(key);
     });
   }

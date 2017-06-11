@@ -212,6 +212,12 @@ body {
 }
 // Accordion design above here
 
+.notifications-container {
+  .dashboard-accordion {
+    height: 360px;
+  }
+}
+
 
 
 /* Forms */
@@ -554,6 +560,27 @@ body {
     }
   }
 
+}
+
+.angular-calendar-dashboard {
+  background-color: $themeColour4;
+  // height: 350px;
+  // overflow-y: scroll;
+
+  // mwl-calendar .cal-month-box [class*=cal-cell], mwl-calendar .cal-year-box [class*=span] {
+  //   min-height: 0;
+  //   height: 50px;
+  //   border-right: 1px solid #e1e1e1;
+  //   position: relative;
+  // }
+  //
+  // mwl-calendar .cal-month-day {
+  //   height: 50px;
+  // }
+  //
+  // mwl-calendar .cal-month-box .cal-day-today span[data-cal-date] {
+  //   font-size: 1.5em;
+  // }
 }
 
 

@@ -24,6 +24,7 @@ function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibMo
         vm.event = event;
         setEventTimeStatus();
         checkCurrentMemberAttendingEvent();
+        setAngularCalendarEvents();
       });
   }
 
@@ -91,7 +92,5 @@ function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibMo
       }
     });
   }
-
-
 
 }

@@ -1,0 +1,63 @@
+<div class="modal-body">
+  <div class="angular-calendar-dashboard">
+    <h3 class="text-center">{{ calendarCtrl.calendarTitle }}</h3>
+    <div class="row">
+
+      <div class="col-xs-6 text-center">
+        <div class="btn-group">
+          <button
+            class="btn theme-button-2"
+            mwl-date-modifier
+            date="calendarCtrl.viewDate"
+            decrement="calendarCtrl.calendarView">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          </button>
+
+          <button
+            class="btn theme-button-1"
+            mwl-date-modifier
+            date="calendarCtrl.viewDate"
+            set-to-today>
+            Today
+          </button>
+
+          <button
+            class="btn theme-button-2"
+            mwl-date-modifier
+            date="calendarCtrl.viewDate"
+            increment="calendarCtrl.calendarView">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          </button>
+        </div>
+
+      </div>
+      <div class="col-xs-6 text-center">
+        <div class="btn-group">
+          <label class="btn theme-button-1" ng-model="calendarCtrl.calendarView" uib-btn-radio="'year'" ng-click="calendarCtrl.cellIsOpen = false">Year</label>
+          <label class="btn theme-button-1" ng-model="calendarCtrl.calendarView" uib-btn-radio="'month'" ng-click="calendarCtrl.cellIsOpen = false">Month</label>
+          <label class="btn theme-button-1" ng-model="calendarCtrl.calendarView" uib-btn-radio="'week'" ng-click="calendarCtrl.cellIsOpen = false">Week</label>
+          <label class="btn theme-button-1" ng-model="calendarCtrl.calendarView" uib-btn-radio="'day'" ng-click="calendarCtrl.cellIsOpen = false">Day</label>
+        </div>
+      </div>
+    </div>
+
+    <mwl-calendar
+        view="calendarCtrl.calendarView"
+        view-date="calendarCtrl.viewDate"
+        events="calendarCtrl.events"
+        view-title="calendarCtrl.calendarTitle"
+        on-event-click="eventClicked(calendarEvent)"
+        on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+        cell-is-open="true">
+    </mwl-calendar>
+
+  </div>
+
+
+</div>
+
+
+
+<div class="modal-footer">
+  <button class="btn theme-button-1-min-changes" ng-click="calendarCtrl.close()">Close</button>
+</div>
