@@ -156,6 +156,18 @@ body {
     }
   }
 
+  .people-going {
+    .glyphicon {
+      margin-left: 1em;
+    }
+    .glyphicon-thumbs-up {
+      color: green;
+    }
+    .glyphicon-thumbs-down {
+      color: red;
+    }
+  }
+
   .event-mini-details {
     &:hover {
       cursor: pointer;
@@ -417,6 +429,18 @@ body {
 
     .event-sub-headings {
       margin: 0;
+    }
+
+    .people-going {
+      .glyphicon {
+        margin-left: 1em;
+      }
+      .glyphicon-thumbs-up {
+        color: green;
+      }
+      .glyphicon-thumbs-down {
+        color: red;
+      }
     }
 
     .button-row {

@@ -13,7 +13,6 @@
     </div>
   </div>
 
-
   <div class="col-xs-12 col-md-5">
     <div class="card-container container-fluid big-cards">
       <h3>Upcoming Events</h3>
@@ -45,14 +44,18 @@
                 </div>
               </uib-accordion-heading>
 
-
               <div class="event-mini-details" ui-sref="eventsShow({ group_id: event.group.id, id: event.id })">
                 <p>{{ event.description | limitTo:150 }}{{event.description.length > 150 ? '...' : ''}}</p>
                 <p class="event-sub-headings"><strong>Location</strong></p>
                 <p>{{ event.location }}</p>
                 <p class="event-sub-headings"><strong>Dress Code</strong></p>
                 <p>{{ event.dress_code }}</p>
-                <p class="event-sub-headings"><strong>{{ event.members_attending.length }} people going</strong></p>
+                <div class="people-going">
+                  <p class="event-sub-headings"><strong>{{ event.members_attending.length }} people going
+                    <span ng-show="vm.userAttending[$index]" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                    <span ng-show="vm.userNotAttending[$index]" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                  </strong></p>
+                </div>
               </div>
 
               <div class="row button-row">

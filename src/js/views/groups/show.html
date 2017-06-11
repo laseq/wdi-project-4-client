@@ -75,14 +75,18 @@
             <p class="event-sub-headings"><strong>Dress Code</strong></p>
             <p>{{ event.dress_code }}</p>
             <div class="row">
-              <div class="col-xs-6">
-                <p><strong>{{ event.members_attending.length }} people going</strong></p>
+              <div class="col-xs-6 people-going">
+                <p><strong>{{ event.members_attending.length }} people going</strong>
+                  <span ng-show="vm.checkUserAttending(event.members_attending)" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                  <span ng-show="vm.checkUserNotAttending(event.members_not_attending)" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                </p>
               </div>
               <div class="col-xs-6 text-right time-status">
                 <p ng-class="'status-' + event.status">Status: {{ event.status || N/A }}</p>
               </div>
             </div>
           </div>
+
 
           <div class="row button-row">
             <button ng-click="vm.attendance($index, date, event, 'attending')"

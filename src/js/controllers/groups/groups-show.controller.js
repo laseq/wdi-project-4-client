@@ -20,6 +20,8 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
   vm.decrementDate = decrementDate;
   vm.incrementDate = incrementDate;
   vm.attendance = eventAttendance;
+  vm.checkUserAttending = checkCurrentMemberAttendingEvent;
+  vm.checkUserNotAttending = checkCurrentMemberNotAttendingEvent;
 
   initGroupsShow();
 
@@ -102,6 +104,19 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
         vm.group.events_by_date[theDate][theIndex].members_not_attending = attendanceStatus.event.members_not_attending;
         vm.group.events_by_date[theDate][theIndex].members_pending = attendanceStatus.event.members_pending;
       });
+  }
+
+  function checkCurrentMemberAttendingEvent(eventMembersAttending) {
+    const currentUserAttending = eventMembersAttending.some(function (value) {
+      return (value.id === vm.user.id) ? true:false;
+    });
+    return currentUserAttending;
+  }
+  function checkCurrentMemberNotAttendingEvent(eventMembersNotAttending) {
+    const currentUserNotAttending = eventMembersNotAttending.some(function (value) {
+      return (value.id === vm.user.id) ? true:false;
+    });
+    return currentUserNotAttending;
   }
 
   function putDateStringsInArray() {

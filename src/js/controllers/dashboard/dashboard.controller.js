@@ -22,7 +22,6 @@ function DashboardCtrl(Group, User, Request, Event, TokenService) {
   getUser();
   getPendingRequests();
 
-  // Just using this verbose function to see the console log for vm.user
   function getUser() {
     User
       .get({ id: TokenService.decodeToken().id })
@@ -50,25 +49,18 @@ function DashboardCtrl(Group, User, Request, Event, TokenService) {
   function filterUpcomingEvents (events) {
     const now = new Date();
     vm.user.upcoming_events = [];
+    vm.userAttending = [];
+    vm.userNotAttending = [];
     events.forEach(event => {
       if (new Date(event.end_time) > now) {
         vm.user.upcoming_events.push(event);
+        checkUserAttending(event);
       }
     });
   }
 
-  function formatDateTimeForUpcomingEvents() {
-    // if (event.length) {
-    //   vm.startDate[index] = moment(events[0].start_time).format('Do MMM YY');
-    //   vm.endDate[index] = moment(events[events.length-1].start_time).format('Do MMM YY');
-    //   if (vm.startDate[index] === vm.endDate[index]) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // }
-    // return true;
 
+  function formatDateTimeForUpcomingEvents() {
     for (let i=0; i<vm.user.upcoming_events.length; i++) {
       vm.eventStartDate[i] = moment(vm.user.upcoming_events[i].start_time).format('ddd Do MMM');
       vm.eventStartTime[i] = moment(vm.user.upcoming_events[i].start_time).format('HH.mm');
@@ -134,7 +126,33 @@ function DashboardCtrl(Group, User, Request, Event, TokenService) {
         vm.user.upcoming_events[theIndex].members_attending = attendanceStatus.event.members_attending;
         vm.user.upcoming_events[theIndex].members_not_attending = attendanceStatus.event.members_not_attending;
         vm.user.upcoming_events[theIndex].members_pending = attendanceStatus.event.members_pending;
+        updateUserAttending(theIndex);
       });
+  }
+
+
+
+  function checkUserAttending(event) {
+    console.log('entered checkUserAttending');
+    const userAttendingBoolean = event.members_attending.some(function (value) {
+      return (value.id === vm.user.id) ? true:false;
+    });
+    vm.userAttending.push(userAttendingBoolean);
+
+    const userNotAttendingBoolean = event.members_not_attending.some(function (value) {
+      return (value.id === vm.user.id) ? true:false;
+    });
+    vm.userNotAttending.push(userNotAttendingBoolean);
+  }
+
+  function updateUserAttending(theIndex) {
+    console.log('Entered updateUserAttending');
+    vm.userAttending[theIndex] = vm.user.upcoming_events[theIndex].members_attending.some(function (value) {
+      return (value.id === vm.user.id) ? true:false;
+    });
+    vm.userNotAttending[theIndex] = vm.user.upcoming_events[theIndex].members_not_attending.some(function (value) {
+      return (value.id === vm.user.id) ? true:false;
+    });
   }
 
 }
