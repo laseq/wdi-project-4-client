@@ -28,10 +28,15 @@ function DashboardCtrl(Group, User, Request, Event, TokenService) {
       .$promise
       .then(user => {
         vm.user = user;
+        checkUserImage();
         filterUpcomingEvents(vm.user.upcoming_events);
         console.log('user:', vm.user);
         formatDateTimeForUpcomingEvents();
       });
+  }
+
+  function checkUserImage() {
+    if (vm.user.image === '') vm.user.image = '../images/user-default.png';
   }
 
   // displayUserGroups();

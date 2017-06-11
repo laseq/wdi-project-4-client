@@ -5,7 +5,8 @@
       <div ui-sref="usersEdit({ id: vm.user.id })" class="glyphicons-at-top">
         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
       </div>
-      <div class="profile-img" style="background-image:url({{ vm.user.image || '../images/user-default.png' }})"></div>
+      <!-- <div class="profile-img" style="background-image:url({{ vm.user.image || '../images/user-default.png' }})"></div> -->
+      <div class="profile-img" style="background-image:url({{ vm.user.image }})"></div>
       <h1>{{ vm.user.first_name }} {{ vm.user.last_name }}</h1>
       <h2 class="title"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ vm.user.phone || "N/A" }}</h2>
       <h2 class="title"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ vm.user.email || "N/A"  }}</h2>
@@ -15,7 +16,7 @@
 
   <div class="col-xs-12 col-md-5">
     <div class="card-container container-fluid big-cards">
-      <h3>Upcoming Events</h3>
+      <h3 class="dash-title">Upcoming Events</h3>
 
       <div class="dashboard-accordion">
         <uib-accordion close-others="oneAtATime" class="text-left">
@@ -75,7 +76,7 @@
 
   <div class="col-xs-12 col-md-4">
     <div class="card-container container-fluid">
-      <h3>Notifications</h3>
+      <h3 class="dash-title">Notifications</h3>
       <div class="dashboard-accordion">
         <uib-accordion close-others="oneAtATime" class="text-left">
           <div ng-repeat="request in vm.pending_requests">
@@ -105,7 +106,7 @@
   <div class="container-fluid">
     <div class="row flex-row row-align-bottom your-groups-header">
       <div class="col-xs-6 col-xs-offset-3 text-center title-with-button">
-        <h2 class="section-title">Your Groups</h2>
+        <h2 class="section-title dash-title">Your Groups</h2>
       </div>
       <div class="col-xs-3 text-right button-with-title">
         <button ui-sref="groupsNew" class="btn theme-button-2 button-row" type="button" name="button">

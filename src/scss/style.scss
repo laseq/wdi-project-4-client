@@ -39,9 +39,10 @@ body {
   .your-groups-header {
     margin-bottom: 1em;
 
-    // .section-title {
-    //   margin: 3% auto;
-    // }
+    .dash-title {
+      color: $themeColour2;
+    }
+
     .button-row {
       margin: 0 auto 0.8em;
     }
@@ -102,6 +103,10 @@ body {
 .card-container {
 
   @include medium-card-container;
+
+  .dash-title {
+    color: $themeColour2;
+  }
 
   .glyphicons-at-top {
     @include glyphicons-at-top;
@@ -191,7 +196,7 @@ body {
   box-shadow: 0px 1px 2px 0px rgba(207,207,207,1);
 
   .panel-heading {
-    background-color: #fff;
+    background-color: $themeColour4;
     &:hover {
       cursor: pointer;
     }

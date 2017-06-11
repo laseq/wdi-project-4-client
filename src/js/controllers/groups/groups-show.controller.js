@@ -32,11 +32,16 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
       .then(group => {
         vm.group = group;
         console.log('group:', group);
+        checkGroupBanner();
         setEventTimeStatus(group);
         putDateStringsInArray();
         displayStartAndEndDates();
         getCurrentDateString();
       });
+  }
+
+  function checkGroupBanner() {
+    if (vm.group.banner === '') vm.group.banner = '../images/groups-banner-default-2.jpg';
   }
 
   function groupsShow() {
