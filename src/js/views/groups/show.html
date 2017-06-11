@@ -8,6 +8,11 @@
     Edit Group
   </button>
 </div>
+<div class="button-row pull-right" ng-if="vm.group.creator_id != vm.user.id">
+  <button class="btn theme-button-2" href="javascript:void(0)" ng-click="vm.leaveGroup()">
+    Leave Group
+  </button>
+</div>
 
 <div class="row">
   <div class="col-xs-12">

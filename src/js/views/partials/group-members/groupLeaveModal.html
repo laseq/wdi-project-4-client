@@ -1,0 +1,11 @@
+<div class="modal-header">
+  <h3 class="modal-title">Leave Confirmation</h3>
+</div>
+<div class="modal-body">
+  <p>Are you sure you want to leave your group <strong>{{ groupLeave.group.name }}</strong>?</p>
+  <p>You won't be able to get back in without another invitation.</p>
+</div>
+<div class="modal-footer">
+  <button class="btn theme-button-1-min-changes" ng-click="groupLeave.close()">Cancel</button>
+  <button class="btn theme-button-danger" ng-click="groupLeave.leave()">Leave</button>
+</div>

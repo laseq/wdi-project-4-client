@@ -4,8 +4,8 @@ angular
   .module('stagApp')
   .controller('GroupsShowCtrl', GroupsShowCtrl);
 
-GroupsShowCtrl.$inject = ['$stateParams', 'Group', 'User', 'Event', '$state', '$uibModal', 'TokenService'];
-function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, TokenService){
+GroupsShowCtrl.$inject = ['$stateParams', 'Group', 'User', 'Event', '$state', '$uibModal', 'TokenService', 'Request'];
+function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, TokenService, Request){
   const vm = this;
   vm.user = User.get({ id: TokenService.decodeToken().id });
 
@@ -15,6 +15,7 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
   vm.openPending = openGroupPendingModal;
   vm.openDeleteMembers = openDeleteMembersModal;
   vm.openMemberCardModal = openMemberCardModal;
+  vm.leaveGroup = openLeaveGroupModal;
 
   // The variables below are for the agenda date selector
   vm.dateStringArray = [];
@@ -244,6 +245,21 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
       resolve: {
         member: () => {
           return theMember;
+        }
+      }
+    });
+  }
+
+  function openLeaveGroupModal() {
+    $uibModal.open({
+      templateUrl: 'js/views/partials/group-members/groupLeaveModal.html',
+      controller: 'GroupLeaveCtrl as groupLeave',
+      resolve: {
+        group: () => {
+          return vm.group;
+        },
+        user: () => {
+          return vm.user;
         }
       }
     });
