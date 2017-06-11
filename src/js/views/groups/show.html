@@ -1,6 +1,6 @@
 <h1 class="text-center">{{ vm.group.name }}</h1>
 
-{{ vm.timeSpanMessage }}
+
 
 <div class="button-row pull-right" ng-if="vm.group.creator_id == vm.user.id">
   <button class="btn theme-button-2" href="javascript:void(0)" ng-click="vm.openInvites()">
@@ -16,6 +16,8 @@
     <div class="card-container">
       <div class="profile-img" style="background-image:url({{ vm.group.image || '../images/groups-banner-default.jpg' }})"></div>
       <div class="group-description">
+        <h4>{{ vm.timeSpanMessage }}</h4>
+        <!-- <p class="description"></p> -->
         <h3 class="description-heading">Description</h3>
         <p class="description">{{ vm.group.description }}</p>
       </div>

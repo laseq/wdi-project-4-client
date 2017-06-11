@@ -122,10 +122,10 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
       vm.timeSpanMessage = 'Awaiting event schedule';
     } else if (vm.startDate === vm.endDate) {
       console.log('entered true, dates are the same');
-      vm.timeSpanMessage = `Event date: ${vm.startDate}`;
+      vm.timeSpanMessage = `${vm.startDate}`;
     } else {
       console.log('entered false, dates aren\'t the same');
-      vm.timeSpanMessage = `Event dates: ${vm.startDate} - ${vm.endDate}`;
+      vm.timeSpanMessage = `${vm.startDate} - ${vm.endDate}`;
     }
   }
 

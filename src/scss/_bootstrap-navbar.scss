@@ -1,8 +1,8 @@
 // $bgDefault      : #1c1d20;
-$bgDefault      : #7f3239;
-$bgHighlight    : #e52525;
-$colDefault     : #e2e6e7;
-$colHighlight   : #e2dfe7;
+$bgDefault      : $themeColour1;
+$bgHighlight    : $themeColour3;
+$colDefault     : $themeColour4;
+$colHighlight   : $themeColour4;
 $dropDown       : false;
 .navbar {
   border-radius: 0;
