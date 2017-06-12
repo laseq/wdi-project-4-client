@@ -49,7 +49,6 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
   }
 
   function checkGroupBanner() {
-    console.log('vm.group.banner:', vm.group.banner);
     if (!vm.group.banner) vm.group.banner = '../images/groups-banner-default-2.jpg';
   }
 
@@ -58,6 +57,11 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
       .$promise
       .then(group => {
         vm.group = group;
+        checkGroupBanner();
+        setEventTimeStatus(group);
+        // putDateStringsInArray();
+        // displayStartAndEndDates();
+        // getCurrentDateString();
         console.log('group:', group);
       });
   }
@@ -106,6 +110,7 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
   }
 
   function eventAttendance(theIndex, theDate, theEvent, status) {
+    console.log('status:', status);
     const statusObj = {
       'attendance_status': status
     };
@@ -114,6 +119,7 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
       .attendance({ group_id: $stateParams.id, id: theEvent.id}, statusObj)
       .$promise
       .then(attendanceStatus => {
+        console.log('attendanceStatus:', attendanceStatus);
         vm.group.events_by_date[theDate][theIndex].members_attending = attendanceStatus.event.members_attending;
         vm.group.events_by_date[theDate][theIndex].members_not_attending = attendanceStatus.event.members_not_attending;
         vm.group.events_by_date[theDate][theIndex].members_pending = attendanceStatus.event.members_pending;
@@ -150,10 +156,8 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
     if (!vm.group.events.length) {
       vm.timeSpanMessage = 'Awaiting event schedule';
     } else if (vm.startDate === vm.endDate) {
-      console.log('entered true, dates are the same');
       vm.timeSpanMessage = `${vm.startDate}`;
     } else {
-      console.log('entered false, dates aren\'t the same');
       vm.timeSpanMessage = `${vm.startDate} - ${vm.endDate}`;
     }
   }
