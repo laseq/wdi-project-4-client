@@ -2,12 +2,13 @@ angular
   .module('stagApp')
   .controller('DashboardCtrl', DashboardCtrl);
 
-DashboardCtrl.$inject = ['Group', 'User', 'Request', 'Event', 'TokenService', '$uibModal'];
-function DashboardCtrl(Group, User, Request, Event, TokenService, $uibModal) {
+DashboardCtrl.$inject = ['Group', 'User', 'Request', 'Event', 'TokenService', '$uibModal', 'spinnerService'];
+function DashboardCtrl(Group, User, Request, Event, TokenService, $uibModal, spinnerService) {
   const vm = this;
 
   // vm.user = User.get({ id: TokenService.decodeToken().id });
   vm.groups = Group.userGroups();
+  vm.getUser = getUser;
   vm.acceptRequest = acceptGroupRequest;
   vm.declineRequest = declineGroupRequest;
   vm.startDate = [];
@@ -20,10 +21,12 @@ function DashboardCtrl(Group, User, Request, Event, TokenService, $uibModal) {
   vm.eventEndTime = [];
   vm.openCalendar = openCalendarModal;
 
-  getUser();
+  // getUser();
   getPendingRequests();
 
+  // getUser gets initiated by the spinner at the top of the dashboard.html file
   function getUser() {
+    spinnerService.showGroup('usersSpinnerGroup');
     User
       .get({ id: TokenService.decodeToken().id })
       .$promise
@@ -34,6 +37,9 @@ function DashboardCtrl(Group, User, Request, Event, TokenService, $uibModal) {
         console.log('user:', vm.user);
         formatDateTimeForUpcomingEvents();
         // setAngularCalendarEvents();
+      })
+      .finally(() => {
+        spinnerService.hideGroup('usersSpinnerGroup');
       });
   }
 

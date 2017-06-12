@@ -23,14 +23,15 @@
     "angular-bootstrap": "^2.5.0",
     "angular-animate": "^1.6.4",
     "angular-moment-picker": "moment-picker#^0.10.1",
-    "angular-bootstrap-calendar": "^0.29.1"
+    "angular-bootstrap-calendar": "^0.29.1",
+    "angular-spinners": "^3.1.2"
   },
   "overrides": {
-   "angular-bootstrap-calendar": {
-     "main": [
-       "dist/css/angular-bootstrap-calendar.min.css",
-       "dist/js/angular-bootstrap-calendar-tpls.min.js"
-     ]
-   }
- }
+    "angular-bootstrap-calendar": {
+      "main": [
+        "dist/css/angular-bootstrap-calendar.min.css",
+        "dist/js/angular-bootstrap-calendar-tpls.min.js"
+      ]
+    }
+  }
 }

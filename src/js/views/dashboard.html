@@ -1,6 +1,6 @@
+<spinner class="spinners" name="usersSpinner1" group="usersSpinnerGroup" on-loaded="vm.getUser()" img-src="../images/spinners/spinner3.gif"></spinner>
 <div class="container">
   <div class="row">
-
     <div class="col-xxxs-12 col-xxxs-offset-0 col-xxs-8 col-xxs-offset-2 col-xs-6 col-xs-offset-3 col-md-3 col-md-offset-0 text-center">
       <div class="card-container">
         <div ui-sref="usersEdit({ id: vm.user.id })" class="glyphicons-at-top">
@@ -21,6 +21,9 @@
 
         <div class="dashboard-accordion">
           <uib-accordion close-others="oneAtATime" class="text-left">
+            <div class="text-center">
+              <!-- <spinner class="spinners" name="usersSpinner2" group="usersSpinnerGroup" on-loaded="vm.getUser()" img-src="../images/spinners/spinner2.gif"></spinner> -->
+            </div>
             <div class="no-upcoming-events text-center" ng-show="!vm.user.upcoming_events.length">
               <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
               <p>No upcoming events</p>

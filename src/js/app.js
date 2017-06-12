@@ -7,5 +7,6 @@ angular
     'ngAnimate',
     'ui.bootstrap',
     'moment-picker',
-    'mwl.calendar'
+    'mwl.calendar',
+    'angularSpinners'
   ]);
