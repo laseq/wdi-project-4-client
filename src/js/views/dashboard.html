@@ -21,6 +21,11 @@
 
         <div class="dashboard-accordion">
           <uib-accordion close-others="oneAtATime" class="text-left">
+            <div class="no-upcoming-events text-center" ng-show="!vm.user.upcoming_events.length">
+              <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+              <p>No upcoming events</p>
+            </div>
+
             <div ng-repeat="event in vm.user.upcoming_events track by $index">
               <div uib-accordion-group
               class="panel-default accordion-group-custom" is-open="status.open">
@@ -84,7 +89,6 @@
               <img src="../images/bell.png" alt="">
               <p>No more notifications</p>
             </div>
-
             <div ng-repeat="request in vm.pending_requests">
               <div uib-accordion-group
               class="panel-default accordion-group-custom" is-open="status.open">
