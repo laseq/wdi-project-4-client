@@ -4,10 +4,11 @@ angular
   .module('stagApp')
   .controller('GroupsShowCtrl', GroupsShowCtrl);
 
-GroupsShowCtrl.$inject = ['$stateParams', 'Group', 'User', 'Event', '$state', '$uibModal', 'TokenService', 'Request'];
-function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, TokenService, Request){
+GroupsShowCtrl.$inject = ['$stateParams', 'Group', 'User', 'Event', '$state', '$uibModal', 'TokenService', 'Request', 'spinnerService'];
+function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, TokenService, Request, spinnerService){
   const vm = this;
   vm.user = User.get({ id: TokenService.decodeToken().id });
+  vm.initGroups = initGroupsShow;
 
   // vm.group = Group.get($stateParams);
   vm.delete = groupsDelete;
@@ -26,9 +27,10 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
   vm.checkUserAttending = checkCurrentMemberAttendingEvent;
   vm.checkUserNotAttending = checkCurrentMemberNotAttendingEvent;
 
-  initGroupsShow();
+  // initGroupsShow();
 
   function initGroupsShow() {
+    spinnerService.show('groupsSpinner');
     Group
       .get($stateParams)
       .$promise
@@ -40,6 +42,9 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
         putDateStringsInArray();
         displayStartAndEndDates();
         getCurrentDateString();
+      })
+      .finally(() => {
+        spinnerService.hide('groupsSpinner');
       });
   }
 
