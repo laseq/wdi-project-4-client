@@ -80,6 +80,11 @@
         <h3 class="dash-title">Notifications</h3>
         <div class="dashboard-accordion">
           <uib-accordion close-others="oneAtATime" class="text-left">
+            <div class="no-notifications" ng-show="!vm.pending_requests.length">
+              <img src="../images/bell.png" alt="">
+              <p>No more notifications</p>
+            </div>
+
             <div ng-repeat="request in vm.pending_requests">
               <div uib-accordion-group
               class="panel-default accordion-group-custom" is-open="status.open">
