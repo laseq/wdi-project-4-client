@@ -1,142 +1,145 @@
-<div class="row">
+<div class="container">
+  <div class="row">
 
-  <div class="col-xxxs-12 col-xxxs-offset-0 col-xxs-8 col-xxs-offset-2 col-xs-6 col-xs-offset-3 col-md-3 col-md-offset-0 text-center">
-    <div class="card-container">
-      <div ui-sref="usersEdit({ id: vm.user.id })" class="glyphicons-at-top">
-        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+    <div class="col-xxxs-12 col-xxxs-offset-0 col-xxs-8 col-xxs-offset-2 col-xs-6 col-xs-offset-3 col-md-3 col-md-offset-0 text-center">
+      <div class="card-container">
+        <div ui-sref="usersEdit({ id: vm.user.id })" class="glyphicons-at-top">
+          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        </div>
+        <!-- <div class="profile-img" style="background-image:url({{ vm.user.image || '../images/user-default.png' }})"></div> -->
+        <div class="profile-img" style="background-image:url({{ vm.user.image }})"></div>
+        <h1>{{ vm.user.first_name }} {{ vm.user.last_name }}</h1>
+        <h2 class="title"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ vm.user.phone || "N/A" }}</h2>
+        <h2 class="title"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ vm.user.email || "N/A"  }}</h2>
+        <h2 class="title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> {{ vm.user.location || "N/A" }}</h2>
       </div>
-      <!-- <div class="profile-img" style="background-image:url({{ vm.user.image || '../images/user-default.png' }})"></div> -->
-      <div class="profile-img" style="background-image:url({{ vm.user.image }})"></div>
-      <h1>{{ vm.user.first_name }} {{ vm.user.last_name }}</h1>
-      <h2 class="title"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ vm.user.phone || "N/A" }}</h2>
-      <h2 class="title"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ vm.user.email || "N/A"  }}</h2>
-      <h2 class="title"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> {{ vm.user.location || "N/A" }}</h2>
     </div>
-  </div>
 
-  <div class="col-xs-12 col-md-5">
-    <div class="card-container container-fluid big-cards">
-      <h3 class="dash-title">Upcoming Events</h3>
+    <div class="col-xs-12 col-md-5">
+      <div class="card-container container-fluid big-cards">
+        <h3 class="dash-title">Upcoming Events</h3>
 
-      <div class="dashboard-accordion">
-        <uib-accordion close-others="oneAtATime" class="text-left">
-          <div ng-repeat="event in vm.user.upcoming_events track by $index">
-            <div uib-accordion-group
-            class="panel-default accordion-group-custom" is-open="status.open">
-              <uib-accordion-heading ng-click="status.open=!status.open">
-                <div>
-                  <div class="row">
-                    <div class="col-xs-7 text-left">
-                      {{ event.group.name }}
+        <div class="dashboard-accordion">
+          <uib-accordion close-others="oneAtATime" class="text-left">
+            <div ng-repeat="event in vm.user.upcoming_events track by $index">
+              <div uib-accordion-group
+              class="panel-default accordion-group-custom" is-open="status.open">
+                <uib-accordion-heading ng-click="status.open=!status.open">
+                  <div>
+                    <div class="row">
+                      <div class="col-xs-7 text-left">
+                        {{ event.group.name }}
+                      </div>
+                      <div class="col-xs-5 text-right">
+                        {{ vm.eventStartDate[$index] }}
+                      </div>
                     </div>
-                    <div class="col-xs-5 text-right">
-                      {{ vm.eventStartDate[$index] }}
+                    <div class="row agenda-time-div row-align-bottom">
+                      <div class="col-xs-10">
+                        <p class="agenda-time-title">{{ vm.eventStartTime[$index] }} &middot; {{ event.name }}</p>
+                      </div>
+                      <div class="col-xs-2">
+                        <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                      </div>
+
                     </div>
                   </div>
-                  <div class="row agenda-time-div row-align-bottom">
-                    <div class="col-xs-10">
-                      <p class="agenda-time-title">{{ vm.eventStartTime[$index] }} &middot; {{ event.name }}</p>
-                    </div>
-                    <div class="col-xs-2">
-                      <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                    </div>
+                </uib-accordion-heading>
 
+                <div class="event-mini-details" ui-sref="eventsShow({ group_id: event.group.id, id: event.id })">
+                  <p>{{ event.description | limitTo:150 }}{{event.description.length > 150 ? '...' : ''}}</p>
+                  <p class="event-sub-headings"><strong>Location</strong></p>
+                  <p>{{ event.location }}</p>
+                  <p class="event-sub-headings"><strong>Dress Code</strong></p>
+                  <p>{{ event.dress_code }}</p>
+                  <div class="people-going">
+                    <p class="event-sub-headings"><strong>{{ event.members_attending.length }} people going
+                      <span ng-show="vm.userAttending[$index]" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                      <span ng-show="vm.userNotAttending[$index]" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                    </strong></p>
                   </div>
                 </div>
-              </uib-accordion-heading>
 
-              <div class="event-mini-details" ui-sref="eventsShow({ group_id: event.group.id, id: event.id })">
-                <p>{{ event.description | limitTo:150 }}{{event.description.length > 150 ? '...' : ''}}</p>
-                <p class="event-sub-headings"><strong>Location</strong></p>
-                <p>{{ event.location }}</p>
-                <p class="event-sub-headings"><strong>Dress Code</strong></p>
-                <p>{{ event.dress_code }}</p>
-                <div class="people-going">
-                  <p class="event-sub-headings"><strong>{{ event.members_attending.length }} people going
-                    <span ng-show="vm.userAttending[$index]" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                    <span ng-show="vm.userNotAttending[$index]" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                  </strong></p>
+                <div class="row button-row">
+                  <button ng-click="vm.attendance($index, event, 'attending')"
+                    class="btn theme-button-1 col-xs-5 col-xs-offset-1 col-sm-4 col-sm-offset-2 col-md-5 col-md-offset-1 left-btn" type="button">Attending</button>
+                  <button ng-click="vm.attendance($index, event, 'not attending')"
+                    class="btn theme-button-1 col-xs-5 col-sm-4 col-md-5 right-btn" type="button">Not Attending</button>
                 </div>
-              </div>
 
-              <div class="row button-row">
-                <button ng-click="vm.attendance($index, event, 'attending')"
-                  class="btn theme-button-1 col-xs-5 col-xs-offset-1 col-sm-4 col-sm-offset-2 col-md-5 col-md-offset-1 left-btn" type="button">Attending</button>
-                <button ng-click="vm.attendance($index, event, 'not attending')"
-                  class="btn theme-button-1 col-xs-5 col-sm-4 col-md-5 right-btn" type="button">Not Attending</button>
-              </div>
-
-            </div>
-          </div>
-        </uib-accordion>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="col-xs-12 col-md-4">
-    <div class="card-container container-fluid notifications-container">
-      <h3 class="dash-title">Notifications</h3>
-      <div class="dashboard-accordion">
-        <uib-accordion close-others="oneAtATime" class="text-left">
-          <div ng-repeat="request in vm.pending_requests">
-            <div uib-accordion-group
-            class="panel-default accordion-group-custom" is-open="status.open">
-              <uib-accordion-heading ng-click="status.open=!status.open">
-                <div>
-                  Group Invitation <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                </div>
-              </uib-accordion-heading>
-              <p>You have received an invitation from {{ request.sender.first_name }} {{ request.sender.last_name }} to join {{ request.group.name }}.</p>
-              <div class="accordion-buttons">
-                <button ng-click="vm.acceptRequest(request.id)" class="btn theme-button-2" type="button" name="button">Join</button>
-                <button ng-click="vm.declineRequest(request.id)" class="btn theme-button-2" type="button" name="button">Decline</button>
               </div>
             </div>
-          </div>
-        </uib-accordion>
+          </uib-accordion>
+        </div>
+
       </div>
     </div>
 
-    <button class="btn theme-button-1 col-md-12" ng-click="vm.openCalendar()" type="button">View Calendar</button>
+    <div class="col-xs-12 col-md-4">
+      <div class="card-container container-fluid notifications-container">
+        <h3 class="dash-title">Notifications</h3>
+        <div class="dashboard-accordion">
+          <uib-accordion close-others="oneAtATime" class="text-left">
+            <div ng-repeat="request in vm.pending_requests">
+              <div uib-accordion-group
+              class="panel-default accordion-group-custom" is-open="status.open">
+                <uib-accordion-heading ng-click="status.open=!status.open">
+                  <div>
+                    Group Invitation <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                  </div>
+                </uib-accordion-heading>
+                <p>You have received an invitation from {{ request.sender.first_name }} {{ request.sender.last_name }} to join {{ request.group.name }}.</p>
+                <div class="accordion-buttons">
+                  <button ng-click="vm.acceptRequest(request.id)" class="btn theme-button-2" type="button" name="button">Join</button>
+                  <button ng-click="vm.declineRequest(request.id)" class="btn theme-button-2" type="button" name="button">Decline</button>
+                </div>
+              </div>
+            </div>
+          </uib-accordion>
+        </div>
+      </div>
+
+      <button class="btn theme-button-1 col-md-12" ng-click="vm.openCalendar()" type="button">View Calendar</button>
+
+    </div>
 
   </div>
 
-</div>
-
-<div class="dashboard-groups">
-  <div class="container-fluid">
-    <div class="row flex-row row-align-bottom your-groups-header">
-      <div class="col-xs-6 col-xs-offset-3 text-center title-with-button">
-        <h2 class="section-title dash-title">Your Groups</h2>
+  <div class="dashboard-groups">
+    <div class="container-fluid">
+      <div class="row flex-row row-align-bottom your-groups-header">
+        <div class="col-xs-6 col-xs-offset-3 text-center title-with-button">
+          <h2 class="section-title dash-title">Your Groups</h2>
+        </div>
+        <div class="col-xs-3 text-right button-with-title">
+          <button ui-sref="groupsNew" class="btn theme-button-2 button-row" type="button" name="button">
+            Create a group
+          </button>
+        </div>
       </div>
-      <div class="col-xs-3 text-right button-with-title">
-        <button ui-sref="groupsNew" class="btn theme-button-2 button-row" type="button" name="button">
-          Create a group
-        </button>
-      </div>
-    </div>
-    <div class="row text-center">
-      <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="group in vm.groups track by $index">
-        <div class="groups-card-container" ui-sref="groupsShow({ id: group.id })">
+      <div class="row text-center">
+        <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="group in vm.groups track by $index">
+          <div class="groups-card-container" ui-sref="groupsShow({ id: group.id })">
 
-          <div class="glyphicons-at-top" ng-if="group.creator_id == vm.user.id">
-            <span class="glyphicon glyphicon-star admin-icon" aria-hidden="true"></span>
+            <div class="glyphicons-at-top" ng-if="group.creator_id == vm.user.id">
+              <span class="glyphicon glyphicon-star admin-icon" aria-hidden="true"></span>
+            </div>
+
+            <div class="group-thumbnail"
+            style="background-image:url({{ group.image || '../images/group-default.jpg' }})"></div>
+            <a ui-sref="groupsShow({ id: group.id })"><h3 class="dash-groups-name">{{ group.name }}</h3></a>
+            <p class="dash-groups-date" ng-show="vm.checkSameDay(group.events, $index)">
+              {{ vm.startDate[$index] || "Awaiting Schedule" }}
+            </p>
+            <p class="dash-groups-date" ng-hide="vm.checkSameDay(group.events, $index)">
+              {{ vm.startDate[$index] }} - {{ vm.endDate[$index] }}
+            </p>
+
           </div>
-
-          <div class="group-thumbnail"
-          style="background-image:url({{ group.image || '../images/group-default.jpg' }})"></div>
-          <a ui-sref="groupsShow({ id: group.id })"><h3 class="dash-groups-name">{{ group.name }}</h3></a>
-          <p class="dash-groups-date" ng-show="vm.checkSameDay(group.events, $index)">
-            {{ vm.startDate[$index] || "Awaiting Schedule" }}
-          </p>
-          <p class="dash-groups-date" ng-hide="vm.checkSameDay(group.events, $index)">
-            {{ vm.startDate[$index] }} - {{ vm.endDate[$index] }}
-          </p>
-
         </div>
       </div>
     </div>
+
   </div>
 
 </div>

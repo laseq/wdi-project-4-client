@@ -1,17 +1,74 @@
-.homepage-img {
-  max-width: 100%;
+.jumbotron {
+  margin-top: -25px;
+  margin-bottom: 0px;
+  background-image: url(../images/homepage-img-faded.jpg);
+  background-position: 0% 25%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+
+  min-height: 600px;
+
+  // color: white;
+  // text-shadow: black 0.3em 0.3em 0.3em;
+
+  .homepage-btn {
+    width: 15em;
+  }
 }
 
-.info-row {
-  text-align: center;
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
 
-  .info-block {
-    // @include medium-card-container;
-    padding: 2em 0.5em;
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
 
-    .glyphicon {
-      font-size: 40px;
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+}
+
+.homepage-wrapper {
+  // background-color: $themeColour4;
+
+  .homepage-logo {
+    margin: -1em auto 0;
+    img {
+      width: 400px;
     }
   }
 
+  .homepage-button-row {
+    margin: 0 auto 4em;
+
+    .homepage-btn {
+      width: 20em;
+    }
+  }
+
+  .info-row {
+    text-align: center;
+    background-color: $themeColour4;
+    border-radius: 4px;
+
+    .info-block {
+      // @include medium-card-container;
+      padding: 3em 0.5em;
+
+      .glyphicon {
+        font-size: 40px;
+      }
+    }
+
+  }
 }

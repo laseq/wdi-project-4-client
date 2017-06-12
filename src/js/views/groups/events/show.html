@@ -1,69 +1,71 @@
-<div class="row text-center">
-  <h1>{{ vm.group.name }}</h1>
-</div>
+<div class="container">
+  <div class="row text-center">
+    <h1>{{ vm.group.name }}</h1>
+  </div>
 
-<div class="row">
-  <div class="col-xs-6 text-left">
-    <button ui-sref="groupsShow({ id: vm.paramsGroupId })" class="btn theme-button-1" type="button" name="button">
-      <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-      Back to group
-    </button>
-  </div>
-  <div class="col-xs-6 text-right" ng-if="vm.group.creator_id == vm.userId">
-    <button class="btn theme-button-2" href="javascript:void(0)" ui-sref="eventsEdit({ group_id: vm.group.id, id: vm.event.id })">
-      <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-      Edit Event
-    </button>
-  </div>
-</div>
-
-<div class="container-fluid event-show-card">
-  <div class="row row-align-bottom">
-    <div class="col-xs-12 col-sm-7">
-      <h3>{{ vm.event.name }}</h3>
-    </div>
-    <div class="col-xs-12 col-sm-5">
-      <h5 class="timings">{{ vm.event.start_time | date : "EEE d MMM, h.mm a" }} - {{ vm.event.end_time | date : "h.mm a" }}</h5>
-    </div>
-  </div>
-  <p>{{ vm.event.description }}</p>
-  <p class="event-sub-headings"><strong>Location</strong></p>
-  <p>{{ vm.event.location }}</p>
-  <p class="event-sub-headings"><strong>Dress Code</strong></p>
-  <p>{{ vm.event.dress_code }}</p>
   <div class="row">
-    <div class="col-xs-6 people-going">
-      <p>{{ vm.event.members_attending.length }} people going
-        <span ng-show="vm.currentUserAttending" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-        <span ng-show="vm.currentUserNotAttending" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-      </p>
+    <div class="col-xs-6 text-left">
+      <button ui-sref="groupsShow({ id: vm.paramsGroupId })" class="btn theme-button-1" type="button" name="button">
+        <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+        Back to group
+      </button>
     </div>
-    <div class="col-xs-6 text-right time-status">
-      <p ng-class="'status-' + vm.event.status">Status: {{ vm.event.status || N/A }}</p>
+    <div class="col-xs-6 text-right" ng-if="vm.group.creator_id == vm.userId">
+      <button class="btn theme-button-2" href="javascript:void(0)" ui-sref="eventsEdit({ group_id: vm.group.id, id: vm.event.id })">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        Edit Event
+      </button>
     </div>
   </div>
-</div>
-<div class="row">
-  <button ng-click="vm.attendance('attending')"
-    class="btn theme-button-1 col-xs-4 col-xs-offset-2 col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-4 left-btn" type="button">Attending</button>
-  <button ng-click="vm.attendance('not attending')"
-    class="btn theme-button-1 col-xs-4 col-sm-3 col-md-2 right-btn" type="button">Not Attending</button>
-</div>
 
-<div class="attendance-card-container">
-  <div class="container-fluid">
-    <h3>Members Attending</h3>
-    <div class="row attendance-row">
-      <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2" ng-repeat="member in vm.event.members_attending track by $index">
-        <div class="container-fluid member-card-container" ng-click="vm.openMemberCardModal(member)">
-          <div class="row flex-row">
-            <div class="col-xs-5 member-div-img-col">
-              <div class="member-img" style="background-image:url({{ member.image || '../images/user-default.jpg' }})"></div>
-            </div>
-            <div class="col-xs-7 member-div-member-col text-left vcenter">
-              <div class="member-details text-left">
-                <p class="member-first-name"><span>{{ member.first_name }}</span></p>
-                <p class="member-last-name"><span>{{ member.last_name }}</span></p>
+  <div class="container-fluid event-show-card">
+    <div class="row row-align-bottom">
+      <div class="col-xs-12 col-sm-7">
+        <h3>{{ vm.event.name }}</h3>
+      </div>
+      <div class="col-xs-12 col-sm-5">
+        <h5 class="timings">{{ vm.event.start_time | date : "EEE d MMM, h.mm a" }} - {{ vm.event.end_time | date : "h.mm a" }}</h5>
+      </div>
+    </div>
+    <p>{{ vm.event.description }}</p>
+    <p class="event-sub-headings"><strong>Location</strong></p>
+    <p>{{ vm.event.location }}</p>
+    <p class="event-sub-headings"><strong>Dress Code</strong></p>
+    <p>{{ vm.event.dress_code }}</p>
+    <div class="row">
+      <div class="col-xs-6 people-going">
+        <p>{{ vm.event.members_attending.length }} people going
+          <span ng-show="vm.currentUserAttending" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+          <span ng-show="vm.currentUserNotAttending" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+        </p>
+      </div>
+      <div class="col-xs-6 text-right time-status">
+        <p ng-class="'status-' + vm.event.status">Status: {{ vm.event.status || N/A }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <button ng-click="vm.attendance('attending')"
+      class="btn theme-button-1 col-xs-4 col-xs-offset-2 col-sm-3 col-sm-offset-3 col-md-2 col-md-offset-4 left-btn" type="button">Attending</button>
+    <button ng-click="vm.attendance('not attending')"
+      class="btn theme-button-1 col-xs-4 col-sm-3 col-md-2 right-btn" type="button">Not Attending</button>
+  </div>
+
+  <div class="attendance-card-container">
+    <div class="container-fluid">
+      <h3>Members Attending</h3>
+      <div class="row attendance-row">
+        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2" ng-repeat="member in vm.event.members_attending track by $index">
+          <div class="container-fluid member-card-container" ng-click="vm.openMemberCardModal(member)">
+            <div class="row flex-row">
+              <div class="col-xs-5 member-div-img-col">
+                <div class="member-img" style="background-image:url({{ member.image || '../images/user-default.jpg' }})"></div>
+              </div>
+              <div class="col-xs-7 member-div-member-col text-left vcenter">
+                <div class="member-details text-left">
+                  <p class="member-first-name"><span>{{ member.first_name }}</span></p>
+                  <p class="member-last-name"><span>{{ member.last_name }}</span></p>
+                </div>
               </div>
             </div>
           </div>
@@ -71,22 +73,22 @@
       </div>
     </div>
   </div>
-</div>
 
-<div class="attendance-card-container">
-  <div class="container-fluid">
-    <h3>Members Not Attending</h3>
-    <div class="row attendance-row">
-      <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2" ng-repeat="member in vm.event.members_not_attending track by $index">
-        <div class="container-fluid member-card-container" ng-click="vm.openMemberCardModal(member)">
-          <div class="row flex-row">
-            <div class="col-xs-5 member-div-img-col">
-              <div class="member-img" style="background-image:url({{ member.image || '../images/user-default.jpg' }})"></div>
-            </div>
-            <div class="col-xs-7 member-div-member-col text-left vcenter">
-              <div class="member-details text-left">
-                <p>{{ member.first_name }}</p>
-                <p class="member-last-name"><span>{{ member.last_name }}</span></p>
+  <div class="attendance-card-container">
+    <div class="container-fluid">
+      <h3>Members Not Attending</h3>
+      <div class="row attendance-row">
+        <div class="col-xs-6 col-sm-3 col-md-2 col-lg-2" ng-repeat="member in vm.event.members_not_attending track by $index">
+          <div class="container-fluid member-card-container" ng-click="vm.openMemberCardModal(member)">
+            <div class="row flex-row">
+              <div class="col-xs-5 member-div-img-col">
+                <div class="member-img" style="background-image:url({{ member.image || '../images/user-default.jpg' }})"></div>
+              </div>
+              <div class="col-xs-7 member-div-member-col text-left vcenter">
+                <div class="member-details text-left">
+                  <p>{{ member.first_name }}</p>
+                  <p class="member-last-name"><span>{{ member.last_name }}</span></p>
+                </div>
               </div>
             </div>
           </div>
@@ -94,9 +96,10 @@
       </div>
     </div>
   </div>
-</div>
 
-<!-- <h4>Members Pending</h4>
-<div ng-repeat="member in vm.event.members_pending">
-  {{ member.first_name }}
-</div> -->
+  <!-- <h4>Members Pending</h4>
+  <div ng-repeat="member in vm.event.members_pending">
+    {{ member.first_name }}
+  </div> -->
+
+</div>

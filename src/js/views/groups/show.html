@@ -1,176 +1,179 @@
-<h1 class="text-center">{{ vm.group.name }}</h1>
+<div class="container">
+  <h1 class="text-center">{{ vm.group.name }}</h1>
 
-<div class="button-row pull-right" ng-if="vm.group.creator_id == vm.user.id">
-  <button class="btn theme-button-2" href="javascript:void(0)" ng-click="vm.openInvites()">
-    Send Invites
-  </button>
-  <button class="btn theme-button-2" href="javascript:void(0)" ui-sref="groupsEdit({ id: vm.group.id })">
-    Edit Group
-  </button>
-</div>
-<div class="button-row pull-right" ng-if="vm.group.creator_id != vm.user.id">
-  <button class="btn theme-button-2" href="javascript:void(0)" ng-click="vm.leaveGroup()">
-    Leave Group
-  </button>
-</div>
+  <div class="button-row pull-right" ng-if="vm.group.creator_id == vm.user.id">
+    <button class="btn theme-button-2" href="javascript:void(0)" ng-click="vm.openInvites()">
+      Send Invites
+    </button>
+    <button class="btn theme-button-2" href="javascript:void(0)" ui-sref="groupsEdit({ id: vm.group.id })">
+      Edit Group
+    </button>
+  </div>
+  <div class="button-row pull-right" ng-if="vm.group.creator_id != vm.user.id">
+    <button class="btn theme-button-2" href="javascript:void(0)" ng-click="vm.leaveGroup()">
+      Leave Group
+    </button>
+  </div>
 
-<div class="row">
-  <div class="col-xs-12">
-    <div class="card-container">
-      <!-- <div class="profile-img" style="background-image:url({{ vm.group.banner || '../images/groups-banner-default-2.jpg' }})"></div> -->
-      <div class="profile-img" style="background-image:url({{ vm.group.banner }})"></div>
-      <div class="group-description">
-        <h4>{{ vm.timeSpanMessage }}</h4>
-        <h3 class="description-heading">Description</h3>
-        <p class="description">{{ vm.group.description }}</p>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="card-container">
+        <!-- <div class="profile-img" style="background-image:url({{ vm.group.banner || '../images/groups-banner-default-2.jpg' }})"></div> -->
+        <div class="profile-img" style="background-image:url({{ vm.group.banner }})"></div>
+        <div class="group-description">
+          <h4>{{ vm.timeSpanMessage }}</h4>
+          <h3 class="description-heading">Description</h3>
+          <p class="description">{{ vm.group.description }}</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Agenda section -->
-<div class="row">
+  <!-- Agenda section -->
+  <div class="row">
 
-  <div class="col-xs-12 col-sm-8 col-md-9">
+    <div class="col-xs-12 col-sm-8 col-md-9">
 
-    <div class="container-fluid agenda-main">
-      <div class="agenda-header-row">
-        <button ui-sref="eventsNew({ group_id: vm.group.id })"
-          ng-if="vm.group.creator_id == vm.user.id"
-          class="btn theme-button-2" id="add-event-btn">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-          Add Event
-        </button>
-        <h3 class="mb3">Agenda</h3>
-      </div>
-      <!-- <div class="add-event-button">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-      </div> -->
-
-      <div ng-show="date == vm.currentDateString" ng-repeat="(date, dateEvents) in vm.group.events_by_date">
-        <div class="row date-button-row">
-          <div class="col-xs-3 text-right">
-            <button class="btn theme-button-1 agenda-left" ng-click="vm.decrementDate()" type="button">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            </button>
-          </div>
-          <div class="col-xs-5 col-md-3 text-center">
-            <h4 class="agenda-date-header">{{ date }}</h4>
-          </div>
-          <div class="col-xs-3 text-left">
-            <button class="btn theme-button-1 agenda-right" ng-click="vm.incrementDate()" type="button">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            </button>
-          </div>
-
-        </div>
-
-        <div class="container-fluid event-card" ng-repeat="event in dateEvents track by $index">
-          <div class="row row-align-bottom" ui-sref="eventsShow({ group_id: vm.group.id, id: event.id })">
-            <div class="col-xs-12 col-sm-7">
-              <h3>{{ event.name }}</h3>
-            </div>
-            <div class="col-xs-12 col-sm-5">
-              <h5 class="timings">{{ event.start_time | date : "EEE d MMM, h.mm a" }} - {{ event.end_time | date : "h.mm a" }}</h5>
-            </div>
-          </div>
-          <div ui-sref="eventsShow({ group_id: vm.group.id, id: event.id })">
-            <p>{{ event.description }}</p>
-            <p class="event-sub-headings"><strong>Location</strong></p>
-            <p>{{ event.location }}</p>
-            <p class="event-sub-headings"><strong>Dress Code</strong></p>
-            <p>{{ event.dress_code }}</p>
-            <div class="row">
-              <div class="col-xs-6 people-going">
-                <p><strong>{{ event.members_attending.length }} people going</strong>
-                  <span ng-show="vm.checkUserAttending(event.members_attending)" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                  <span ng-show="vm.checkUserNotAttending(event.members_not_attending)" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
-                </p>
-              </div>
-              <div class="col-xs-6 text-right time-status">
-                <p ng-class="'status-' + event.status">Status: {{ event.status || N/A }}</p>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="row button-row">
-            <button ng-click="vm.attendance($index, date, event, 'attending')"
-              class="btn theme-button-1 col-xs-5 col-xs-offset-1 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3 left-btn" type="button">Attending</button>
-            <button ng-click="vm.attendance($index, date, event, 'not attending')"
-              class="btn theme-button-1 col-xs-5 col-sm-4 col-md-3 right-btn" type="button">Not Attending</button>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <!-- The member column on the right -->
-  <div class="col-xs-12 col-sm-4 col-md-3">
-
-    <div class="container-fluid" ng-if="vm.group.creator_id == vm.user.id">
-      <div class="row">
-        <div class="">
-          <button ng-click="vm.openInvites()" class="btn theme-button-2 col-xs-12 margin-bottom-2">Send Invites</button>
-        </div>
-        <div class="">
-          <button ng-click="vm.openPending()" class="btn theme-button-2 col-xs-12 margin-bottom-2">View Invites</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="member-card-container container-fluid">
-      <h3 class="text-center">Members</h3>
-      <div class="list-group">
-
-        <!-- The row for the group creator -->
-        <div class="container-fluid">
-          <div class="row creator-div member-div" ng-click="vm.openMemberCardModal(vm.group.creator)">
-            <div class="col-xs-3 member-div-img-col">
-              <div class="member-img" style="background-image:url({{ vm.group.creator.image || '../images/user-default.jpg' }})"></div>
-            </div>
-            <div class="col-xs-9 member-div-member-col text-left">
-              <div class="member-details">
-                <p class="member-name"><span>{{ vm.group.creator.first_name }} {{ vm.group.creator.last_name }}</span></p>
-                <p class="member-phone"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ vm.group.creator.phone || "N/A" }}</p>
-                <p class="member-email"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ vm.group.creator.email || "N/A" }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- The rows for the rest of the group members -->
-        <div class="container-fluid">
-          <div class="row member-div" ng-click="vm.openMemberCardModal(member)" ng-repeat="member in vm.group.accepted_members">
-            <div class="col-xs-3 member-div-img-col">
-              <div class="member-img" style="background-image:url({{ member.image || '../images/user-default.jpg' }})"></div>
-            </div>
-            <div class="col-xs-9 member-div-member-col text-left">
-              <div class="member-details text-left">
-                <p class="member-name"><span>{{ member.first_name }} {{ member.last_name }}</span></p>
-                <p class="member-phone"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ member.phone || "N/A" }}</p>
-                <p class="member-email"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ member.email || "N/A" }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="container-fluid" ng-if="vm.group.creator_id == vm.user.id">
-      <div class="row">
-        <div class="">
-          <button ng-click="vm.openDeleteMembers()" class="btn theme-button-danger col-xs-12">
-            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            Delete Members
+      <div class="container-fluid agenda-main">
+        <div class="agenda-header-row">
+          <button ui-sref="eventsNew({ group_id: vm.group.id })"
+            ng-if="vm.group.creator_id == vm.user.id"
+            class="btn theme-button-2" id="add-event-btn">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Add Event
           </button>
+          <h3 class="mb3">Agenda</h3>
+        </div>
+        <!-- <div class="add-event-button">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </div> -->
+
+        <div ng-show="date == vm.currentDateString" ng-repeat="(date, dateEvents) in vm.group.events_by_date">
+          <div class="row date-button-row">
+            <div class="col-xs-3 text-right">
+              <button class="btn theme-button-1 agenda-left" ng-click="vm.decrementDate()" type="button">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              </button>
+            </div>
+            <div class="col-xs-5 col-md-3 text-center">
+              <h4 class="agenda-date-header">{{ date }}</h4>
+            </div>
+            <div class="col-xs-3 text-left">
+              <button class="btn theme-button-1 agenda-right" ng-click="vm.incrementDate()" type="button">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              </button>
+            </div>
+
+          </div>
+
+          <div class="container-fluid event-card" ng-repeat="event in dateEvents track by $index">
+            <div class="row row-align-bottom" ui-sref="eventsShow({ group_id: vm.group.id, id: event.id })">
+              <div class="col-xs-12 col-sm-7">
+                <h3>{{ event.name }}</h3>
+              </div>
+              <div class="col-xs-12 col-sm-5">
+                <h5 class="timings">{{ event.start_time | date : "EEE d MMM, h.mm a" }} - {{ event.end_time | date : "h.mm a" }}</h5>
+              </div>
+            </div>
+            <div ui-sref="eventsShow({ group_id: vm.group.id, id: event.id })">
+              <p>{{ event.description }}</p>
+              <p class="event-sub-headings"><strong>Location</strong></p>
+              <p>{{ event.location }}</p>
+              <p class="event-sub-headings"><strong>Dress Code</strong></p>
+              <p>{{ event.dress_code }}</p>
+              <div class="row">
+                <div class="col-xs-6 people-going">
+                  <p><strong>{{ event.members_attending.length }} people going</strong>
+                    <span ng-show="vm.checkUserAttending(event.members_attending)" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                    <span ng-show="vm.checkUserNotAttending(event.members_not_attending)" class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                  </p>
+                </div>
+                <div class="col-xs-6 text-right time-status">
+                  <p ng-class="'status-' + event.status">Status: {{ event.status || N/A }}</p>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row button-row">
+              <button ng-click="vm.attendance($index, date, event, 'attending')"
+                class="btn theme-button-1 col-xs-5 col-xs-offset-1 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3 left-btn" type="button">Attending</button>
+              <button ng-click="vm.attendance($index, date, event, 'not attending')"
+                class="btn theme-button-1 col-xs-5 col-sm-4 col-md-3 right-btn" type="button">Not Attending</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- The member column on the right -->
+    <div class="col-xs-12 col-sm-4 col-md-3">
+
+      <div class="container-fluid" ng-if="vm.group.creator_id == vm.user.id">
+        <div class="row">
+          <div class="">
+            <button ng-click="vm.openInvites()" class="btn theme-button-2 col-xs-12 margin-bottom-2">Send Invites</button>
+          </div>
+          <div class="">
+            <button ng-click="vm.openPending()" class="btn theme-button-2 col-xs-12 margin-bottom-2">View Invites</button>
+          </div>
         </div>
       </div>
+
+      <div class="member-card-container container-fluid">
+        <h3 class="text-center">Members</h3>
+        <div class="list-group">
+
+          <!-- The row for the group creator -->
+          <div class="container-fluid">
+            <div class="row creator-div member-div" ng-click="vm.openMemberCardModal(vm.group.creator)">
+              <div class="col-xs-3 member-div-img-col">
+                <div class="member-img" style="background-image:url({{ vm.group.creator.image || '../images/user-default.jpg' }})"></div>
+              </div>
+              <div class="col-xs-9 member-div-member-col text-left">
+                <div class="member-details">
+                  <p class="member-name"><span>{{ vm.group.creator.first_name }} {{ vm.group.creator.last_name }}</span></p>
+                  <p class="member-phone"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ vm.group.creator.phone || "N/A" }}</p>
+                  <p class="member-email"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ vm.group.creator.email || "N/A" }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- The rows for the rest of the group members -->
+          <div class="container-fluid">
+            <div class="row member-div" ng-click="vm.openMemberCardModal(member)" ng-repeat="member in vm.group.accepted_members">
+              <div class="col-xs-3 member-div-img-col">
+                <div class="member-img" style="background-image:url({{ member.image || '../images/user-default.jpg' }})"></div>
+              </div>
+              <div class="col-xs-9 member-div-member-col text-left">
+                <div class="member-details text-left">
+                  <p class="member-name"><span>{{ member.first_name }} {{ member.last_name }}</span></p>
+                  <p class="member-phone"><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> {{ member.phone || "N/A" }}</p>
+                  <p class="member-email"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{ member.email || "N/A" }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="container-fluid" ng-if="vm.group.creator_id == vm.user.id">
+        <div class="row">
+          <div class="">
+            <button ng-click="vm.openDeleteMembers()" class="btn theme-button-danger col-xs-12">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+              Delete Members
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
