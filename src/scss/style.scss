@@ -7,10 +7,11 @@
 @import 'buttons';
 @import 'mobile-responsiveness';
 @import 'bootstrap-xxs-size';
+@import 'homepage';
 
 body {
-  background: url(/images/backgrounds/pink_dust.png) repeat 0 0;
-  // background: url(/images/backgrounds/satinweave.png) repeat 0 0;
+  // background: url(/images/backgrounds/pink_dust.png) repeat 0 0;
+  background: url(/images/backgrounds/satinweave.png) repeat 0 0;
   position: relative;
 }
 
@@ -104,10 +105,6 @@ body {
 .card-container {
 
   @include medium-card-container;
-
-  h1 {
-    color: $themeColour2;
-  }
 
   .dash-title {
     color: $themeColour2;

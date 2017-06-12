@@ -1,0 +1,17 @@
+.homepage-img {
+  max-width: 100%;
+}
+
+.info-row {
+  text-align: center;
+
+  .info-block {
+    // @include medium-card-container;
+    padding: 2em 0.5em;
+
+    .glyphicon {
+      font-size: 40px;
+    }
+  }
+
+}
