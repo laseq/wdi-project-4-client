@@ -25,7 +25,6 @@
               <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
               <p>No upcoming events</p>
             </div>
-
             <div ng-repeat="event in vm.user.upcoming_events track by $index">
               <div uib-accordion-group
               class="panel-default accordion-group-custom" is-open="status.open">
@@ -127,6 +126,9 @@
         </div>
       </div>
       <div class="row text-center">
+        <div class="no-groups text-center" ng-show="!vm.groups.length">
+          <p>You have no stag or hen groups. You can create one or wait for an invitation.</p>
+        </div>
         <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="group in vm.groups track by $index">
           <div class="groups-card-container" ui-sref="groupsShow({ id: group.id })">
 

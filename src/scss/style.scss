@@ -58,6 +58,12 @@ nav {
     }
   }
 
+  .no-groups {
+    p {
+      font-size: 1.3em;
+    }
+  }
+
   .groups-card-container {
     @include medium-card-container;
     background-color: $themeColour1;
@@ -166,6 +172,7 @@ nav {
 
     .glyphicon {
       font-size: 10em;
+      color: $themeColour1;
     }
     p {
       margin-top: 2em;
