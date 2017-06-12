@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Rubik:400,700" rel="stylesheet">
     <title>Henstagenda</title>
     <base href="/">
     <!-- inject:js -->
@@ -24,8 +24,20 @@
       			<span class="icon-bar"></span>
       		</button>
           <!-- <div class="navbar-header"> -->
-            <a ng-hide="main.user" class="navbar-brand" ui-sref="home">Henstagenda</a>
-            <a ng-show="main.user" class="navbar-brand" ui-sref="dashboard">Henstagenda</a>
+            <!-- <a ng-hide="main.user" class="navbar-brand" ui-sref="home">Henstagenda</a> -->
+            <a ng-hide="main.user" class="navbar-brand" ui-sref="home">
+              <div class="navbar-logo dib">
+                <img src="../images/henstag-logo-3-small.png" alt="">
+              </div>
+              <span class="logo-text">Henstagenda</span>
+            </a>
+            <!-- <a ng-show="main.user" class="navbar-brand" ui-sref="dashboard">Henstagenda</a> -->
+            <a ng-show="main.user" class="navbar-brand" ui-sref="dashboard">
+              <div class="navbar-logo dib">
+                <img src="../images/henstag-logo-3-small.png" alt="">
+              </div>
+              <span class="logo-text">Henstagenda</span>
+            </a>
           <!-- </div> -->
       	</div>
       	<div class="collapse navbar-collapse" uib-collapse="main.isNavCollapsed">
@@ -42,9 +54,6 @@
             <li ng-show="main.user">
               <a ui-sref="dashboard">Dashboard</a>
             </li>
-            <!-- <li ng-show="main.user">
-              <a ui-sref="groupsIndex">My Groups</a>
-            </li> -->
             <li ng-show="main.user">
               <a ng-click="main.logout()">Logout</a>
             </li>
@@ -53,7 +62,9 @@
       </nav>
 
     </header>
-    <main ui-view></main>
+    <div class="main-wrap">
+      <main ui-view></main>
+    </div>
 
     <!-- <footer>
       <p class="footer-text">This is a footer</p>

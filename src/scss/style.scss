@@ -8,11 +8,19 @@
 @import 'mobile-responsiveness';
 @import 'bootstrap-xxs-size';
 @import 'homepage';
+// @import 'footer';
 
 body {
   // background: url(/images/backgrounds/pink_dust.png) repeat 0 0;
   background: url(/images/backgrounds/satinweave.png) repeat 0 0;
   position: relative;
+}
+
+nav {
+  img {
+    margin-top: -0.6em;
+    width: 40px;
+  }
 }
 
 .nav {
@@ -599,10 +607,3 @@ footer{
     text-align: center;
   }
 }
-
-// Not sure if this code below actually works for the group pending request and leave modals
-// .vcenter {
-//   display: inline-block;
-//   vertical-align: middle;
-//   float: none;
-// }

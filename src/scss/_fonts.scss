@@ -1,16 +1,26 @@
 // @import url(https://fonts.googleapis.com/css?family=Amaranth:400,700);
 // @import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700italic,400,700);
-$themeColour1 : #7f3239;
-$themeColour2 : #5F3139;
+$themeColour1 : #504444;
+$themeColour2 : #473A3F;
 $themeColour3 : #3E3039;
 $themeColour4 : #fcfcfc;
 $themeDanger  : #c9302c;
-$themeColour1Faded : rgba(127, 50, 57, 0.6);
+$themeColour1Faded : rgba(80,68,68, 0.6);
+// $themeColour1 : #7f3239;
+// $themeColour2 : #5F3139;
+// $themeColour3 : #3E3039;
+// $themeColour4 : #fcfcfc;
+// $themeDanger  : #c9302c;
+// $themeColour1Faded : rgba(127, 50, 57, 0.6);
 
 $headingFont  : 'Rubik', sans-serif;
 $bodyFont     : 'Rubik', sans-serif;
 
 $fontColour1  : $themeColour3;
+
+.logo-text {
+  font-family: 'Oswald', sans-serif;
+}
 
 h1 {
   color: $themeColour2;
