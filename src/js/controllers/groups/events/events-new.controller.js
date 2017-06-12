@@ -4,8 +4,8 @@ angular
 .module('stagApp')
 .controller('EventsNewCtrl', EventsNewCtrl);
 
-EventsNewCtrl.$inject = ['$stateParams', '$state', 'Event', '$scope'];
-function EventsNewCtrl($stateParams, $state, Event, $scope){
+EventsNewCtrl.$inject = ['$stateParams', '$state', 'Event', '$scope', 'Group'];
+function EventsNewCtrl($stateParams, $state, Event, $scope, Group){
   const vm = this;
   vm.paramsGroupId = $stateParams.group_id;
   vm.create = eventCreate;
@@ -29,6 +29,36 @@ function EventsNewCtrl($stateParams, $state, Event, $scope){
         $state.go('groupsShow', { id: vm.paramsGroupId });
       });
   }
+
+  getGroup();
+
+  function getGroup() {
+    Group
+      .get({ id: $stateParams.group_id })
+      .$promise
+      .then(group => {
+        vm.group = group;
+        const endTimesArray = collectEventEndTimes();
+        setLastEndTimeAsNewStartTime(endTimesArray);
+      });
+  }
+
+  function collectEventEndTimes() {
+    const endTimesArray = [];
+    vm.group.events.forEach(event => {
+      endTimesArray.push(new Date(event.end_time));
+    });
+    return endTimesArray;
+  }
+
+  function setLastEndTimeAsNewStartTime(endTimesArray) {
+    console.log('endTimesArray:', endTimesArray);
+    const lastDate = new Date(Math.max.apply(null, endTimesArray));
+    console.log('lastDate:', lastDate);
+    vm.lastEventTime = moment(lastDate);
+    console.log('vm.lastEventTime:', vm.lastEventTime);
+  }
+
 
   // $scope.$watch('vm.event.start_time', function (newValue, oldValue) {
   //   console.log('entered watch start_time');
