@@ -48,15 +48,12 @@
         view-title="calendarCtrl.calendarTitle"
         on-event-click="eventClicked(calendarEvent)"
         on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-        cell-is-open="true">
+        cell-is-open="false">
     </mwl-calendar>
 
   </div>
 
-
 </div>
-
-
 
 <div class="modal-footer">
   <button class="btn theme-button-1-min-changes" ng-click="calendarCtrl.close()">Close</button>
