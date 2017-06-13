@@ -23,7 +23,6 @@ function GroupsDeleteMembersCtrl(group, User, Request, $uibModalInstance, $state
       .removeByGroupAndUserId(deleteObj)
       .$promise
       .then(() => {
-        console.log('Deleted member?');
         vm.currentMembers.splice($index, 1);
         vm.deletionTakenPlace = true;
       });

@@ -34,22 +34,19 @@ function GroupsRequestCtrl(group, User, Request, $uibModalInstance, $state) {
   //     });
   // }
   function searchForUserByEmail() {
-    console.log('vm.currentEmail:', vm.currentEmail);
     const userObj = {
       email: vm.currentEmail,
       group_id: vm.group.id
     };
-    console.log('userObj:', userObj);
     User
       .findByEmailWithGroup(userObj)
       .$promise
       .then(user => {
         if (user.id && !checkIfInListAlready(user.id)) {
           vm.usersToInvite.push(user);
-          console.log('vm.usersToInvite:', vm.usersToInvite);
           vm.currentEmail = '';
         } else {
-          console.log('user:', user);
+          // console.log('user:', user);
         }
       })
       .catch(err => {
@@ -67,12 +64,10 @@ function GroupsRequestCtrl(group, User, Request, $uibModalInstance, $state) {
     const massRequestObj = {
       mass_requests: massRequest
     };
-    console.log('massRequestObj:', massRequestObj);
     Request
       .sendMassRequest(massRequestObj)
       .$promise
       .then(data => {
-        console.log('data:', data);
         $uibModalInstance.close('Requests sent');
       })
       .catch(err => {

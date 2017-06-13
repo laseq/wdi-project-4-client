@@ -30,14 +30,11 @@ function EventsEditCtrl($stateParams, $state, Event, Group, $uibModal, TokenServ
         vm.minDateMoment = moment(Math.min(moment(vm.event.start_time), moment().add(0, 'minute')));
         // vm.minDateMoment = moment().add(0, 'minute');
         vm.maxDateMoment = moment(vm.event.start_time).add(1, 'year');
-        console.log('vm.minDateMoment:', vm.minDateMoment);
-        console.log('vm.maxDateMoment:', vm.maxDateMoment);
       });
   }
 
   function eventUpdate(){
     if (vm.event.end_time < vm.event.start_time) {
-      console.log('Make sure the start time is before the end time');
       vm.startAfterEnd = true;
       return;
     }

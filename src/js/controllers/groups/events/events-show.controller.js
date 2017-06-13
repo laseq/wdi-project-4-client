@@ -20,11 +20,10 @@ function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibMo
       .get({ group_id: $stateParams.group_id, id: $stateParams.id})
       .$promise
       .then(event => {
-        console.log('event:', event);
         vm.event = event;
         setEventTimeStatus();
         checkCurrentMemberAttendingEvent();
-        setAngularCalendarEvents();
+        // setAngularCalendarEvents();
       });
   }
 
@@ -33,13 +32,11 @@ function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibMo
       .get({ id: $stateParams.group_id })
       .$promise
       .then(group => {
-        console.log('group:', group);
         vm.group = group;
       });
   }
 
   function eventAttendance(status) {
-    console.log('status:', status);
     const statusObj = {
       'attendance_status': status
     };
@@ -48,8 +45,6 @@ function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibMo
       .attendance({ group_id: $stateParams.group_id, id: $stateParams.id}, statusObj)
       .$promise
       .then(attendanceStatus => {
-        console.log('attendanceStatus:', attendanceStatus);
-        // getEvent();
         vm.event.members_attending = attendanceStatus.event.members_attending;
         vm.event.members_not_attending = attendanceStatus.event.members_not_attending;
         vm.event.members_pending = attendanceStatus.event.members_pending;
@@ -71,7 +66,6 @@ function EventsShowCtrl($stateParams, $state, Group, Event, TokenService, $uibMo
   } // End of function setEventTimeStatus
 
   function checkCurrentMemberAttendingEvent() {
-    console.log('entered checkCurrentMemberAttendingEvent');
     vm.currentUserAttending = vm.event.members_attending.some(function (value) {
       return (value.id === vm.userId) ? true:false;
     });

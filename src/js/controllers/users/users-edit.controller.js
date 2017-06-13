@@ -6,7 +6,6 @@ UsersEditCtrl.$inject = ['$stateParams', '$state', 'User'];
 function UsersEditCtrl($stateParams, $state, User){
   const vm = this;
   vm.user = User.get($stateParams);
-  console.log(vm.user);
   vm.update = userUpdate;
 
   function userUpdate(){

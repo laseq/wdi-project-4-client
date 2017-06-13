@@ -28,7 +28,6 @@ function GroupsPendingCtrl(group, User, Request, $uibModalInstance, $state) {
       .removeByGroupAndUserId(deleteObj)
       .$promise
       .then(() => {
-        console.log('Deleted pending request?');
         vm.pendingMembers.splice($index, 1);
         vm.deletionTakenPlace = true;
       });

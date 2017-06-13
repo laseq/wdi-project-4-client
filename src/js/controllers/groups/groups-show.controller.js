@@ -36,7 +36,6 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
       .$promise
       .then(group => {
         vm.group = group;
-        console.log('group:', group);
         checkGroupBanner();
         setEventTimeStatus(group);
         putDateStringsInArray();
@@ -62,7 +61,6 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
         // putDateStringsInArray();
         // displayStartAndEndDates();
         // getCurrentDateString();
-        console.log('group:', group);
       });
   }
 
@@ -110,7 +108,6 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
   }
 
   function eventAttendance(theIndex, theDate, theEvent, status) {
-    console.log('status:', status);
     const statusObj = {
       'attendance_status': status
     };
@@ -119,7 +116,6 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
       .attendance({ group_id: $stateParams.id, id: theEvent.id}, statusObj)
       .$promise
       .then(attendanceStatus => {
-        console.log('attendanceStatus:', attendanceStatus);
         vm.group.events_by_date[theDate][theIndex].members_attending = attendanceStatus.event.members_attending;
         vm.group.events_by_date[theDate][theIndex].members_not_attending = attendanceStatus.event.members_not_attending;
         vm.group.events_by_date[theDate][theIndex].members_pending = attendanceStatus.event.members_pending;
@@ -146,12 +142,8 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
   }
 
   function displayStartAndEndDates() {
-    // vm.startDate = vm.dateStringArray[0];
-    // vm.endDate = vm.dateStringArray[vm.dateStringArray.length-1];
     vm.startDate = moment(vm.dateStringArray[0], 'ddd DD MMM YYYY').format('ddd Do MMM YYYY');
     vm.endDate = moment(vm.dateStringArray[vm.dateStringArray.length-1], 'ddd DD MMM YYYY').format('ddd Do MMM YYYY');
-    // vm.startDate = moment(vm.dateStringArray[0]).format('ddd Do MMM YYYY');
-    // vm.endDate = moment(vm.dateStringArray[vm.dateStringArray.length-1]).format('ddd Do MMM YYYY');
 
     if (!vm.group.events.length) {
       vm.timeSpanMessage = 'Awaiting event schedule';
@@ -273,6 +265,5 @@ function GroupsShowCtrl($stateParams, Group, User, Event, $state, $uibModal, Tok
       }
     });
   }
-
 
 }

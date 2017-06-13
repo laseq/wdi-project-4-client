@@ -6,7 +6,6 @@
         <div ui-sref="usersEdit({ id: vm.user.id })" class="glyphicons-at-top">
           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
         </div>
-        <!-- <div class="profile-img" style="background-image:url({{ vm.user.image || '../images/user-default.png' }})"></div> -->
         <div class="profile-img" style="background-image:url({{ vm.user.image }})"></div>
         <h1 class="user-first-name">{{ vm.user.first_name }}</h1>
         <h1 class="user-last-name">{{ vm.user.last_name }}</h1>
@@ -23,7 +22,6 @@
         <div class="dashboard-accordion">
           <uib-accordion close-others="oneAtATime" class="text-left">
             <div class="text-center">
-              <!-- <spinner class="spinners" name="usersSpinner2" group="usersSpinnerGroup" on-loaded="vm.getUser()" img-src="../images/spinners/spinner2.gif"></spinner> -->
             </div>
             <div class="no-upcoming-events text-center" ng-show="!vm.user.upcoming_events.length">
               <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>

@@ -13,7 +13,6 @@ function CalendarCtrl(upcomingEvents, $uibModalInstance, $state) {
   vm.calendarView = 'month';
 
   vm.viewDate = (vm.upcomingEvents.length) ? new Date(vm.upcomingEvents[0].start_time) : new Date();
-  // vm.viewDate = moment(vm.upcomingEvents[0].start_date).toDate();
 
   setAngularCalendarEvents();
 

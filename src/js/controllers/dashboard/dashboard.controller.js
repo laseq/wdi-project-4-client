@@ -34,7 +34,6 @@ function DashboardCtrl(Group, User, Request, Event, TokenService, $uibModal, spi
         vm.user = user;
         checkUserImage();
         filterUpcomingEvents(vm.user.upcoming_events);
-        console.log('user:', vm.user);
         formatDateTimeForUpcomingEvents();
         // setAngularCalendarEvents();
       })
@@ -88,7 +87,6 @@ function DashboardCtrl(Group, User, Request, Event, TokenService, $uibModal, spi
       .$promise
       .then(requests => {
         vm.pending_requests = requests;
-        // console.log('pending requests:', requests);
       });
   }
 
@@ -126,11 +124,9 @@ function DashboardCtrl(Group, User, Request, Event, TokenService, $uibModal, spi
   }
 
   function eventAttendance(theIndex, theEvent, status) {
-    // console.log('status:', status);
     const statusObj = {
       'attendance_status': status
     };
-    // console.log('theEvent:', theEvent);
 
     Event
       .attendance({ group_id: theEvent.group.id, id: theEvent.id}, statusObj)
@@ -146,7 +142,6 @@ function DashboardCtrl(Group, User, Request, Event, TokenService, $uibModal, spi
 
 
   function checkUserAttending(event) {
-    console.log('entered checkUserAttending');
     const userAttendingBoolean = event.members_attending.some(function (value) {
       return (value.id === vm.user.id) ? true:false;
     });
@@ -159,7 +154,6 @@ function DashboardCtrl(Group, User, Request, Event, TokenService, $uibModal, spi
   }
 
   function updateUserAttending(theIndex) {
-    console.log('Entered updateUserAttending');
     vm.userAttending[theIndex] = vm.user.upcoming_events[theIndex].members_attending.some(function (value) {
       return (value.id === vm.user.id) ? true:false;
     });
