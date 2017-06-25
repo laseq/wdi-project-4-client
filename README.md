@@ -38,5 +38,60 @@ After signing up to the website, the user can be found by group admins who can i
 
 In order to create the project, it was essential to plan the database relationships carefully as functionality of the application would rely on it.
 
+![preliminary database models](https://user-images.githubusercontent.com/15388548/27517180-f4962fd4-59bf-11e7-9328-80218e56f43a.jpg)
+**Preliminary database model planning**
 
-![entity relationship diagram](https://user-images.githubusercontent.com/15388548/27516714-222e9232-59b7-11e7-925f-f10b15ab87c2.png)
+I identified the models that I wanted to incorporate in order of importance as follows:
+
+- User
+- Group
+- Request
+- Event
+- AttendanceStatus
+- GroupComment
+- EventComment
+- Notification (More comprehensive notifications system)
+- EventFinance
+- EventType
+
+#### Associating users with groups
+
+To make the relationship between the User model and Group model, I established the following facts:
+
+- A user can have many groups, and a group can have many users.
+	- Therefore, some sort of many-to-many relationship would be used.
+- A user can be a group creator and have many groups, but a group can only have one group creator.
+	- Therefore, a distinction would need to be made when a user is a group creator, and a one to many relationship with the Group model would be established.
+- A join table for 'Request' would be used for the User and Group relationship to distinguish between the group creator and group members.
+	- Therefore a User can have many Groups through Requests, and a Group can have many accepted or pending members through Requests. Declined members is unnecessary as the Request in that case would be deleted.
+
+![img_20170625_150904077](https://user-images.githubusercontent.com/15388548/27517271-a6954d0e-59c1-11e7-8ac8-552c987fc11c.jpg)
+**Relationship diagram for the core models for my project**
+
+<img width="626" alt="User, Group and Request relationship showing foreign keys" src="https://user-images.githubusercontent.com/15388548/27517463-3b7dc114-59c5-11e7-9d3a-3c69bca894f7.png">
+**User, Group and Request relationship showing primary and foreign keys**
+
+The relationships between the User and Group models through the Request join table are:
+
+- A user has many groups as creator
+- A user has many groups as receiver through request
+- A user has many groups as sender through request (although redundant as this is the same as groups as creator)
+- A group has many accepted users/members through requests
+- A group has many pending users/members through requests
+- A user has many requests
+- A group has many requests
+
+When a group creator sends a group invite/request to another user, a Request record will be created. In the Request record:
+
+- The sender\_id will be the user\_id of the person who sent the group request (the group creator)
+- The receiver\_id will be the user\_id of the person receiving the group request
+- The group_id is the id of the group that the sender wants the recepient to join
+- Status will be set as 'pending' by default when the Request record is created. _A group has many pending members through requests._
+- When the recepient accepts a group request, the status will change to 'accepted', and they will now be a group member. _A group has many accepted members through requests._
+
+#### Associating Events with Groups
+
+The Group and Event models have a simple one to many relationship. A Group has many Events, and an Event belongs to one Group.
+
+
+[entity relationship diagram](https://user-images.githubusercontent.com/15388548/27516714-222e9232-59b7-11e7-925f-f10b15ab87c2.png)
