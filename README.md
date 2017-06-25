@@ -68,18 +68,18 @@ To make the relationship between the User model and Group model, I established t
 ![img_20170625_150904077](https://user-images.githubusercontent.com/15388548/27517271-a6954d0e-59c1-11e7-8ac8-552c987fc11c.jpg)
 **Relationship diagram for the core models for my project**
 
-<img width="626" alt="User, Group and Request relationship showing foreign keys" src="https://user-images.githubusercontent.com/15388548/27517463-3b7dc114-59c5-11e7-9d3a-3c69bca894f7.png">
-**User, Group and Request relationship showing primary and foreign keys**
+<img width="639" alt="User, Group and Request relationship showing foreign keys" src="https://user-images.githubusercontent.com/15388548/27518097-9b0dd18c-59cf-11e7-9d0a-2794f4355cc5.png">
+**User, Group and Request relationship showing foreign keys and important fields**
 
 The relationships between the User and Group models through the Request join table are:
 
 - A user has many groups as creator
-- A user has many groups as receiver through request
-- A user has many groups as sender through request (although redundant as this is the same as groups as creator)
-- A group has many accepted users/members through requests
-- A group has many pending users/members through requests
-- A user has many requests
+- A user has many requests as sender
+- A user has many requests as receiver
+- A user has many groups as member through request
 - A group has many requests
+- A group has many accepted members through requests
+- A group has many pending members through requests
 
 When a group creator sends a group invite/request to another user, a Request record will be created. In the Request record:
 
@@ -93,5 +93,27 @@ When a group creator sends a group invite/request to another user, a Request rec
 
 The Group and Event models have a simple one to many relationship. A Group has many Events, and an Event belongs to one Group.
 
+<img width="400" alt="Group and Event relationship" src="https://user-images.githubusercontent.com/15388548/27517800-26a48ac0-59ca-11e7-9687-51e55a6d9c70.png">
 
-[entity relationship diagram](https://user-images.githubusercontent.com/15388548/27516714-222e9232-59b7-11e7-925f-f10b15ab87c2.png)
+**Group and Event relationship showing primary and foreign keys**
+
+#### Associating Users and Events
+
+A feature that I wanted to implement was users being able to indicate whether or not they would be able to attend an event in a stag do. This is so that the group creator and members will be able to see how many people actually intend to show up to an event.
+
+<img width="663" alt="user event attendancestatus" src="https://user-images.githubusercontent.com/15388548/27518281-0c6e585c-59d4-11e7-8d68-c71e690c9b92.png">
+**User, Event and AttendanceStatus relationship showing foreign keys and important fields**
+
+The relationships between the User and Event models through the AttendanceStatus join table are:
+
+- A user has many attendance statuses
+- A user has many events through attendance status
+- An event has many attendance statuses
+- And event has many members attending, pending and not attending through attendance status
+
+#### Relationship diagram for the application
+
+![entity relationship diagram](https://user-images.githubusercontent.com/15388548/27516714-222e9232-59b7-11e7-925f-f10b15ab87c2.png)
+**Relationship diagram with the five models**
+
+I had intended to incorporate more models into the project for extra functionality but time was a crucial factor in making the decision to keep it to five models.
