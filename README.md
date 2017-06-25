@@ -1,64 +1,42 @@
-### Using this Angular Gulp Setup
+# WDI-Project-4
+### Create a Full Stack application with Ruby on Rails and AngularJS
 
-To get setup with the starter-code, you first need to run:
+---
+##Project Brief
 
-```sh
-$ bower install && gulp install
-```
+Create a full stack application with a Ruby on Rails back-end and an AngularJS front-end. It is required to:
 
-## How is gulp setup?
+- Connect your Rails back-end to an SQL database and interact with it
+- Create at least two models in the SQL database, one being a user model
+- Have user authentication where the user's details are stored in the User model in the database
+- Create API routes with CRUD functionality using Rails that are to be consumed by the AngularJS front-end
 
-Rather than trying to manage one giant `gulpfile.js` that is file responsible for creating multiple tasks, each task has been broken out into its own file and placed in a directory `tasks`. Any files in that directory get automatically required in the gulpfile using the `require-dir` npm package.
+## Henstagenda
 
-To add a new task, simply add a new task file that directory.
+For my final project at General Assembly, I wanted to create an application that people everywhere could find useful and which would satisfy the prject brief. I decided to create a website where people could organise stag and hen dos since it would require many database models and because it has the potential to be useful in the real world.
 
-/tasks/default.js specifies the default set of tasks to run
-when you run `gulp`.
+As stag and hen dos can last many days and can be difficult to organise and get atendees to be in the know about the agenda, I felt that it would be a good idea to create an agenda of events so that eveyone would be in the know about what's going on at any given time. The name Henstagenda is a blend of the words 'hen', 'stag' and 'agenda'.
 
-Configuration options are stored in the `package.json` file.
+## Planning
 
-When deploying, ensure that a `postinstall` script has been added to
-your package.json, e.g.
+In order to create the website, I needed to think about how a user would use the website to either create a stag/hen do, or join a created stag/hen do. For brevity, I am going to lay out my thought process and examples in terms of just stag dos.
 
-```json
-"postinstall": "bower install && gulp deploy"
-```
+### User Flow
 
-This setup expects that there is a bower.json file with at least ONE package
-installed. This will created a bower_components directory after
-the postinstall script has run.
 
-When deploying, this setup expects that the NODE_ENV is set to `production`.
-Also that the NPM_CONFIG_PRODUCTION is set to `false`. Then you can also set the API_URL to be the correct URL for your deployed app. This will automatically replace `http://localhost:4000` to be the correct url.
+#### Process for group creators
 
-You can do this by running:
+To create a stag do, the creator of the event would sign up to the site, click on a create group button which would lead him to a page where he would be able to create his stag group. Once inside the group, he would be able to create the agenda for the stag do which could cover several days. He would also be able to invite his friends to the stag group. The friend would need to have an account on the website beforehand to be invited to the group.
 
-```bash
-$ heroku config:set NODE_ENV=production
-$ heroku config:set NPM_CONFIG_PRODUCTION=false
+I considered inviting friends through e-mail invitations but that would have required me to do further research in order to implement which would have been unfeasible given the short amount of project time.
 
-# An example url
-$ heroku config:set API_URL=https://project-on-heroku.herokuapp.com/
-```
+#### Process for group invitees
 
-### Bower overrides
+After signing up to the website, the user can be found by group admins who can invite the user to join their stag group. When a group admin invites a user/invitee, the invitee will receive a notification that they have been invited to the stag group, and will have the option to accept or decline the invitation. On accepting the invitation, the invitee will become a group member.
 
-Sometimes, you might want to `override` the `main` file(s) for a specific Bower component. You can do this directly inside the `bower.json` file like this:
+### Database Relationships
 
-```json
-"overrides": {
-  "bootstrap": {
-    "main": [
-      "dist/css/bootstrap.css",
-      "dist/js/bootstrap.js",
-      "dist/fonts/*"
-    ]
-  },
-  "font-awesome": {
-    "main": [
-      "css/font-awesome.css",
-      "fonts/*"
-    ]
-  }
-},
-```
+In order to create the project, it was essential to plan the database relationships carefully as functionality of the application would rely on it.
+
+
+![entity relationship diagram](https://user-images.githubusercontent.com/15388548/27516714-222e9232-59b7-11e7-925f-f10b15ab87c2.png)
