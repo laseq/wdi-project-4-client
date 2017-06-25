@@ -21,15 +21,21 @@ As stag and hen dos can last many days and can be difficult to organise and get 
 
 In order to create the website, I needed to think about how a user would use the website to either create a stag/hen do, or join a created stag/hen do. For brevity, I am going to lay out my thought process and examples in terms of just stag dos.
 
-#### Process for group creators
+### Process for group creators
 
 To create a stag do, the creator of the event would sign up to the site, click on a create group button which would lead him to a page where he would be able to create his stag group. Once inside the group, he would be able to create the agenda for the stag do which could cover several days. He would also be able to invite his friends to the stag group. The friend would need to have an account on the website beforehand to be invited to the group.
 
 I considered inviting friends through e-mail invitations but that would have required me to do further research in order to implement which would have been unfeasible given the short amount of project time.
 
-#### Process for group invitees
+### Process for group invitees
 
 After signing up to the website, the user can be found by group admins who can invite the user to join their stag group. When a group admin invites a user/invitee, the invitee will receive a notification that they have been invited to the stag group, and will have the option to accept or decline the invitation. On accepting the invitation, the invitee will become a group member.
+
+### Website Plan
+
+![img_20170625_151044540](https://user-images.githubusercontent.com/15388548/27519949-0843625e-59f7-11e7-94bf-8d953775c376.jpg)
+
+I prefer pen and paper for my planning instead of wireframing on a computer as I find it quicker and more versatile.
 
 ## Database Relationships
 
@@ -55,12 +61,9 @@ I identified the models that I wanted to incorporate in order of importance as f
 
 To make the relationship between the User model and Group model, I established the following facts:
 
-- A user can have many groups, and a group can have many users.
-	- Therefore, some sort of many-to-many relationship would be used.
-- A user can be a group creator and have many groups, but a group can only have one group creator.
-	- Therefore, a distinction would need to be made when a user is a group creator, and a one to many relationship with the Group model would be established.
-- A join table for 'Request' would be used for the User and Group relationship to distinguish between the group creator and group members.
-	- Therefore a User can have many Groups through Requests, and a Group can have many accepted or pending members through Requests. Declined members is unnecessary as the Request in that case would be deleted.
+- A user can have many groups, and a group can have many users. Therefore, some sort of many-to-many relationship would be used.
+- A user can be a group creator and have many groups, but a group can only have one group creator. Therefore, a distinction would need to be made when a user is a group creator, and a one to many relationship with the Group model would be established.
+- A join table for 'Request' would be used for the User and Group relationship to distinguish between the group creator and group members. Therefore a User can have many Groups through Requests, and a Group can have many accepted or pending members through Requests. Declined members is unnecessary as the Request in that case would be deleted.
 
 **Relationship diagram for the core models for my project:**
 ![img_20170625_150904077](https://user-images.githubusercontent.com/15388548/27517271-a6954d0e-59c1-11e7-8ac8-552c987fc11c.jpg)
@@ -223,3 +226,128 @@ end
 
 I had intended to incorporate more models into the project for extra functionality but time was a crucial factor in making the decision to keep it to five models.
 
+## Mass Group Invites
+
+I felt that it would be beneficial for a stag group admin if he could find many friends to invite and send a mass invite to all of them. This would:
+
+1. Make the group invite process quicker for him as opposed to sending individual invites.
+2. Use just one API call for the mass invite as opposed to multiple API calls for every single invite.
+
+The steps to carry out the mass group invites are:
+
+1. Find the users by their email addresses
+2. Click on Invite to invite them all
+
+### Find users by e-mail address
+
+To invite a user, we need to make sure that:
+
+1. They are in the database
+2. They have not already had an invite
+
+We send a POST request with `email` and `group_id` as parameters to the custom route method `User.findByEmailWithGroup`.
+
+```
+function searchForUserByEmail() {
+  const userObj = {
+    email: vm.currentEmail,
+    group_id: vm.group.id
+  };
+  User
+    .findByEmailWithGroup(userObj)
+    .$promise
+    .then(user => {
+      if (user.id && !checkIfInListAlready(user.id)) {
+        vm.usersToInvite.push(user);
+        vm.currentEmail = '';
+      }
+    });
+}
+```
+
+A POST request is then made to the route `/users/search_by_email` in the User factory which handles API requests to the server side user routes.
+
+```
+return $resource(`${API}/users/:id`, { id: '@_id'}, {
+  'findByEmailWithGroup': { method: 'POST', url: `${API}/users/search_by_email` }
+});
+```
+The server side routing then directs the API request to the `search_by_email_in_group` method in the `users` controller.
+
+`post 'users/search_by_email', to: 'users#search_by_email_in_group'`
+
+The method in the controller then checks to see if the user has already received an invite for that group. If not, the user's information will be rendered as JSON data.
+
+```
+def search_by_email_in_group
+  @user = User.find_by(email: user_params[:email])
+  @group = Group.find_by_id(params[:group_id])
+  @message = {:message => "This user has already received an invite"}
+
+  if (@group.invited_members.where(email: user_params[:email]).length == 0)
+    render json: @user
+  elsif (@user.present?)
+    render json: @message
+  else
+    render json: @user.errors, status: :unprocessable_entity
+  end
+end
+```
+The group admin can find and list many users in this way and set them up for a mass group invite.
+
+### Send the mass group invite
+
+The `group_id` and `receiver_id` for each invitee are put in an array of objects called `massRequest` which is sent as a property of `mass_requests` in the expected format to be used server-side.
+
+`$uibModalInstance` is closed here as the group requests occur in a modal.
+
+```
+function sendGroupJoinRequests() {
+  vm.usersToInvite.forEach(user => {
+    massRequest.push({ group_id: vm.group.id, receiver_id: user.id});
+  });
+  const massRequestObj = {
+    mass_requests: massRequest
+  };
+  Request
+    .sendMassRequest(massRequestObj)
+    .$promise
+    .then(data => {
+      $uibModalInstance.close('Requests sent');
+    });
+}
+```
+A POST request is then made to `/group_invites/mass`
+
+```
+return $resource(`${API}/group_invites/:id`,{ id: '@_id' },
+  {
+    'sendMassRequest': { method: 'POST', url: `${API}/group_invites/mass`, isArray: true }
+  }
+);
+```
+
+The API request is received by the Rails back end and handled by the `group_invites` controller method called `mass_create`.
+
+In order to create records en masse, I used a gem called `"activerecord-import"` which gives us the `.import` method.
+
+In the code below, we put all the individual group requests in an array called `requests`. We then use `Request.import requests` to create the entries en masse in the Request table. The array of the requests is then rendered as JSON.
+
+```
+def mass_create
+  requests = []
+  group_invite_params[:mass_requests].each do |element|
+    requests << @current_user.requests_as_sender.new(:group_id => element[:group_id], :receiver_id => element[:receiver_id], :status => "pending")
+  end
+
+  @invites = Request.import requests
+
+  if @invites
+    render json: requests, status: :created
+  else
+    render json: requests.errors, status: :unprocessable_entity
+  end
+end
+```
+
+## JSON rendering
