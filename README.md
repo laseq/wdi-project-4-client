@@ -2,7 +2,7 @@
 ### Create a Full Stack application with Ruby on Rails and AngularJS
 
 ---
-##Project Brief
+## Project Brief
 
 Create a full stack application with a Ruby on Rails back-end and an AngularJS front-end. It is required to:
 
@@ -441,15 +441,19 @@ I created an object called `customised_events_by_date` to store the `customised_
 ## Final Product
 
 **User Dashboard:**
+
 <img width="750" alt="User Dashboard" src="https://user-images.githubusercontent.com/15388548/27536549-9da11c2c-5a67-11e7-93d4-00800581388a.png">
 
 **Group page:**
+
 <img width="750" alt="Group page" src="https://user-images.githubusercontent.com/15388548/27536576-be211dc6-5a67-11e7-9c66-4492b6ef38e8.png">
 
 **Agenda on group page:**
+
 <img width="750" alt="Group agenda" src="https://user-images.githubusercontent.com/15388548/27536603-d7976dd2-5a67-11e7-9dd8-5728fbebe187.png">
 
 **Event page that shows the members that are attending:**
+
 <img width="750" alt="Event details" src="https://user-images.githubusercontent.com/15388548/27536639-fd31a08a-5a67-11e7-869b-045e0606d96f.png">
 
 ## Final Thoughts
