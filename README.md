@@ -17,9 +17,44 @@ For my final project at General Assembly, I wanted to create an application that
 
 As stag and hen dos can last many days and can be difficult to organise and get atendees to be in the know about the agenda, I felt that it would be a good idea to create an agenda of events so that eveyone would be in the know about what's going on at any given time. The name Henstagenda is a blend of the words 'hen', 'stag' and 'agenda'.
 
+## Tech Used
+
+### Programming Languages
+- Javascript
+- Ruby
+
+### Client-side
+- AngularJS
+- Bootstrap
+- HTML/CSS/SCSS
+
+**Dependencies:**
+
+- angular-ui-router
+- angular-resource
+- angular-jwt
+- angular-bootstrap
+- angular-animate
+- angular-moment-picker (Used for selecting the time)
+- angular-bootstrap-calendar
+- angular-spinners (Used for the loading spinners)
+
+### Server-side
+- Ruby on Rails
+- PostgreSQL
+
+**Gems:**
+
+- rack-cors
+- active\_model\_serializers
+- bcrypt
+- jwt
+- figaro (Used for storing secret variables)
+- activerecord-import (Used for mass creation of records)
+
 ## User Flow
 
-In order to create the website, I needed to think about how a user would use the website to either create a stag/hen do, or join a created stag/hen do. For brevity, I am going to lay out my thought process and examples in terms of just stag dos.
+In order to create the website, I needed to think about how a user would use the website to either create a stag/hen do, or join a created stag/hen do. For brevity, I am going to lay out my thought process and examples in terms of just stag dos throughout this ReadMe.
 
 ### Process for group creators
 
@@ -79,7 +114,7 @@ When a group creator sends a group invite/request to another user, a Request rec
 - Status will be set as 'pending' by default when the Request record is created. _A group has many pending members through requests._
 - When the recepient accepts a group request, the status will change to 'accepted', and they will now be a group member. _A group has many accepted members through requests._
 
-**Code snippet of the User model's relationship with Group and the Request join table:**
+**The User model's relationship with Group and the Request join table:**
 
 ```
 class User < ApplicationRecord
@@ -97,7 +132,7 @@ class User < ApplicationRecord
   end
 end
 ```
-**Code snippet of the Group model's relationship with User and the Request join table:**
+**The Group model's relationship with User and the Request join table:**
 
 ```
 class Group < ApplicationRecord
