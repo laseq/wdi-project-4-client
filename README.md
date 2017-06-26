@@ -350,4 +350,46 @@ def mass_create
 end
 ```
 
-## JSON rendering
+## Custom serialization for deeply nested data
+
+For a stag/hen group page, I needed to group events by date on the server-side and render them as JSON to be consumed by AngularJS on client-side in order to get the agenda pagination working. The event cards have 'attending' and 'not attending' buttons where users can indicate whether or not they're attending an event. For this attendance feature to work, I needed to retrieve the `members_attending` details with the JSON response.
+
+I created a custom method in the Group model to group the events by date. 
+
+```
+def events_by_date
+  events.group_by{ |event| event.start_time.strftime("%a %d %b %Y") }
+end
+```
+
+And expected the JSON response to be as follows:
+
+<img width="446" alt="group.events_by_date" src="https://user-images.githubusercontent.com/15388548/27520572-3f8f2126-5a06-11e7-8fcd-01a64766f0de.png">
+
+The image above shows the `events_by_date` object with the dates inside it. The dates contain the array of events for that day which then hold the event information.
+
+The above JSON snippet is the JSON response in the working version of the app. However, creating the custom method `events_by_date` did not render the `members_attending`, `members_not_attending` and `members_pending` arrays as they were too deeply nested. I needed to retrieve this information to get the attendance feature working.
+
+I wrote a custom method in the Group serializer to retrieve the attendance information.
+
+```
+def events_by_date
+  customised_events_by_date = {}
+  object.events_by_date.each do |date, events|
+    customised_events = []
+    events.each do |event|
+      e1 = Event.find(event[:id])
+      custom_event = e1.attributes
+      custom_event[:members_attending] = e1.members_attending.select(User.column_names - ["created_at", "updated_at", "password_digest"])
+      custom_event[:members_not_attending] = e1.members_not_attending.select(User.column_names - ["created_at", "updated_at", "password_digest"])
+      custom_event[:members_pending] = e1.members_pending.select(User.column_names - ["created_at", "updated_at", "password_digest"])
+      customised_events.push(custom_event)
+    end
+    customised_events_by_date[date] = customised_events
+  end
+  return customised_events_by_date
+end
+```
+
+I created an object called `customised_events_by_date` to store the `customised_events` which are just a combination of the default Event information plus the `members_attending`, `members_not_attending` and `members_pending` fields. In this manner, using the `.events_by_date` method would now render the `members_attending` etc. fields in the JSON repsonse.
+
