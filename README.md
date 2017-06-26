@@ -17,6 +17,8 @@ For my final project at General Assembly, I wanted to create an application that
 
 As stag and hen dos can last many days and can be difficult to organise and get atendees to be in the know about the agenda, I felt that it would be a good idea to create an agenda of events so that eveyone would be in the know about what's going on at any given time. The name Henstagenda is a blend of the words 'hen', 'stag' and 'agenda'.
 
+View the project at [https://agile-cliffs-75809.herokuapp.com](https://agile-cliffs-75809.herokuapp.com).
+
 ## Tech Used
 
 ### Programming Languages
@@ -475,3 +477,6 @@ I found it difficult to make a gender neutral style for the website as I wanted 
 - Create event types such as dining, leisure, travel with unique options for each event type. E.g. Travel could have the option of car sharing, directions through Google Maps etc.
 - The group creator should be able to make other members group admins
 - The logo and home page could do with a more gender neutral design.
+
+### Link to project:
+[https://agile-cliffs-75809.herokuapp.com](https://agile-cliffs-75809.herokuapp.com)
