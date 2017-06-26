@@ -238,7 +238,7 @@ The steps to carry out the mass group invites are:
 1. Find the users by their email addresses
 2. Click on Invite to invite them all
 
-### Find users by e-mail address
+### Finding users by e-mail address
 
 To invite a user, we need to make sure that:
 
@@ -295,7 +295,7 @@ end
 ```
 The group admin can find and list many users in this way and set them up for a mass group invite.
 
-### Send the mass group invite
+### Sending the mass group invite
 
 The `group_id` and `receiver_id` for each invitee are put in an array of objects called `massRequest` which is sent as a property of `mass_requests` in the expected format to be used server-side.
 
@@ -393,3 +393,30 @@ end
 
 I created an object called `customised_events_by_date` to store the `customised_events` which are just a combination of the default Event information plus the `members_attending`, `members_not_attending` and `members_pending` fields. In this manner, using the `.events_by_date` method would now render the `members_attending` etc. fields in the JSON repsonse.
 
+## Agenda Pagination
+
+
+
+## Final Product
+
+
+
+## Final Thoughts
+
+I feel that Henstagenda was a success for me as I learned a lot about Ruby on Rails by creating a lot of custom methods and carrying out a lot of database manipulation. The project has definitely made me a lot more comfortable with the back-end of web development.
+
+I got a lot more confident with AngularJS as well. I used custom routes two levels deep for the first time in my whole time at General Assembly on this project and learnt a lot about how AngularJS routing works because of it.
+
+Another learning experience with AngularJS that I had not known before was that `ng-repeat` also gives you the key of a key-value pair if you ask for it, which was quite useful in the agenda pagination.
+
+I found it difficult to make a gender neutral style for the website as I wanted to make it cater to two different audiences. It may have been a better idea to keep the project to just stag or hen dos as the styling decisions would have been easier and the quality of the site in general may have been better with less indecision.
+
+### Proposed improvements
+
+- Include group themes so that the group creator can select a theme that reflects the stag-ness or hen-ness of the group.
+- Group and event discussion
+- A more comprehensive notifications system where the group admin could alert all group members about actions such as changes to event times, new event or deleted events.
+- A finance feature where users can see how much money they owe each other, and where the group admin can keep track of whether members have paid for certain events.
+- Create event types such as dining, leisure, travel with unique options for each event type. E.g. Travel could have the option of car sharing, directions through Google Maps etc.
+- The group creator should be able to make other members group admins
+- The logo and home page could do with a more gender neutral design
