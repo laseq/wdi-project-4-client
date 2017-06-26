@@ -255,13 +255,15 @@ class AttendanceStatus < ApplicationRecord
 end
 ```
 
-#### Relationship diagram for the application
+#### Relationship diagram for the application:
 
 ![entity relationship diagram](https://user-images.githubusercontent.com/15388548/27516714-222e9232-59b7-11e7-925f-f10b15ab87c2.png)
 
 I had intended to incorporate more models into the project for extra functionality but time was a crucial factor in making the decision to keep it to five models.
 
 ## Mass Group Invites
+
+<img width="600" alt="Group invite" src="https://user-images.githubusercontent.com/15388548/27536389-d69d17c0-5a66-11e7-82a2-b9d7b38cbe98.png">
 
 I felt that it would be beneficial for a stag group admin if he could find many friends to invite and send a mass invite to all of them. This would:
 
@@ -384,6 +386,14 @@ def mass_create
   end
 end
 ```
+**After sending the invites, the pending invites can be viewed:**
+<img width="600" alt="Pending invites" src="https://user-images.githubusercontent.com/15388548/27536440-144be29a-5a67-11e7-8eb6-38587b87ea06.png">
+
+**The invitee will receive a group request notification on their dashboard:**
+<img width="369" alt="Request notification" src="https://user-images.githubusercontent.com/15388548/27536505-6cf1b5dc-5a67-11e7-9f6d-6f4a522928cd.png">
+
+**Members can be deleted from the group:**
+<img width="600" alt="Member deletion" src="https://user-images.githubusercontent.com/15388548/27536471-3f879990-5a67-11e7-9b2c-87b3a3abd184.png">
 
 ## Custom serialization for deeply nested data
 
@@ -428,13 +438,19 @@ end
 
 I created an object called `customised_events_by_date` to store the `customised_events` which are just a combination of the default Event information plus the `members_attending`, `members_not_attending` and `members_pending` fields. In this manner, using the `.events_by_date` method would now render the `members_attending` etc. fields in the JSON repsonse.
 
-## Agenda Pagination
-
-
-
 ## Final Product
 
+**User Dashboard:**
+<img width="750" alt="User Dashboard" src="https://user-images.githubusercontent.com/15388548/27536549-9da11c2c-5a67-11e7-93d4-00800581388a.png">
 
+**Group page:**
+<img width="750" alt="Group page" src="https://user-images.githubusercontent.com/15388548/27536576-be211dc6-5a67-11e7-9c66-4492b6ef38e8.png">
+
+**Agenda on group page:**
+<img width="750" alt="Group agenda" src="https://user-images.githubusercontent.com/15388548/27536603-d7976dd2-5a67-11e7-9dd8-5728fbebe187.png">
+
+**Event page that shows the members that are attending:**
+<img width="750" alt="Event details" src="https://user-images.githubusercontent.com/15388548/27536639-fd31a08a-5a67-11e7-869b-045e0606d96f.png">
 
 ## Final Thoughts
 
@@ -454,4 +470,4 @@ I found it difficult to make a gender neutral style for the website as I wanted 
 - A finance feature where users can see how much money they owe each other, and where the group admin can keep track of whether members have paid for certain events.
 - Create event types such as dining, leisure, travel with unique options for each event type. E.g. Travel could have the option of car sharing, directions through Google Maps etc.
 - The group creator should be able to make other members group admins
-- The logo and home page could do with a more gender neutral design
+- The logo and home page could do with a more gender neutral design.
