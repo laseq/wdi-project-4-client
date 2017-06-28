@@ -2,6 +2,15 @@
 ### Create a Full Stack application with Ruby on Rails and AngularJS
 
 ---
+
+**Client-side repository:** [https://github.com/laseq/wdi-project-4-client](https://github.com/laseq/wdi-project-4-client)
+
+**Server-side repository:** [https://github.com/laseq/wdi-project-4-api](https://github.com/laseq/wdi-project-4-api)
+
+**Live project:** [https://agile-cliffs-75809.herokuapp.com](https://agile-cliffs-75809.herokuapp.com)
+
+---
+
 ## Project Brief
 
 Create a full stack application with a Ruby on Rails back-end and an AngularJS front-end. It is required to:
