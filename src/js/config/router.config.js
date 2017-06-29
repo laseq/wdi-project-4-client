@@ -47,7 +47,7 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     templateUrl: 'js/views/groups/edit.html',
     controller: 'GroupsEditCtrl as vm',
     resolve: {
-      group: function(Group, TokenService, $stateParams, $state, $q) {
+      group: function(Group, TokenService, $stateParams, $state) {
         return Group.get($stateParams)
         .$promise
         .then(group => {
@@ -56,6 +56,8 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
           } else {
             return group;
           }
+        }, error => {
+          console.log('error:', error);
         });
       }
     }
