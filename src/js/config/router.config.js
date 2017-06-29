@@ -47,21 +47,29 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
     templateUrl: 'js/views/groups/edit.html',
     controller: 'GroupsEditCtrl as vm',
     resolve: {
-      group: function(Group, TokenService, $stateParams, $state) {
-        return Group.get($stateParams)
-        .$promise
-        .then(group => {
-          if (group.creator_id !== TokenService.decodeToken().id) {
-            return $state.go('groupsShow', { id: group.id });
-          } else {
-            return group;
-          }
-        }, error => {
-          console.log('error:', error);
-        });
-      }
+      group: secureGroupEdit
     }
   })
+  // .state('groupsEdit', {
+  //   url: '/groups/:id/edit',
+  //   templateUrl: 'js/views/groups/edit.html',
+  //   controller: 'GroupsEditCtrl as vm',
+  //   resolve: {
+  //     group: function(Group, TokenService, $stateParams, $state) {
+  //       return Group.get($stateParams)
+  //       .$promise
+  //       .then(group => {
+  //         if (group.creator_id !== TokenService.decodeToken().id) {
+  //           return $state.go('groupsShow', { id: group.id });
+  //         } else {
+  //           return group;
+  //         }
+  //       }, error => {
+  //         console.log('error:', error);
+  //       });
+  //     }
+  //   }
+  // })
   .state('usersEdit', {
     url: '/users/:id/edit',
     templateUrl: 'js/views/users/edit.html',
@@ -84,4 +92,19 @@ function Router($stateProvider, $urlRouterProvider, $locationProvider) {
   });
 
   $urlRouterProvider.otherwise('/');
+}
+
+secureGroupEdit.$inject = ['Group', 'TokenService', '$stateParams', '$state'];
+function secureGroupEdit(Group, TokenService, $stateParams, $state) {
+  return Group.get($stateParams)
+  .$promise
+  .then(group => {
+    if (group.creator_id !== TokenService.decodeToken().id) {
+      return $state.go('groupsShow', { id: group.id });
+    } else {
+      return group;
+    }
+  }, error => {
+    console.log('error:', error);
+  });
 }
