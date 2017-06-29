@@ -16,7 +16,7 @@
   ],
   "dependencies": {
     "angular": "^1.5.8",
-    "angular-ui-router": "^1.0.3",
+    "angular-ui-router": "latest",
     "angular-resource": "^1.6.4",
     "angular-jwt": "^0.1.9",
     "bootstrap-css-only": "^3.3.7",
