@@ -1,37 +1,9 @@
-header {
-  .navbar {
-    margin-bottom: 0;
-  }
-}
-
-.background-image {
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  /* Set rules to fill background */
-  min-height: 100%;
-  min-width: 1024px;
-
-  /* Set up proportionate scaling */
-  width: 100%;
-  height: auto;
-
-  /* Set up positioning */
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-
-}
-
 .homepage-wrapper {
-  // background-color: $themeColour4;
   background: url('../images/homepage-img-faded.jpg') no-repeat;
   background-size: cover;
   min-height: 70vh;
   width: 100%;
-  margin: 0;
+  margin-top: -20px;
   padding: 3em 0;
 
   .homepage-logo {
@@ -56,7 +28,6 @@ header {
 .info-row {
   text-align: center;
   background-color: $themeColour4;
-  // border-radius: 4px;
   margin: 0;
   min-height: 25vh;
   display: flex;
@@ -91,5 +62,11 @@ header {
         margin-bottom: 3%;
       }
     }
+  }
+}
+
+@media (max-width: 620px) {
+  .info-row {
+    display: block;
   }
 }
